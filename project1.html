@@ -4,7 +4,7 @@
   <style>
     .video-row {
       display: flex;
-      justify-content: center; /* center the row */
+      justify-content: center;
       gap: 20px; /* space between videos*/
     }
     .video-row video {
@@ -15,6 +15,26 @@
   <style>
     .center-heading {
       text-align: center;
+    }
+  </style>
+  <style>
+    .paragraph {
+      opacity: 0;
+      text-align: justify;
+      animation: fadeIn 3s forwards;
+    }
+
+    /* Sequential delay */
+    .p1 { animation-delay: 0s; }
+    .p2 { animation-delay: 1s; }
+    .p3 { animation-delay: 2s; }
+    .p4 { animation-delay: 3s; }
+    .p5 { animation-delay: 4s; }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
   </style>
   <link
@@ -42,20 +62,20 @@
         Your browser does not support the video tag.
     </video>
   </div>  
-    <p style="text-align: justify;">
+    <p class="paragraph p1">
        The "Drop Test Simulation" project was undertaken to evaluate the structural integrity and impact resistance of a product when subjected to accidental drops during handling or transportation. The simulation process began with the development of a detailed 3D CAD model using <strong>Ansys SpaceClaim</strong>, which provided a flexible and efficient platform for preparing geometry suitable for impact simulation. Special attention was paid to features such as sharp corners, thin walls, and contact surfaces, as these can significantly influence impact response. Once the geometry was finalized and cleaned, it was imported into <strong>Ansys LS-DYNA</strong>, a powerful <strong>explicit dynamics solver</strong> ideal for simulating high-speed, nonlinear transient events like drop impacts.
     </p>
-    <p style="text-align: justify;">
+    <p class="paragraph p2">
        The drop test scenario was designed based on realistic conditions, including drop height, orientation, and target surface material properties. Material models were carefully assigned to each component of the assembly, incorporating nonlinear stress-strain behavior, strain-rate dependency, and failure criteria, especially for plastics and composites commonly used in enclosures. Contact definitions were established between components and between the model and the ground plane to capture interactions and potential rebounds accurately.
     </p>
-    <p style="text-align: justify;">
+    <p class="paragraph p3">
        Meshing was a critical step, where an appropriate element size was selected to balance accuracy and computational efficiency. High-stress regions were refined to capture detailed deformation and stress wave propagation. The simulation was then run in LS-DYNA, with initial conditions defining gravitational acceleration and impact velocity based on the drop height. The solver computed time-dependent responses such as stress distribution, deformation, and energy absorption.
     </p>
-    <p style="text-align: justify;">
+    <p class="paragraph p4">
        Post-processing involved evaluating the von Mises stress, plastic deformation, and displacement fields to identify failure-prone areas. The results were used to assess whether the product could survive the drop without functional or cosmetic damage. If failures were detected, design iterations were proposed, such as adding ribs, using more ductile materials, or altering wall thicknesses. This simulation-based approach significantly reduced the need for physical prototypes and enabled faster, cost-effective design optimization while ensuring compliance with industry standards for drop performance.
     </p>
     <h2>Project Takeways:</h2>
-    <p style="text-align: justify;">
+    <p class="paragraph p5">
        The project demonstrated the effectiveness of simulation-driven design in predicting real-world failure modes and minimizing development cycles. Key takeaways included the importance of accurate material modeling, the need for refined meshing in critical areas, and the value of early-stage virtual testing in guiding design improvements. Leveraging tools like Ansys SpaceClaim and LS-DYNA provided both speed and precision, ultimately improving product reliability while reducing time-to-market and physical testing costs.
     </p>
 </body>
