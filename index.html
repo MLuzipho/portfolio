@@ -19,58 +19,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
     <style>
-    /* Ensure paragraphs are centered and justified */
-    .justified-paragraph {
-      text-align: justify;
-      margin: 0 auto;
-      padding-left: 5%;
-      padding-right: 5%;
-      line-height: 1.6;
-      max-width: 800px;
-    }
+  /* Ensure all justified-paragraph classes are centered and evenly padded */
+  .justified-paragraph,
+  [class^="justified-paragraph"] {
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3%;
+    padding-right: 3%;
+    line-height: 1.6;
+    max-width: 720px;
+  }
 
-    /* Optional: For future uniformity if you have other paragraphs */
-    [class^="justified-paragraph"] {
-      text-align: justify;
-      margin: 0 auto;
-      padding-left: 5%;
-      padding-right: 5%;
-      line-height: 1.6;
-      max-width: 800px;
-    }
+  /* Adjust header text container for custom padding and better centering */
+  .header-textbox {
+    text-align: center;
+    margin: 0 auto;
+    padding-left: 3%;
+    padding-right: 3%;
+    max-width: 720px;
+  }
 
-    /* Ensure the main text container has responsive padding */
+  @media (min-width: 768px) {
+    .justified-paragraph,
+    [class^="justified-paragraph"],
     .header-textbox {
-      text-align: center;
-      padding: 0 5%;
+      padding-left: 4%;
+      padding-right: 4%;
+      max-width: 800px;
     }
+  }
 
-    /* Responsive button layout */
-    .header-btns {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px; /* Equal spacing between buttons */
-      margin-top: 1.5rem;
+  @media (min-width: 1200px) {
+    .justified-paragraph,
+    [class^="justified-paragraph"],
+    .header-textbox {
+      padding-left: 5%;
+      padding-right: 5%;
+      max-width: 900px;
     }
+  }
+</style>
 
-    .header-btns a {
-      padding: 10px 20px;
-      text-decoration: none;
-    }
-
-    @media (min-width: 768px) {
-      .header-textbox {
-        padding: 0 10%;
-      }
-
-      .justified-paragraph,
-      [class^="justified-paragraph"] {
-        padding-left: 10%;
-        padding-right: 10%;
-      }
-    }
-  </style>
 
     <!-- Read and update content attributes accordingly  -->
 
