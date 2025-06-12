@@ -50,6 +50,27 @@
       margin-bottom: 2em; /* Optional: adds spacing between paragraphs */
     }
   </style>
+  <style>
+    .content {
+      padding: 5%; /* Default padding for all screens */
+    }
+
+    @media (min-width: 768px) {
+      /* For tablets and up */
+      .content {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      /* For laptops and larger screens */
+      .content {
+        padding-left: 15%;
+        padding-right: 15%;
+      }
+    }
+  </style>
 
   <link
       rel="preload"
@@ -65,6 +86,7 @@
     <h1 class="center-heading">Project Description: Drop Test Simulation</h1>
 </head>
 <body>
+  <div class="content"> 
   <br><div class="video-row">
     <video autoplay loop>
         <source src="assets/droptest1.mp4" type="video/mp4">
@@ -75,8 +97,7 @@
         <source src="assets/droptest2.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-  </div></br>
-  <div class="content">  
+  </div></br> 
     <p class="paragraph p1">
        The "Drop Test Simulation" project was undertaken to evaluate the structural integrity and impact resistance of a product when subjected to accidental drops during handling or transportation. The simulation process began with the development of a detailed 3D CAD model using <strong>Ansys SpaceClaim</strong>, which provided a flexible and efficient platform for preparing geometry suitable for impact simulation. Special attention was paid to features such as sharp corners, thin walls, and contact surfaces, as these can significantly influence impact response. Once the geometry was finalized and cleaned, it was imported into <strong>Ansys LS-DYNA</strong>, a powerful <strong>explicit dynamics solver</strong> ideal for simulating high-speed, nonlinear transient events like drop impacts.
     </p>
