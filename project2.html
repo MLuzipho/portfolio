@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .video-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* space between videos*/
+    }
+    .video-row video {
+      width: 320px;
+      height:180px;
+    }
+  </style>
+  <style>
+    .center-heading {
+      text-align: center;
+    }
+  </style>
+  <style>
+    .paragraph {
+      opacity: 0;
+      animation: fadeIn 3s forwards;
+    }
+
+    /* Sequential delay */
+    .p1 { animation-delay: 0s; }
+    .p2 { animation-delay: 1s; }
+    .p3 { animation-delay: 2s; }
+    .p4 { animation-delay: 3s; }
+    .p5 { animation-delay: 4s; }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+  <style>
+    .content {
+      margin-left: 10%;
+      margin-right: 10%;
+      /* OR use padding for inner spacing:
+      padding-left: 10%;
+      padding-right: 10%; */
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 2em; /* Optional: adds spacing between paragraphs */
+    }
+  </style>
+  <style>
+    .content {
+      padding: 5%; /* Default padding for all screens */
+    }
+
+    @media (min-width: 768px) {
+      /* For tablets and up */
+      .content {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      /* For laptops and larger screens */
+      .content {
+        padding-left: 15%;
+        padding-right: 15%;
+      }
+    }
+  </style>
+    <br><h1 class="center-heading">Project Description: CFD (Aerodynamic) Analysis of a Hypersonic Missile</h1></br>
+</head>
+<body>
+  <div class="content">
+  <br><div class="video-row">
+    <video controls>
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <video controls>
+        <source src="video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+  </div></br>
+  <div class="content">
+  <br><div class="video-row">
+    <video controls>
+        <source src="video3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <video controls>
+        <source src="video4.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+  </div></br>
+    <p class="paragraph p1">
+       The project titled "CFD Analysis of a Hypersonic Missile" was a comprehensive study focused on understanding the aerodynamic behavior and performance characteristics of a missile operating at hypersonic speeds, typically above Mach 5. The process began with the creation of a detailed 3D geometry of the missile using Ansys SpaceClaim, a powerful CAD modeling tool known for its ease of geometry cleanup and editing. The missile model incorporated all critical aerodynamic features including the nose cone, body fuselage, control surfaces, and possible air intake channels if the design was scramjet-powered. Particular attention was paid to ensuring geometric fidelity in regions where high thermal and pressure gradients were expected, such as the leading edges and aft-body zones. Once the geometry was finalized, it was carefully checked for watertightness and simplified to remove any unnecessary features that could adversely affect mesh quality or inflate computational cost.
+    </p>
+    <p class="paragraph p2">
+       Following the CAD phase, the model was imported into <strong>Ansys Fluent Meshing</strong>, where a high-quality mesh was generated. Due to the nature of hypersonic flows, where <strong>shock waves and boundary layers are extremely thin and sensitive to grid resolution</strong>, the meshing strategy employed non-uniform mesh refinement, particularly around the nose, leading edges, and along the missile surface. Inflation layers were used to resolve the viscous sublayer for accurate heat transfer predictions. The mesh was subjected to quality checks for skewness, orthogonality, and aspect ratio, which are critical for numerical stability at high Mach numbers.
+    </p>
+    <p class="paragraph p3">
+       The CFD simulations were carried out in Ansys Fluent, utilizing a density-based solver suitable for compressible flows with shock capturing capabilities. The <strong>Spalart-Allmaras and SST k-omega turbulence models</strong> were considered during the analysis, with the SST model being preferred for its better performance in capturing flow separation and shock-boundary layer interactions. Simulations were run under various operating conditions representing different altitudes and Mach numbers, and the boundary conditions were carefully selected to match flight envelope parameters, including far-field pressure, temperature, and velocity. <strong>Wall functions and appropriate heat transfer models were applied to evaluate aerothermal heating</strong>, which is a critical design consideration for hypersonic vehicles.
+    </p>
+    <p class="paragraph p4">
+       The analysis yielded detailed insights into <strong>shock wave formation, flow separation, surface pressure distribution, and aerodynamic coefficients such as drag and lift</strong>. One of the key findings was the identification of strong oblique shocks originating from the nose cone and leading edges, which could influence downstream control surface effectiveness. The simulation results were used to optimize the missile shape, reduce wave drag, and improve thermal protection system (TPS) placement. Overall, the project demonstrated the critical role of high-fidelity CFD simulations in predicting real-world hypersonic behavior, reducing the need for expensive wind tunnel testing, and accelerating the design process for next-generation high-speed aerospace systems.
+    </p>
+    <h2>Project Takeways:</h2>
+    <p class="paragraph p5">
+       This project highlighted the immense value of simulation-driven design in hypersonic flight regimes, where experimental data is limited and costly to obtain. The key takeaways included the importance of high-resolution meshing in regions of shock interaction, the effectiveness of SST k-omega turbulence modeling in capturing complex flow features, and the need for careful geometry simplification without sacrificing critical aerodynamic details. It also emphasized the role of robust solver settings and boundary condition configuration in achieving stable convergence at high Mach numbers. By integrating Ansys SpaceClaim for modeling and Ansys Fluent for simulation, the project showcased a streamlined and efficient workflow capable of delivering accurate, actionable results for aerospace defense applications.
+    </p>
+  </div>
+</body>
+</html>
