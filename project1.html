@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drop Test Simulation</title>
 
   <style>
-    /* Video container with 16:9 aspect ratio */
+    /* Base container for both videos */
+    .video-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 5%;
+    }
+
     .video-container {
       position: relative;
       width: 100%;
       max-width: 480px;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
       margin: 0 auto;
+      padding-top: 56.25%; /* 16:9 aspect ratio */
     }
 
     .video-container video {
@@ -22,22 +31,22 @@
       height: 100%;
     }
 
-    .video-row {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding: 0 5%;
-    }
-
-    @media (max-width: 767px) {
+    /* On wider screens, enforce same height by removing aspect padding */
+    @media (min-width: 992px) {
       .video-row {
-        padding-left: 5%;
-        padding-right: 5%;
+        align-items: stretch;
       }
 
       .video-container {
-        max-width: 100%;
+        padding-top: 0;
+        height: 270px; /* fixed height to match both */
+        max-width: none;
+        flex: 1; /* equal width for both videos */
+      }
+
+      .video-container video {
+        height: 100%;
+        object-fit: cover;
       }
     }
 
@@ -83,8 +92,6 @@
       margin-bottom: 2em;
     }
   </style>
-
-  <title>Drop Test Simulation</title>
 </head>
 
 <body>
