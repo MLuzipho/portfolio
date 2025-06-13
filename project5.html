@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FSI Wind Loading Project</title>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #222;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .project-section {
+      padding: 5%;
+    }
+
+    @media (min-width: 768px) {
+      .project-section {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .project-section {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 2em;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .justified-paragraph {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease-out;
+    }
+
+    .justified-paragraph.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-subtitle {
+      margin-top: 30px;
+      font-size: 1.25rem;
+      color: #333;
+      text-align: center;
+    }
+
+    /* IMAGE GRID STYLING */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin: 40px auto;
+      padding: 0 5%;
+    }
+
+    @media (min-width: 768px) {
+      .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .image-item {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .image-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .image-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      padding: 12px;
+      font-size: 0.95rem;
+      color: #555;
+      background-color: #f2f2f2;
+    }
+
+    /* VIDEO STYLING */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 60px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      background-color: #000;
+    }
+
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .video-container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .video-container {
+        width: 70%;
+      }
+    }
+  </style>
+
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.justified-paragraph').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <section class="project-section">
+    <h2 class="project-title">FSI Wind Loading Analysis of Two 5G Radio Boxes</h2>
+
+    <!-- IMAGE GALLERY WITH CAPTIONS IN 2x2 LAYOUT -->
+    <div class="image-gallery">
+      <div class="image-item">
+        <img src="assets/images/image1.jpg" alt="CFD Setup Geometry" />
+        <div class="caption">3D CFD Domain Setup</div>
+      </div>
+      <div class="image-item">
+        <img src="assets/images/image2.jpg" alt="Pressure Contours" />
+        <div class="caption">Pressure Contours on Upstream Box</div>
+      </div>
+      <div class="image-item">
+        <img src="assets/images/image3.jpg" alt="Structural Mesh" />
+        <div class="caption">Structural Mesh for FEA</div>
+      </div>
+      <div class="image-item">
+        <img src="assets/images/image4.jpg" alt="Deformation Plot" />
+        <div class="caption">FEA Deformation Results</div>
+      </div>
+    </div>
+
+    <!-- VIDEO CONTAINER -->
+    <div class="video-container">
+      <video controls>
+        <source src="assets/videos/wind_analysis.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- PROJECT DESCRIPTION -->
+    <p class="justified-paragraph">
+      The project titled "FSI Simulations for a Wind Loading Analysis of Two 5G Radio Boxes (One Directly Behind the Other, With the Same Dimensions)" involved the coupling of Computational Fluid Dynamics (CFD) and Finite Element Analysis (FEA) to investigate the aerodynamic forces and resulting structural deformations experienced by two identically sized 5G radio boxes positioned in tandem under wind exposure. The study aimed to understand how the upstream box affects the flow field and loading experienced by the downstream box — a realistic scenario frequently encountered in urban environments where such equipment is mounted in close proximity on poles, rooftops, or facades. The simulation workflow began with the construction of simplified 3D geometries in ANSYS SpaceClaim. Instead of using high-fidelity models with fine details or rounded corners typically found in commercial enclosures, the models were intentionally kept medium- to low-fidelity, featuring square corners and flat surfaces. This simplification allowed for reduced computational cost while still capturing the essential aerodynamic behavior of bluff-body interactions.
+    </p>
+
+    <p class="justified-paragraph">
+      A large computational domain was defined to mimic open-air wind conditions, with careful attention to inlet length, outlet buffer zones, and lateral spacing to prevent boundary-induced flow distortion. Mesh generation was conducted using ANSYS Meshing, incorporating inflation layers on the box surfaces to resolve near-wall effects and local refinements in regions between and behind the boxes to capture wake dynamics and turbulent eddies. The CFD simulation in ANSYS Fluent used the steady-state RANS equations with the k-ω SST turbulence model, selected for its effectiveness in modeling separated flows and shear layers. Velocity inlet and pressure outlet conditions were imposed, and no-slip walls were applied to the box surfaces. The aerodynamic pressure fields were then exported and mapped onto the surfaces of each box within ANSYS Mechanical for structural response analysis.
+    </p>
+
+    <p class="justified-paragraph">
+      The FEA portion involved assigning material properties for a generic metal casing, such as aluminum, and applying fixed supports at mounting points to simulate real-world constraints. Initially, simulations were run for a single box to establish baseline pressure distributions and stress profiles. A second simulation was then run with the downstream box placed directly behind the first to observe shielding effects. For the Fluid-Structure Interaction (FSI) coupling, a one-way approach was used — aerodynamic pressures were transferred from Fluent to Mechanical without iterative feedback, a practical choice for this level of model complexity. The results showed a significant drop in wind loading on the second box due to flow deflection and wake interference caused by the first box. Contour plots revealed fluctuating pressure zones in the gap between the two units, indicating vortex formation and periodic shedding, which can contribute to long-term fatigue loading.
+    </p>
+
+    <h3 class="project-subtitle">Project Takeaways</h3>
+    <p class="justified-paragraph">
+      Key takeaways from the project included a solid understanding of wake interaction in tandem body configurations, the usefulness of one-way FSI in early-stage design assessments, and the trade-offs between model fidelity and computational efficiency. The study also emphasized that even simplified models can yield meaningful insights into structural robustness and aerodynamic behavior in clustered equipment installations.
+    </p>
+  </section>
+</body>
+</html>
