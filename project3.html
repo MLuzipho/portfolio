@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+    }
+
+    h1.center-heading,
+    h2.project-title {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .content,
+    .project-section {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+
+    @media (min-width: 768px) {
+      .content,
+      .project-section {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .content,
+      .project-section {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 2em;
+    }
+
+    .justified-paragraph {
+      opacity: 0;
+      animation: fadeInText 2s forwards;
+    }
+
+    @keyframes fadeInText {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* IMAGE GRID STYLING */
+    .image-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin: 40px auto;
+      padding: 0 5%;
+    }
+
+    .image-grid img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeInImage 2s forwards;
+    }
+
+    .image-grid img:nth-child(1) { animation-delay: 0.2s; }
+    .image-grid img:nth-child(2) { animation-delay: 0.4s; }
+    .image-grid img:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes fadeInImage {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .image-grid {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .image-grid img {
+        width: 30%;
+      }
+
+      .image-grid img:nth-child(2) {
+        margin: 0 2.5%;
+      }
+    }
+
+    .project-subtitle {
+      margin-top: 30px;
+      font-size: 1.25rem;
+      color: #333;
+    }
+
+    /* LIGHTBOX STYLES */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeInLightbox 0.5s ease;
+    }
+
+    .lightbox-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+    }
+
+    @keyframes fadeInLightbox {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+
+  <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const lightbox = document.createElement('div');
+      lightbox.classList.add('lightbox-overlay');
+      document.body.appendChild(lightbox);
+
+      const img = document.createElement('img');
+      lightbox.appendChild(img);
+
+      document.querySelectorAll('.image-grid img').forEach(image => {
+        image.addEventListener('click', () => {
+          img.src = image.src;
+          lightbox.classList.add('active');
+        });
+      });
+
+      lightbox.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <section class="project-section">
+    <h2 class="project-title">Magnetic Field Simulation for an 8-Coil Toroid Inductor</h2>
+
+    <!-- IMAGE GRID WITH LIGHTBOX -->
+    <div class="image-grid">
+      <img src="assets/images/toroid1.jpg" alt="Toroid CAD Model" />
+      <img src="assets/images/toroid2.jpg" alt="Magnetic Field Visualization" />
+      <img src="assets/images/toroid3.jpg" alt="Thermal CFD Simulation" />
+    </div>
+
+    <h3 class="project-subtitle">1. CAD Modeling</h3>
+    <p class="justified-paragraph">
+      The project began with the creation of a detailed 3D CAD model of an 8-coil toroid. Each coil was accurately represented with precise spacing and curvature around a central toroidal core. The modeling process ensured geometric fidelity to support realistic electromagnetic behavior and compatibility with mesh refinement during simulation. Attention was given to the curvature continuity of coil windings and core alignment to support uniform magnetic coupling.
+    </p>
+
+    <h3 class="project-subtitle">2. Electromagnetic Simulation using Ansys Maxwell</h3>
+    <p class="justified-paragraph">
+      The CAD model was imported into <strong>Ansys Maxwell</strong>, a finite element solver specifically designed for electromagnetic field simulation. Material properties, such as copper conductivity for the coils and nonlinear magnetic permeability for the toroidal core, were assigned. A transient magnetic analysis was performed to evaluate flux distribution, magnetic field strength, and symmetry. Current excitations were applied to each coil to observe interactions between magnetic loops, and results confirmed strong flux linkage with minimal leakage, validating the toroidal configuration. The simulation also ensured that the design avoided magnetic saturation and maintained low core losses under operating conditions.
+    </p>
+
+    <h3 class="project-subtitle">3. Thermal and CFD Coupling with Ansys Fluent</h3>
+    <p class="justified-paragraph">
+      To assess thermal performance, Joule heating results from the electromagnetic simulation were exported and used as input for thermal analysis in <strong>Ansys Fluent</strong>. Heat generated from current-carrying conductors was analyzed under natural and forced convection scenarios. CFD simulations were run to study airflow behavior around the toroid, identifying hot spots and evaluating the efficiency of passive cooling. This coupled simulation approach ensured that both magnetic and thermal limits were respected, contributing to safe operational conditions.
+    </p>
+
+    <h3 class="project-subtitle">4. Outcomes and Applications</h3>
+    <p class="justified-paragraph">
+      The multi-physics simulation approach provided a deep understanding of both the electromagnetic and thermal performance of the toroidal coil system. Field plots, vector visualizations, and thermal maps demonstrated effective coil symmetry, robust magnetic flux containment, and manageable heat dissipation. The outcomes support practical applications in areas such as <strong>power electronics, magnetic confinement systems, wireless charging infrastructure, and transformer design</strong>, where controlled magnetic behavior and efficient thermal management are essential.
+    </p>
+    
+  <h3 class="project-subtitle">5. Project Takeaways</h3>
+    <p class="justified-paragraph">
+      This project emphasized the importance of a multidisciplinary simulation approach to achieve a well-rounded and functional electromagnetic system. By combining CAD modeling, electromagnetic simulation in <strong>Ansys Maxwell</strong>, and thermal-fluid analysis in <strong>Ansys Fluent</strong>, the project ensured comprehensive system validation. Key takeaways include the necessity of early design accuracy for mesh quality, the impact of material selection on both electromagnetic efficiency and thermal safety, and the benefits of simulation-driven design in optimizing system performance prior to prototyping. These insights will guide future work in designing high-performance, thermally reliable, and electromagnetically efficient toroidal systems for demanding engineering applications.
+    </p>
+
+  </section>
+</body>
+</html>
