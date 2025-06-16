@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2 Slit Waveguide EM Simulation</title>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #f4f6f8;
+      color: #222;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 1em;
+    }
+
+    .project-section {
+      padding: 5%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    @media (min-width: 768px) {
+      .project-section {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .project-section {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 2em;
+      font-size: 1.05rem;
+      color: #333;
+    }
+
+    .justified-paragraph {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease-out;
+    }
+
+    .justified-paragraph.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-subtitle {
+      margin-top: 30px;
+      font-size: 1.25rem;
+      color: #333;
+      text-align: center;
+    }
+
+    /* SINGLE VIDEO STYLING */
+    .single-video-container {
+      margin: 60px auto;
+      max-width: 900px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      background-color: #000;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+
+    .video-wrapper video,
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .video-caption {
+      text-align: center;
+      font-size: 1rem;
+      padding: 12px;
+      background-color: #f2f2f2;
+      color: #555;
+    }
+  </style>
+
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.justified-paragraph').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <section class="project-section">
+    <h2 class="project-title">Project Description: 2 Slit Waveguide EM Simulation</h2>
+
+    <!-- SINGLE VIDEO CONTAINER -->
+    <div class="single-video-container">
+      <div class="video-wrapper">
+        <video controls>
+          <source src="assets/videos/wind_analysis.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-caption">EM Wave Propagation Results</div>
+    </div>
+
+    <!-- PROJECT DESCRIPTION -->
+    <p class="justified-paragraph">
+      The project titled "2 Slit Waveguide Simulation" involved a focused electromagnetic analysis of wave interference within a confined waveguide segment using Ansys HFSS (High Frequency Structure Simulator). The objective was to investigate <strong>how electromagnetic waves propagate through a rectangular waveguide that features two narrow, precisely positioned slits on one of its broader walls—conceptually drawing from the classical Young’s double-slit experiment</strong>, but adapted for microwave engineering. Only a representative portion of the full waveguide was modeled and simulated to reduce computational load and maintain relevance to the specific region of interest. This segment was chosen to capture the key interference dynamics occurring around the slits while preserving boundary conditions consistent with real-world scenarios. 
+    </p>
+
+    <p class="justified-paragraph">
+      The 3D geometry was built in <strong>Ansys HFSS using PEC (perfect electric conductor) assumptions for the waveguide walls</strong> and <strong>air as the dielectric medium inside</strong>. The waveguide was designed to operate in the TE₁₀ mode at a specific microwave frequency, with wave excitation applied at the input port. The two slits were modeled as rectangular apertures with sub-wavelength spacing to ensure phase coherence, and their positions were symmetrical to promote a balanced interference pattern. Fine adaptive meshing was applied around the slits to accurately resolve near-field effects and diffraction patterns. Frequency-domain simulations yielded results such as electric field distributions and S-parameters. However, <strong>due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation</strong>, with some critical regions intentionally omitted. Despite these limitations, the results clearly demonstrated the presence of interference fringes and complex field behavior emerging from the slit configuration.
+    </p>
+
+    <h3 class="project-subtitle">Project Takeaways</h3>
+    <p class="justified-paragraph">
+      Key takeaways from the project included an enhanced understanding of wave manipulation in bounded media, the effect of aperture geometry on electromagnetic field patterns, and the practical value of simulating only relevant portions of larger systems when full-scale modeling is not feasible or permissible.
+    </p>
+  </section>
+</body>
+</html>
