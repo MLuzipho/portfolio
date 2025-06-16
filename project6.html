@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #222;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .project-section {
+      padding: 5%;
+    }
+
+    @media (min-width: 768px) {
+      .project-section {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .project-section {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 2em;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .justified-paragraph {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease-out;
+    }
+
+    .justified-paragraph.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-subtitle {
+      margin-top: 30px;
+      font-size: 1.25rem;
+      color: #333;
+      text-align: center;
+    }
+
+    /* DUAL VIDEO STYLING */
+    .video-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 0 5%;
+      margin: 60px auto;
+    }
+
+    @media (min-width: 768px) {
+      .video-gallery {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    .video-item {
+      flex: 1;
+      background-color: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+
+    .video-wrapper video,
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+
+    .video-caption {
+      text-align: center;
+      font-size: 0.95rem;
+      padding: 10px;
+      background-color: #f2f2f2;
+      color: #555;
+    }
+  </style>
+
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.justified-paragraph').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <section class="project-section">
+    <h2 class="project-title">Parametric Thermal Analysis on Two Heatsinks</h2>
+
+    <!-- DUAL VIDEO CONTAINER -->
+    <div class="video-gallery">
+      <div class="video-item">
+        <div class="video-wrapper">
+          <video controls>
+            <source src="assets/videos/wind_analysis.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-caption">Fin Configuration Thermal Analysis Results</div>
+      </div>
+
+      <div class="video-item">
+        <div class="video-wrapper">
+          <video controls>
+            <source src="assets/videos/thermal_analysis.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-caption">Pin Configuration Thermal Analysis Results</div>
+      </div>
+    </div>
+
+    <!-- PROJECT DESCRIPTION -->
+    <p class="justified-paragraph">
+      The project titled "Parametric Thermal Analysis on Two Heat Sinks": <strong>One with a Fin Configuration and the Other with a Pin Configuration</strong> focused on comparing the thermal performance of two different passive cooling architectures by conducting a detailed parametric study using Finite Element Analysis (FEA) in ANSYS Mechanical. The analysis began with the construction of two simplified 3D geometries in ANSYS SpaceClaim—one heat sink featuring traditional straight fins aligned in parallel, and the other employing an array of square pins arranged in a staggered grid pattern. Both models <strong>were designed with identical base dimensions and overall height</strong> to ensure that any performance differences would stem purely from geometry-driven thermal characteristics rather than gross dimensional discrepancies.
+    </p>
+
+    <p class="justified-paragraph">
+      The models were intentionally designed with medium fidelity to balance computational efficiency with geometric realism. The finned heat sink represents a classic design typically used in applications with <strong>unidirectional airflow</strong>, while the pin-fin configuration allows for more isotropic heat dissipation, making it suitable for multidirectional flow or natural convection conditions. After geometry setup, a range of parameters—including <strong>material selection (aluminum for high thermal conductivity), ambient temperature, convective heat transfer coefficients, and heat flux</strong> boundary conditions—were defined to simulate realistic operating environments. Thermal loads were applied uniformly to the base of each heat sink to mimic the effect of heat-generating components like processors or power modules.
+    </p>
+
+    <p class="justified-paragraph">
+      Meshing was carefully tailored to resolve fine temperature gradients around the fins and pins, particularly in regions near the heat source and along the extended surfaces. A steady-state thermal analysis was then performed in ANSYS Mechanical, with temperature distributions, maximum surface temperatures, and heat dissipation efficiency compared between the two configurations. The parametric aspect of the study involved systematically varying the number, height, and spacing of the fins and pins to determine optimal geometries under different cooling conditions. Results showed that <strong>while the fin configuration offered better performance under forced convection due to its increased surface area in a streamlined direction</strong>, the pin configuration excelled in natural convection scenarios, offering lower peak temperatures due to enhanced airflow mixing and thermal boundary layer disruption.
+    </p>
+
+    <h3 class="project-subtitle">Project Takeaways</h3>
+    <p class="justified-paragraph">
+      Takeaways from the project included a deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system.
+    </p>
+  </section>
+</body>
+</html>
