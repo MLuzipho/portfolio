@@ -96,14 +96,12 @@
 
     .image-item {
       text-align: center;
-      width: 100%;
+      width: 80%; /* reduce size to 80% for all images uniformly */
     }
 
     .image-item img {
-      width: 80%;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 500px;
+      width: 100%;
+      height: auto;
       object-fit: cover;
       aspect-ratio: 4 / 3;
       border-radius: 10px;
@@ -116,6 +114,7 @@
       font-size: 0.9rem;
       padding-top: 8px;
       color: #555;
+      text-align: center;
     }
 
     .single-video-container {
@@ -138,14 +137,18 @@
       border-radius: 0 0 12px 12px;
     }
 
+    .disclaimer-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
     #disclaimer-banner {
+      max-width: 800px; /* Change this value to control the banner width */
+      width: 100%;
       background: linear-gradient(90deg, #FFFFFF);
-      width: 74%;
-      margin-left: auto;
-      margin-right: auto;
       border: none;
       padding: 2px 2px;
-      margin-bottom: 30px;
       font-size: 1rem;
       color: #000000;
       text-align: center;
@@ -165,7 +168,6 @@
       pointer-events: none;
     }
 
-    /* Lightbox styles */
     .lightbox {
       display: none;
       position: fixed;
@@ -198,17 +200,6 @@
       font-size: 30px;
       font-weight: bold;
       text-decoration: none;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
   </style>
 
@@ -288,19 +279,17 @@
       });
     });
   </script>
-
-  <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
 </head>
 
 <body>
   <section class="project-section">
     <h2 class="project-title">Project Description: FSI Wind Loading Analysis of Two 5G Radio Boxes</h2>
 
-    <br><div id="disclaimer-banner">
-      Due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation.
-    </div></br>
+    <div class="disclaimer-container">
+      <div id="disclaimer-banner">
+        Due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation.
+      </div>
+    </div>
 
     <div class="image-gallery">
       <div class="image-item">
@@ -321,23 +310,10 @@
       </div>
     </div>
 
-    <!-- Lightbox Modals -->
-    <div id="img1" class="lightbox">
-      <a href="#" class="close-lightbox">&times;</a>
-      <img src="assets/images/FR1.png" alt="Force Reaction 1 Enlarged">
-    </div>
-    <div id="img2" class="lightbox">
-      <a href="#" class="close-lightbox">&times;</a>
-      <img src="assets/images/FR2.png" alt="Force Reaction 2 Enlarged">
-    </div>
-    <div id="img3" class="lightbox">
-      <a href="#" class="close-lightbox">&times;</a>
-      <img src="assets/images/imported_pressure.png" alt="Imported Pressure Enlarged">
-    </div>
-    <div id="img4" class="lightbox">
-      <a href="#" class="close-lightbox">&times;</a>
-      <img src="assets/images/work/windloading.png" alt="CFD Simulation Enlarged">
-    </div>
+    <div id="img1" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/FR1.png" alt="Enlarged"></div>
+    <div id="img2" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/FR2.png" alt="Enlarged"></div>
+    <div id="img3" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/imported_pressure.png" alt="Enlarged"></div>
+    <div id="img4" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/work/windloading.png" alt="Enlarged"></div>
 
     <div class="single-video-container">
       <video controls>
@@ -360,9 +336,9 @@
     </p>
 
     <h3>Project Takeaways</h3>
-    <br><p class="justified-paragraph">
+    <p class="justified-paragraph">
       Key takeaways from the project included <strong>a solid understanding of wake interaction in tandem body configurations, the usefulness of one-way FSI in early-stage design assessments, and the trade-offs between model fidelity and computational efficiency</strong>. The study also emphasized that even simplified models can yield meaningful insights into structural robustness and aerodynamic behavior in clustered equipment installations.
-    </p></br>
+    </p>
   </section>
 </body>
 </html>
