@@ -88,19 +88,28 @@
 
     .image-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: 1fr;
       gap: 20px;
       padding: 20px 5%;
       justify-items: center;
     }
 
+    @media (min-width: 768px) {
+      .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     .image-item {
       text-align: center;
+      width: 100%;
+      max-width: 500px;
     }
 
     .image-item img {
       width: 100%;
-      max-width: 100%;
+      height: 300px;
+      object-fit: cover;
       border-radius: 10px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
@@ -224,11 +233,9 @@
       if (banner) {
         banner.addEventListener('click', () => {
           banner.classList.add('hide');
-
-          // Re-show the banner after 20 seconds
           setTimeout(() => {
             banner.classList.remove('hide');
-          }, 20000); // 20,000 milliseconds = 20 seconds
+          }, 20000);
         });
       }
 
@@ -249,7 +256,6 @@
   <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
-  
 </head>
 
 <body>
