@@ -1,146 +1,307 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Drop Test Simulation</title>
 
   <style>
-    /* General layout and spacing */
-
-    h1.center-heading {
-      text-align: center;
-      margin-top: 20px;
-      margin-bottom: 10px; /* Reduced space below heading */
+    body {
+      margin: 0;
+      background: linear-gradient(-45deg, #f3f4f6, #e0f7fa, #fffde7, #fce4ec);
+      background-size: 400% 400%;
+      animation: backgroundShift 20s ease infinite;
+      color: #222;
+      line-height: 1.6;
+      position: relative;
+      z-index: 0;
+      overflow-x: hidden;
     }
 
-    .content {
-      padding: 5%;
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      backdrop-filter: blur(4px);
+      background-color: rgba(255, 255, 255, 0.1);
+      z-index: -1;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1, h2, h3 {
       text-align: center;
+      color: #2c3e50;
+    }
+
+    .project-section {
+      padding: 5%;
     }
 
     @media (min-width: 768px) {
-      .content {
+      .project-section {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .project-section {
         padding-left: 10%;
         padding-right: 10%;
       }
     }
 
-    @media (min-width: 1200px) {
-      .content {
-        padding-left: 15%;
-        padding-right: 15%;
-      }
-    }
-
-    /* Paragraphs: justify text, center block */
     p {
       text-align: justify;
-      margin: 0 auto 2em auto;
-      max-width: 100%;
+      margin-bottom: 2em;
+      font-size: 1rem;
+      color: #333;
     }
 
-    /* Fade-in animation */
-    .paragraph {
+    .justified-paragraph {
       opacity: 0;
-      animation: fadeIn 3s forwards;
+      transform: translateY(20px);
+      transition: all 1s ease-out;
     }
 
-    .p1 { animation-delay: 0s; }
-    .p2 { animation-delay: 1s; }
-    .p3 { animation-delay: 2s; }
-    .p4 { animation-delay: 3s; }
-    .p5 { animation-delay: 4s; }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .justified-paragraph.reveal {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Video container styling */
-    .video-row {
+    .video-gallery {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      flex-direction: column;
+      gap: 30px;
       padding: 0 5%;
-      margin-bottom: 30px;
+      margin: 60px auto;
     }
 
-    .video-container {
+    @media (min-width: 768px) {
+      .video-gallery {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    .video-item {
+      flex: 1;
+      background-color: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-wrapper {
       position: relative;
-      width: 100%;
-      max-width: 480px;
-      aspect-ratio: 16 / 9;
+      padding-bottom: 56.25%;
+      height: 0;
     }
 
-    .video-container video {
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      border-radius: 12px;
     }
 
-    /* Match height on larger screens */
-    @media (min-width: 992px) {
-      .video-row {
-        align-items: stretch;
-      }
+    .video-caption {
+      text-align: center;
+      font-size: 0.95rem;
+      padding: 10px;
+      background-color: #f2f2f2;
+      color: #555;
+    }
 
-      .video-container {
-        flex: 1;
-        max-width: none;
-        height: auto;
-      }
+    #disclaimer-banner {
+      background: linear-gradient(90deg, #FFFFFF);
+      border: none;
+      padding: 2px 2px;
+      margin-bottom: 30px;
+      font-size: 1rem;
+      color: #000000;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: opacity 1.5s ease, transform 2s ease, background-color 1s ease;
+    }
 
-      .video-container video {
-        height: 100%;
+    #disclaimer-banner:hover {
+      background-color: #808080;
+    }
+
+    #disclaimer-banner.hide {
+      opacity: 0;
+      transform: translateY(-30px);
+      pointer-events: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const canvas = document.createElement("canvas");
+      canvas.id = "particle-canvas";
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext("2d");
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      let mouse = { x: width / 2, y: height / 2 };
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      window.addEventListener("mousemove", e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      const particles = Array.from({ length: 150 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 1.2,
+        dy: (Math.random() - 0.5) * 1.2
+      }));
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = "rgba(200, 200, 255, 0.15)";
+        particles.forEach(p => {
+          const angle = Math.atan2(mouse.y - p.y, mouse.x - p.x);
+          p.dx += Math.cos(angle) * 0.0015;
+          p.dy += Math.sin(angle) * 0.0015;
+
+          p.x += p.dx;
+          p.y += p.dy;
+
+          if (p.x < 0 || p.x > width) p.dx *= -1;
+          if (p.y < 0 || p.y > height) p.dy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      const banner = document.getElementById('disclaimer-banner');
+      if (banner) {
+        banner.addEventListener('click', () => {
+          banner.classList.add('hide');
+
+          // Re-show the banner after 20 seconds
+          setTimeout(() => {
+            banner.classList.remove('hide');
+          }, 20000); // 20,000 milliseconds = 20 seconds
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.justified-paragraph').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+
   <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
+  
 </head>
-
 <body>
-  <h1 class="center-heading">Project Description: Electronic Device Drop Test Simulation</h1>
+  <section class="project-section">
+    <h2 class="project-title">Project Description: Electronic Device Drop Test Simulation</h2>
 
-  <div class="content">
-    <div class="video-row">
-      <div class="video-container">
-        <video autoplay muted loop playsinline>
-          <source src="assets/droptest1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+    <br><div id="disclaimer-banner">
+      Due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation.
+    </div></br>
+
+    <div class="video-gallery">
+      <div class="video-item">
+        <div class="video-wrapper">
+          <video controls>
+            <source src="assets/droptest1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-caption">Drop Test Results: No Cover</div>
       </div>
-      <div class="video-container">
-        <video autoplay muted loop playsinline>
-          <source src="assets/droptest2.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+
+      <div class="video-item">
+        <div class="video-wrapper">
+          <video controls>
+            <source src="assets/droptest2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-caption">Drop Test Results: With Cover</div>
       </div>
     </div>
 
-    <p class="paragraph p1">
-       The "Drop Test Simulation" project was undertaken to evaluate the structural integrity and impact resistance of a product when subjected to accidental drops during handling or transportation. The simulation process began with the development of a detailed 3D CAD model using <strong>Ansys SpaceClaim</strong>, which provided a flexible and efficient platform for preparing geometry suitable for impact simulation. Special attention was paid to features such as sharp corners, thin walls, and contact surfaces, as these can significantly influence impact response. Once the geometry was finalized and cleaned, it was imported into <strong>Ansys LS-DYNA</strong>, a powerful <strong>explicit dynamics solver</strong> ideal for simulating high-speed, nonlinear transient events like drop impacts.
+    <p class="justified-paragraph">
+      The "Drop Test Simulation" project was undertaken to evaluate the structural integrity and impact resistance of a product when subjected to accidental drops during handling or transportation. The simulation process began with the development of a detailed 3D CAD model using <strong>Ansys SpaceClaim</strong>, which provided a flexible and efficient platform for preparing geometry suitable for impact simulation. Special attention was paid to features such as sharp corners, thin walls, and contact surfaces, as these can significantly influence impact response. Once the geometry was finalized and cleaned, it was imported into <strong>Ansys LS-DYNA</strong>, a powerful <strong>explicit dynamics solver</strong> ideal for simulating high-speed, nonlinear transient events like drop impacts.
     </p>
 
-    <p class="paragraph p2">
-       The drop test scenario was designed based on realistic conditions, including drop height, orientation, and target surface material properties. Material models were carefully assigned to each component of the assembly, incorporating nonlinear stress-strain behavior, strain-rate dependency, and failure criteria, especially for plastics and composites commonly used in enclosures. Contact definitions were established between components and between the model and the ground plane to capture interactions and potential rebounds accurately.
+    <p class="justified-paragraph">
+      The drop test scenario was designed based on realistic conditions, including drop height, orientation, and target surface material properties. Material models were carefully assigned to each component of the assembly, incorporating nonlinear stress-strain behavior, strain-rate dependency, and failure criteria, especially for plastics and composites commonly used in enclosures. Contact definitions were established between components and between the model and the ground plane to capture interactions and potential rebounds accurately.
     </p>
 
-    <p class="paragraph p3">
-       Meshing was a critical step, where an appropriate element size was selected to balance accuracy and computational efficiency. High-stress regions were refined to capture detailed deformation and stress wave propagation. The simulation was then run in LS-DYNA, with initial conditions defining gravitational acceleration and impact velocity based on the drop height. The solver computed time-dependent responses such as stress distribution, deformation, and energy absorption.
-    </p>
-
-    <p class="paragraph p4">
-       Post-processing involved evaluating the von Mises stress, plastic deformation, and displacement fields to identify failure-prone areas. The results were used to assess whether the product could survive the drop without functional or cosmetic damage. If failures were detected, design iterations were proposed, such as adding ribs, using more ductile materials, or altering wall thicknesses. This simulation-based approach significantly reduced the need for physical prototypes and enabled faster, cost-effective design optimization while ensuring compliance with industry standards for drop performance.
+    <p class="justified-paragraph">
+      Meshing was a critical step, where an appropriate element size was selected to balance accuracy and computational efficiency. High-stress regions were refined to capture detailed deformation and stress wave propagation. The simulation was then run in LS-DYNA, with initial conditions defining gravitational acceleration and impact velocity based on the drop height. The solver computed time-dependent responses such as stress distribution, deformation, and energy absorption.
     </p>
     
-    <h2>Project Takeways:</h2>
-    <p class="paragraph p5">
-       The project demonstrated the effectiveness of simulation-driven design in predicting real-world failure modes and minimizing development cycles. Key takeaways included the importance of accurate material modeling, the need for refined meshing in critical areas, and the value of early-stage virtual testing in guiding design improvements. Leveraging tools like Ansys SpaceClaim and LS-DYNA provided both speed and precision, ultimately improving product reliability while reducing time-to-market and physical testing costs.
+    <p class="justified-paragraph">
+      Post-processing involved evaluating the von Mises stress, plastic deformation, and displacement fields to identify failure-prone areas. The results were used to assess whether the product could survive the drop without functional or cosmetic damage. If failures were detected, design iterations were proposed, such as adding ribs, using more ductile materials, or altering wall thicknesses. This simulation-based approach significantly reduced the need for physical prototypes and enabled faster, cost-effective design optimization while ensuring compliance with industry standards for drop performance.
     </p>
-  </div>
+
+    <h3>Project Takeaways</h3>
+    <br><p class="justified-paragraph">
+      The project demonstrated the effectiveness of simulation-driven design in predicting real-world failure modes and minimizing development cycles. Key takeaways included the importance of accurate material modeling, the need for refined meshing in critical areas, and the value of early-stage virtual testing in guiding design improvements. Leveraging tools like Ansys SpaceClaim and LS-DYNA provided both speed and precision, ultimately improving product reliability while reducing time-to-market and physical testing costs.
+    </p></br>
+  </section>
 </body>
 </html>
