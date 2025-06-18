@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,6 +14,7 @@
       line-height: 1.6;
       position: relative;
       z-index: 0;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -24,8 +25,24 @@
       width: 100vw;
       height: 100vh;
       backdrop-filter: blur(4px);
-      background-color: rgba(255, 255, 255, 0.1); /* subtle white tint */
+      background-color: rgba(255, 255, 255, 0.1);
       z-index: -1;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1, h2, h3 {
@@ -69,14 +86,6 @@
       transform: translateY(0);
     }
 
-    .project-subtitle {
-      margin-top: 30px;
-      font-size: 1.25rem;
-      color: #333;
-      text-align: center;
-    }
-
-    /* DUAL VIDEO STYLING */
     .video-gallery {
       display: flex;
       flex-direction: column;
@@ -106,8 +115,7 @@
       height: 0;
     }
 
-    .video-wrapper video,
-    .video-wrapper iframe {
+    .video-wrapper video {
       position: absolute;
       top: 0;
       left: 0;
@@ -124,20 +132,107 @@
       color: #555;
     }
 
-    /* 🔄 Animated Background Keyframes */
-    @keyframes backgroundShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    #disclaimer-banner {
+      background: linear-gradient(90deg, #FFFFFF);
+      border: none;
+      padding: 2px 2px;
+      margin-bottom: 30px;
+      font-size: 1rem;
+      color: #000000;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: opacity 1.5s ease, transform 2s ease, background-color 1s ease;
+    }
+
+    #disclaimer-banner:hover {
+      background-color: #808080;
+    }
+
+    #disclaimer-banner.hide {
+      opacity: 0;
+      transform: translateY(-30px);
+      pointer-events: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 
-  <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-
   <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
+      const canvas = document.createElement("canvas");
+      canvas.id = "particle-canvas";
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext("2d");
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      let mouse = { x: width / 2, y: height / 2 };
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      window.addEventListener("mousemove", e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      const particles = Array.from({ length: 150 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 1.2,
+        dy: (Math.random() - 0.5) * 1.2
+      }));
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = "rgba(200, 200, 255, 0.15)";
+        particles.forEach(p => {
+          const angle = Math.atan2(mouse.y - p.y, mouse.x - p.x);
+          p.dx += Math.cos(angle) * 0.0015;
+          p.dy += Math.sin(angle) * 0.0015;
+
+          p.x += p.dx;
+          p.y += p.dy;
+
+          if (p.x < 0 || p.x > width) p.dx *= -1;
+          if (p.y < 0 || p.y > height) p.dy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      const banner = document.getElementById('disclaimer-banner');
+      if (banner) {
+        banner.addEventListener('click', () => {
+          banner.classList.add('hide');
+
+          // Re-show the banner after 20 seconds
+          setTimeout(() => {
+            banner.classList.remove('hide');
+          }, 20000); // 20,000 milliseconds = 20 seconds
+        });
+      }
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -151,13 +246,20 @@
       });
     });
   </script>
-</head>
 
+  <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  
+</head>
 <body>
   <section class="project-section">
-    <h2 class="project-title">Parametric Thermal Analysis on Two Heatsinks</h2>
+    <h2 class="project-title">Project Description: Parametric Thermal Analysis on Two Heatsinks</h2>
 
-    <!-- DUAL VIDEO CONTAINER -->
+    <div id="disclaimer-banner">
+      Due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation.
+    </div>
+
     <div class="video-gallery">
       <div class="video-item">
         <div class="video-wrapper">
@@ -180,22 +282,21 @@
       </div>
     </div>
 
-    <!-- PROJECT DESCRIPTION -->
     <p class="justified-paragraph">
-      The project titled "Parametric Thermal Analysis on Two Heat Sinks": <strong>One with a Fin Configuration and the Other with a Pin Configuration</strong> focused on comparing the thermal performance of two different passive cooling architectures by conducting a detailed parametric study using Finite Element Analysis (FEA) in ANSYS Mechanical. The analysis began with the construction of two simplified 3D geometries in ANSYS SpaceClaim—one heat sink featuring traditional straight fins aligned in parallel, and the other employing an array of square pins arranged in a staggered grid pattern. Both models <strong>were designed with identical base dimensions and overall height</strong> to ensure that any performance differences would stem purely from geometry-driven thermal characteristics rather than gross dimensional discrepancies.
+      The project titled "Parametric Thermal Analysis on Two Heat Sinks": <strong>One with a Fin Configuration and the Other with a Pin Configuration</strong> focused on comparing the thermal performance of two different passive cooling architectures by conducting a detailed parametric study using Finite Element Analysis (FEA) in ANSYS Mechanical. The analysis began with the construction of two simplified 3D geometries in ANSYS SpaceClaim—one heat sink featuring traditional straight fins aligned in parallel, and the other employing an array of square pins arranged in a staggered grid pattern. Both models were designed with <strong>identical base dimensions and overall height</strong> to ensure that any performance differences would stem purely from geometry-driven thermal characteristics rather than gross dimensional discrepancies.
     </p>
 
     <p class="justified-paragraph">
-      The models were intentionally designed with medium fidelity to balance computational efficiency with geometric realism. The finned heat sink represents a classic design typically used in applications with <strong>unidirectional airflow</strong>, while the pin-fin configuration allows for more isotropic heat dissipation, making it suitable for multidirectional flow or natural convection conditions. After geometry setup, a range of parameters—including <strong>material selection (aluminum for high thermal conductivity), ambient temperature, convective heat transfer coefficients, and heat flux</strong> boundary conditions—were defined to simulate realistic operating environments. Thermal loads were applied uniformly to the base of each heat sink to mimic the effect of heat-generating components like processors or power modules.
+      The models were intentionally designed with medium fidelity to balance computational efficiency with geometric realism. The finned heat sink represents a classic design typically used in applications with <strong>unidirectional airflow</strong>, while the pin-fin configuration allows for more <strong>isotropic heat dissipation</strong>, making it suitable for multidirectional flow or natural convection conditions. After geometry setup, a range of parameters—<strong>including material selection (aluminum for high thermal conductivity), ambient temperature, convective heat transfer coefficients, and heat flux boundary conditions</strong>—were defined to simulate realistic operating environments. Thermal loads were applied uniformly to the base of each heat sink to mimic the effect of heat-generating components like processors or power modules.
     </p>
 
     <p class="justified-paragraph">
-      Meshing was carefully tailored to resolve fine temperature gradients around the fins and pins, particularly in regions near the heat source and along the extended surfaces. A steady-state thermal analysis was then performed in ANSYS Mechanical, with temperature distributions, maximum surface temperatures, and heat dissipation efficiency compared between the two configurations. The parametric aspect of the study involved systematically varying the number, height, and spacing of the fins and pins to determine optimal geometries under different cooling conditions. Results showed that <strong>while the fin configuration offered better performance under forced convection due to its increased surface area in a streamlined direction</strong>, the pin configuration excelled in natural convection scenarios, offering lower peak temperatures due to enhanced airflow mixing and thermal boundary layer disruption.
+      Meshing was carefully tailored to resolve fine temperature gradients around the fins and pins, <strong>particularly in regions near the heat source and along the extended surfaces</strong>. A steady-state thermal analysis was then performed in ANSYS Mechanical, with temperature distributions, maximum surface temperatures, and heat dissipation efficiency compared between the two configurations. The parametric aspect of the study involved systematically varying the number, height, and spacing of the fins and pins to determine optimal geometries under different cooling conditions. Results showed that while the fin configuration offered better performance under forced convection due to its increased surface area in a streamlined direction, the pin configuration excelled in natural convection scenarios, offering lower peak temperatures due to enhanced airflow mixing and thermal boundary layer disruption.
     </p>
 
-    <h3 class="project-subtitle">Project Takeaways</h3>
+    <h3>Project Takeaways</h3>
     <p class="justified-paragraph">
-      Takeaways from the project included a deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system.
+      The project demonstrated the importance of geometry optimization in passive heat sinks and showed how simulation tools can drive design choices early in thermal product development. Field data from temperature sensors mounted in experimental setups were used to partially validate the simulation trends. Takeaways from the project included a <strong>deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility</strong>. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system.
     </p>
   </section>
 </body>
