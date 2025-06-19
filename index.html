@@ -158,7 +158,93 @@
   }
 </style>
 
+<style>
+  :root {
+    --side-padding: 8vw;
+  }
 
+  .intro-section {
+    width: 100%;
+    padding: 0 var(--side-padding);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+  }
+
+  .intro-section .header-textbox {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .intro-section .h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro-section .h1 span {
+    display: block;
+    text-align: center;
+  }
+
+  .intro-section .justified-paragraph {
+    text-align: justify;
+    margin: 1.5rem auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .intro-section .header-btns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .intro-section .btn {
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+
+  .intro-section .btn-cta {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .intro-section .btn-cta:hover {
+    background-color: #0056b3;
+  }
+
+  .intro-section .btn-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+  }
+
+  .intro-section .btn-secondary:hover {
+    background-color: #bdbdbd;
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --side-padding: 5vw;
+    }
+    .intro-section .h1 {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :root {
+      --side-padding: 3vw;
+    }
+    .intro-section .h1 {
+      font-size: 1.7rem;
+    }
+  }
+</style>
 
 
     <!-- Read and update content attributes accordingly  -->
@@ -244,31 +330,33 @@
         </ol>
       </nav>
 
-      <div class="container"> 
-    <div class="header-textbox">
+      <div class="intro-section"> 
+        <div class="container">
+          <div class="header-textbox">
       <!-- Heading -->
-      <h1 class="h1">
-        <span>Malungelo Luzipho</span><br>
-        <span>Engineering Project & Design Portfolio</span>
-      </h1>
+          <h1 class="h1">
+            <span>Malungelo Luzipho</span><br>
+            <span>Engineering Project & Design Portfolio</span>
+          </h1>
 
       <!-- Paragraph -->
-      <p class="justified-paragraph">
-        I'm an Aeronautical Engineer with extensive expertise in numerical simulations, 
-        specializing in Computational Fluid Dynamics (CFD), Finite Element Analysis (FEA), 
-        and Electromagnetic Interference (EMI). My background combines deep technical 
-        knowledge with practical experience in modeling complex physical systems, enabling 
-        me to deliver high-precision engineering solutions across aerospace and related 
-        industries.
-      </p>
+          <p class="justified-paragraph">
+            I'm an Aeronautical Engineer with extensive expertise in numerical simulations, 
+            specializing in Computational Fluid Dynamics (CFD), Finite Element Analysis (FEA), 
+            and Electromagnetic Interference (EMI). My background combines deep technical 
+            knowledge with practical experience in modeling complex physical systems, enabling 
+            me to deliver high-precision engineering solutions across aerospace and related 
+            industries.
+          </p>
 
       <!-- Centered Buttons -->
-      <div class="header-btns">
-        <a href="#contact" class="btn btn-cta">Work with me</a>
-        <a href="#work" class="btn btn-secondary">See my work</a>
+          <div class="header-btns">
+            <a href="#contact" class="btn btn-cta">Work with me</a>
+            <a href="#work" class="btn btn-secondary">See my work</a>
+          </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
     </header>
 
     <main>
