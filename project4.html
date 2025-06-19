@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,27 +7,72 @@
   <style>
     body {
       margin: 0;
-      background-color: #f9f9f9;
+      background: linear-gradient(-45deg, #f3f4f6, #e0f7fa, #fffde7, #fce4ec);
+      background-size: 400% 400%;
+      animation: backgroundShift 20s ease infinite;
       color: #222;
+      line-height: 1.6;
+      position: relative;
+      z-index: 0;
+      overflow-x: hidden;
     }
 
-    h1.center-heading,
-    h2.project-title {
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      backdrop-filter: blur(4px);
+      background-color: rgba(255, 255, 255, 0.1);
+      z-index: -1;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1, h2, h3 {
       text-align: center;
-      margin-top: 20px;
-      margin-bottom: 10px;
+      color: #2c3e50;
     }
 
-    .content,
     .project-section {
-      padding-left: 5%;
-      padding-right: 5%;
+      padding: 5%;
+    }
+
+    @media (min-width: 768px) {
+      .project-section {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .project-section {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
     }
 
     p {
       text-align: justify;
       margin-bottom: 2em;
       font-size: 1rem;
+      color: #333;
     }
 
     .justified-paragraph {
@@ -41,41 +86,113 @@
       transform: translateY(0);
     }
 
-    .project-subtitle {
-      margin-top: 30px;
-      font-size: 1.25rem;
-      color: #333;
+    .single-video-container {
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
     }
 
-    /* VIDEO STYLES */
-    .video-wrapper {
-      margin: 40px auto;
-      padding: 0 5%;
-      max-width: 900px;
-    }
-
-    .responsive-video {
+    .single-video-container video {
       width: 100%;
-      height: auto;
-      aspect-ratio: 16/9;
       border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
-    .responsive-video:hover {
-      transform: scale(1.01);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    .disclaimer-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    #disclaimer-banner {
+      max-width: 800px;
+      width: 100%;
+      background: linear-gradient(90deg, #FFFFFF);
+      border: none;
+      padding: 2px 2px;
+      font-size: 1rem;
+      color: #000000;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: opacity 1.5s ease, transform 2s ease, background-color 1s ease;
+    }
+
+    #disclaimer-banner:hover {
+      background-color: #808080;
+    }
+
+    #disclaimer-banner.hide {
+      opacity: 0;
+      transform: translateY(-30px);
+      pointer-events: none;
     }
   </style>
-  
-  <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
 
   <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      // SCROLL ANIMATION
+    document.addEventListener("DOMContentLoaded", () => {
+      const canvas = document.createElement("canvas");
+      canvas.id = "particle-canvas";
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext("2d");
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      let mouse = { x: width / 2, y: height / 2 };
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      window.addEventListener("mousemove", e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      const particles = Array.from({ length: 150 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 1.2,
+        dy: (Math.random() - 0.5) * 1.2
+      }));
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = "rgba(200, 200, 255, 0.15)";
+        particles.forEach(p => {
+          const angle = Math.atan2(mouse.y - p.y, mouse.x - p.x);
+          p.dx += Math.cos(angle) * 0.0015;
+          p.dy += Math.sin(angle) * 0.0015;
+
+          p.x += p.dx;
+          p.y += p.dy;
+
+          if (p.x < 0 || p.x > width) p.dx *= -1;
+          if (p.y < 0 || p.y > height) p.dy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      const banner = document.getElementById('disclaimer-banner');
+      if (banner) {
+        banner.addEventListener('click', () => {
+          banner.classList.add('hide');
+          setTimeout(() => {
+            banner.classList.remove('hide');
+          }, 20000);
+        });
+      }
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -89,40 +206,48 @@
       });
     });
   </script>
+
+  <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 
 <body>
   <section class="project-section">
     <h2 class="project-title">Project Description: 2D CFD Simulation of a Shockwave</h2>
 
-    <!-- VIDEO SLOT -->
-    <div class="video-wrapper">
-      <video class="responsive-video" controls poster="assets/images/work/shockwave.png">
+    <div class="disclaimer-container">
+      <div id="disclaimer-banner">
+        Due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation.
+      </div>
+    </div>
+
+    <div class="single-video-container">
+      <video controls>
         <source src="assets/shockwave_animation.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
 
-    <!-- PROJECT TEXT -->
     <p class="justified-paragraph">
       The project titled "2D CFD Simulation of a Shockwave That Is Formed When a High-Speed Train Exits a Tunnel" involved an in-depth aerodynamic investigation of transient compressible flow phenomena associated with tunnel exit conditions for high-speed rail systems. The study aimed to simulate and understand the formation and propagation of shockwaves as a train traveling at high velocity emerges from a tunnel into open air — a scenario known to cause sudden pressure gradients and noise-related challenges such as micro-pressure waves or “tunnel boom.” The simulation process began with the <strong>creation of a simplified 2D axisymmetric geometry representing the tunnel and the train’s nose profile</strong>.
     </p>
 
     <p class="justified-paragraph">
-      This reduction to two dimensions was chosen to minimize computational cost while retaining sufficient physical accuracy to capture dominant wave phenomena. The geometry was designed to include key features such as tunnel length, portal opening, and clearance to simulate realistic boundary-layer development and pressure wave reflection patterns. The next stage involved meticulous meshing using Ansys Meshing, ensuring refinement near the train's leading edge, tunnel portal, and anticipated shock front regions to accurately resolve steep gradients in pressure and velocity. Appropriate mesh quality checks were performed to maintain low skewness and high orthogonality for simulation stability.
-    </p>
-
-    <p class="justified-paragraph">
-      Following geometry and mesh generation, the simulation setup was implemented in <strong>ANSYS Fluent</strong>. Given the compressible and transient nature of the problem, the density-based solver was selected with a transient formulation. The ideal gas law was applied to model air properties, and second-order discretization schemes were used for spatial accuracy. Boundary conditions included a moving wall to simulate the train’s motion and pressure outlets to allow shock propagation beyond the tunnel. A time-step sensitivity analysis was performed to ensure temporal resolution was adequate to capture the fast-evolving shock structures.
-    </p>
-
-    <p class="justified-paragraph">
-      The flow was initialized and run over multiple time steps, and the development of pressure waves was monitored using pressure probes placed along the tunnel length and in the external domain. The results captured the sharp pressure jump at the moment the train exited the tunnel, followed by the expansion waves and reflected shocks. Velocity vector plots and Mach number contours revealed the formation of a bow shock and wave diffraction at the tunnel exit, validating the known aerodynamic behavior observed in physical experiments.
+      This reduction to two dimensions was chosen to minimize computational cost while retaining sufficient physical accuracy to capture dominant wave phenomena. The geometry was designed to include key features such as tunnel length, portal opening, and clearance to simulate realistic boundary-layer development and pressure wave reflection patterns. The next stage involved meticulous meshing using Ansys Meshing, ensuring refinement near the train's leading edge, tunnel portal, and anticipated shock front regions to accurately resolve steep gradients in pressure and velocity. Appropriate <strong>mesh quality checks were performed to maintain low skewness and high orthogonality</strong> for simulation stability.
     </p>
     
-    <h3 class="project-subtitle">Project Takeaways</h3>
     <p class="justified-paragraph">
-      Key takeaways from the project included a reinforced understanding of transient flow behavior, shockwave dynamics, and the influence of tunnel geometry on wave reflection and attenuation. It also highlighted the importance of careful meshing and solver settings when simulating high-speed compressible flow. Additionally, the project demonstrated the effectiveness of 2D simplifications for capturing core flow physics, while also acknowledging the need for future 3D modeling to include lateral flow effects and train-tunnel aerodynamic interactions in full complexity.
+      Following geometry and mesh generation, the simulation setup was implemented in <strong>ANSYS Fluent</strong>. Given the compressible and transient nature of the problem, <strong>the density-based solver was selected with a transient formulation</strong>. The <strong>ideal gas law</strong> was applied to model air properties, and <strong>second-order discretization schemes were used for spatial accuracy</strong>. Boundary conditions included a <strong>moving wall to simulate the train’s motion and pressure outlets to allow shock propagation beyond the tunnel</strong>. A time-step sensitivity analysis was performed to ensure temporal resolution was adequate to capture the fast-evolving shock structures.
+    </p>
+    
+    <p class="justified-paragraph">
+      The flow was initialized and run over multiple time steps, and the development of pressure waves was monitored using pressure probes placed along the tunnel length and in the external domain. The results captured <strong>the sharp pressure jump at the moment the train exited the tunnel</strong>, followed by the expansion waves and reflected shocks. Velocity vector plots and Mach number contours revealed the formation of a bow shock and wave diffraction at the tunnel exit, validating <strong>the known aerodynamic behavior observed in physical experiments</strong>.
+    </p>
+
+    <h3>Project Takeaways</h3>
+    <p class="justified-paragraph">
+      Key takeaways from the project included a <strong>reinforced understanding of transient flow behavior, shockwave dynamics, and the influence of tunnel geometry on wave reflection and attenuation</strong>. It also highlighted the importance of careful meshing and solver settings when simulating high-speed compressible flow. Additionally, the project demonstrated the effectiveness of 2D simplifications for capturing core flow physics, while also acknowledging the need for future 3D modeling to include lateral flow effects and train-tunnel aerodynamic interactions in full complexity.
     </p>
   </section>
 </body>
