@@ -595,37 +595,19 @@
       </section>
 
       <section id="selected-work" style="text-align: center; padding: 2rem;">
-        <h2 id="research-heading">Research Work</h2>
-
-      <!-- Font size control -->
-      <div style="margin-bottom: 1rem;">
-        <label for="fontSizeControl">Adjust Heading Font Size:</label>
-        <input type="range" id="fontSizeControl" min="16" max="48" value="24" />
-      </div>
-
-      <div style="display: flex; justify-content: center; flex-wrap: wrap;">
-        <a 
-         href="MLuzipho_NUAA_Undergraduate_Thesis.pdf" 
-         target="_blank"
-         class="link" 
-         rel="noopener"
-        >
-        Undergraduate Thesis: Investigation On Aircraft Aerodynamics in Gusty Inflow Conditions.
-        </a>
-      </div>
+        <h2 style="font-size: 40px;">Research Work</h2>
+        <br>
+          <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <a 
+              href="MLuzipho_NUAA_Undergraduate_Thesis.pdf" 
+              target="_blank"
+              class="link" 
+              rel="noopener"
+           >
+              Undergraduate Thesis: Investigation On Aircraft Aerodynamics in Gusty Inflow Conditions.
+            </a>
+          </div>
       </section>
-
-      <script>
-        const slider = document.getElementById('fontSizeControl');
-        const heading = document.getElementById('research-heading');
-
-        slider.addEventListener('input', () => {
-        heading.style.fontSize = slider.value + 'px';
-        });
-
-        // Initialize default size
-        heading.style.fontSize = slider.value + 'px';
-      </script>
 
       <!-- I write blog posts on dev.to at https://dev.to/devsyedmohsin. I have linked my articles accordingly, so please update the article title, description, and link accordingly. For example, if you write an article on Medium, link your article to Medium. Also, don't forget to update the reaction count. -->
 
