@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,28 +7,62 @@
   <style>
     body {
       margin: 0;
+      background: linear-gradient(-45deg, #f3f4f6, #e0f7fa, #fffde7, #fce4ec);
+      background-size: 400% 400%;
+      animation: backgroundShift 20s ease infinite;
+      color: #222;
+      line-height: 1.6;
+      position: relative;
+      z-index: 0;
+      overflow-x: hidden;
     }
 
-    h1.center-heading {
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      backdrop-filter: blur(4px);
+      background-color: rgba(255, 255, 255, 0.1);
+      z-index: -1;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1, h2, h3 {
       text-align: center;
-      margin-top: 20px;
-      margin-bottom: 10px;
+      color: #2c3e50;
     }
 
-    .content {
-      padding-left: 5%;
-      padding-right: 5%;
+    .project-section {
+      padding: 5%;
     }
 
     @media (min-width: 768px) {
-      .content {
+      .project-section {
         padding-left: 7.5%;
         padding-right: 7.5%;
       }
     }
 
     @media (min-width: 1200px) {
-      .content {
+      .project-section {
         padding-left: 10%;
         padding-right: 10%;
       }
@@ -37,116 +71,218 @@
     p {
       text-align: justify;
       margin-bottom: 2em;
+      font-size: 1rem;
+      color: #333;
     }
 
-    .paragraph {
+    .justified-paragraph {
       opacity: 0;
-      animation: fadeIn 3s forwards;
+      transform: translateY(20px);
+      transition: all 1s ease-out;
     }
 
-    .p1 { animation-delay: 0s; }
-    .p2 { animation-delay: 1s; }
-    .p3 { animation-delay: 2s; }
-    .p4 { animation-delay: 3s; }
-    .p5 { animation-delay: 4s; }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .justified-paragraph.reveal {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Video grid styling */
     .video-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 20px;
-      padding: 0 5%;
-      margin-bottom: 30px;
+      margin: 50px auto;
+      max-width: 1000px;
     }
 
-    .video-container {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-    }
-
-    .video-container video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    @media (min-width: 600px) {
+    @media (min-width: 1024px) {
       .video-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (min-width: 1200px) {
-      .video-grid {
-        padding-left: 10%;
-        padding-right: 10%;
-      }
+    .video-item video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-item video:hover {
+      transform: scale(1.02);
+    }
+
+    .disclaimer-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    #disclaimer-banner {
+      max-width: 800px;
+      width: 100%;
+      background: linear-gradient(90deg, #FFFFFF);
+      border: none;
+      padding: 2px 2px;
+      font-size: 1rem;
+      color: #000000;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: opacity 1.5s ease, transform 2s ease, background-color 1s ease;
+    }
+
+    #disclaimer-banner:hover {
+      background-color: #808080;
+    }
+
+    #disclaimer-banner.hide {
+      opacity: 0;
+      transform: translateY(-30px);
+      pointer-events: none;
     }
   </style>
+
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const canvas = document.createElement("canvas");
+      canvas.id = "particle-canvas";
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext("2d");
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      let mouse = { x: width / 2, y: height / 2 };
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      window.addEventListener("mousemove", e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      const particles = Array.from({ length: 150 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 1.2,
+        dy: (Math.random() - 0.5) * 1.2
+      }));
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = "rgba(200, 200, 255, 0.15)";
+        particles.forEach(p => {
+          const angle = Math.atan2(mouse.y - p.y, mouse.x - p.x);
+          p.dx += Math.cos(angle) * 0.0015;
+          p.dy += Math.sin(angle) * 0.0015;
+
+          p.x += p.dx;
+          p.y += p.dy;
+
+          if (p.x < 0 || p.x > width) p.dx *= -1;
+          if (p.y < 0 || p.y > height) p.dy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      const banner = document.getElementById('disclaimer-banner');
+      if (banner) {
+        banner.addEventListener('click', () => {
+          banner.classList.add('hide');
+          setTimeout(() => {
+            banner.classList.remove('hide');
+          }, 20000);
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.justified-paragraph').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 
   <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
 </head>
+
 <body>
+  <section class="project-section">
+    <h2 class="project-title">Project Description: CFD (Aerodynamic) Analysis of a Hypersonic Missile</h2>
 
-  <h1 class="center-heading">Project Description: CFD (Aerodynamic) Analysis of a Hypersonic Missile</h1>
+    <div class="disclaimer-container">
+      <div id="disclaimer-banner">
+        Due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation.
+      </div>
+    </div>
 
-  <div class="video-grid">
-    <div class="video-container">
-      <video autoplay muted loop playsinline>
-        <source src="assets/missile1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <div class="video-grid">
+      <div class="video-item">
+        <video controls>
+          <source src="assets/missile1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-item">
+        <video controls>
+          <source src="assets/missile2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-item">
+        <video controls>
+          <source src="assets/missile3.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-item">
+        <video controls>
+          <source src="assets/missile4.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
-    <div class="video-container">
-      <video autoplay muted loop playsinline>
-        <source src="assets/missile2.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    <div class="video-container">
-      <video autoplay muted loop playsinline>
-        <source src="assets/missile3.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    <div class="video-container">
-      <video autoplay muted loop playsinline>
-        <source src="assets/missile4.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </div>
 
-  <div class="content">
-    <p class="paragraph p1">
-      The project titled "CFD Analysis of a Hypersonic Missile" was a comprehensive study focused on understanding the aerodynamic behavior and performance characteristics of a missile operating at hypersonic speeds, typically above Mach 5. The process began with the creation of a detailed 3D geometry of the missile using Ansys SpaceClaim, a powerful CAD modeling tool known for its ease of geometry cleanup and editing. The missile model incorporated all critical aerodynamic features including the nose cone, body fuselage, control surfaces, and possible air intake channels if the design was scramjet-powered. Particular attention was paid to ensuring geometric fidelity in regions where high thermal and pressure gradients were expected, such as the leading edges and aft-body zones. Once the geometry was finalized, it was carefully checked for watertightness and simplified to remove any unnecessary features that could adversely affect mesh quality or inflate computational cost.
+    <p class="justified-paragraph">
+      The project titled "CFD Analysis of a Hypersonic Missile" was a comprehensive study focused on understanding the aerodynamic behavior and performance characteristics of a missile operating at hypersonic speeds, typically above Mach 5. The process began with the creation of a detailed 3D geometry of the missile using Ansys SpaceClaim, a powerful CAD modeling tool known for its ease of geometry cleanup and editing. The missile model incorporated <strong>all critical aerodynamic features including the nose cone, body fuselage, control surfaces, and possible air intake channels</strong> if the design was scramjet-powered. Particular attention was paid to ensuring geometric fidelity in regions where <strong>high thermal and pressure gradients were expected, such as the leading edges and aft-body zones</strong>. Once the geometry was finalized, it was carefully checked for watertightness and simplified to remove any unnecessary features that could adversely affect mesh quality or inflate computational cost.
     </p>
 
-    <p class="paragraph p2">
-      Following the CAD phase, the model was imported into <strong>Ansys Fluent Meshing</strong>, where a high-quality mesh was generated. Due to the nature of hypersonic flows, where <strong>shock waves and boundary layers are extremely thin and sensitive to grid resolution</strong>, the meshing strategy employed non-uniform mesh refinement, particularly around the nose, leading edges, and along the missile surface. Inflation layers were used to resolve the viscous sublayer for accurate heat transfer predictions. The mesh was subjected to quality checks for skewness, orthogonality, and aspect ratio, which are critical for numerical stability at high Mach numbers.
+    <p class="justified-paragraph">
+      Following the CAD phase, the model was imported into <strong>Ansys Fluent Meshing</strong>, where a high-quality mesh was generated. Due to the nature of hypersonic flows, where <strong>shock waves and boundary layers are extremely thin and sensitive to grid resolution</strong>, the meshing strategy employed non-uniform mesh refinement, particularly around the nose, leading edges, and along the missile surface. <strong>Inflation layers were used to resolve the viscous sublayer</strong> for accurate heat transfer predictions. The mesh was subjected to quality checks for skewness, orthogonality, and aspect ratio, which are critical for numerical stability at high Mach numbers.
     </p>
 
-    <p class="paragraph p3">
-      The CFD simulations were carried out in Ansys Fluent, utilizing a density-based solver suitable for compressible flows with shock capturing capabilities. The <strong>Spalart-Allmaras and SST k-omega turbulence models</strong> were considered during the analysis, with the SST model being preferred for its better performance in capturing flow separation and shock-boundary layer interactions. Simulations were run under various operating conditions representing different altitudes and Mach numbers, and the boundary conditions were carefully selected to match flight envelope parameters, including far-field pressure, temperature, and velocity. <strong>Wall functions and appropriate heat transfer models were applied to evaluate aerothermal heating</strong>, which is a critical design consideration for hypersonic vehicles.
+    <p class="justified-paragraph">
+      The CFD simulations were carried out in <strong>Ansys Fluent</strong>, utilizing a density-based solver suitable for compressible flows with shock capturing capabilities. The <strong>Spalart-Allmaras and SST k-omega turbulence models</strong> were considered during the analysis, with the SST model being preferred for its better performance in capturing flow separation and shock-boundary layer interactions. Simulations were run under various operating conditions representing different altitudes and Mach numbers, and the boundary conditions were carefully selected to match flight envelope parameters, including far-field pressure, temperature, and velocity. <strong>Wall functions and appropriate heat transfer models were applied to evaluate aerothermal heating</strong>, which is a critical design consideration for hypersonic vehicles.
     </p>
 
-    <p class="paragraph p4">
+    <p class="justified-paragraph">
       The analysis yielded detailed insights into <strong>shock wave formation, flow separation, surface pressure distribution, and aerodynamic coefficients such as drag and lift</strong>. One of the key findings was the identification of strong oblique shocks originating from the nose cone and leading edges, which could influence downstream control surface effectiveness. The simulation results were used to optimize the missile shape, reduce wave drag, and improve thermal protection system (TPS) placement. Overall, the project demonstrated the critical role of high-fidelity CFD simulations in predicting real-world hypersonic behavior, reducing the need for expensive wind tunnel testing, and accelerating the design process for next-generation high-speed aerospace systems.
     </p>
 
-    <h2>Project Takeaways:</h2>
-
-    <p class="paragraph p5">
-      This project highlighted the immense value of simulation-driven design in hypersonic flight regimes, where experimental data is limited and costly to obtain. The key takeaways included the importance of high-resolution meshing in regions of shock interaction, the effectiveness of SST k-omega turbulence modeling in capturing complex flow features, and the need for careful geometry simplification without sacrificing critical aerodynamic details. It also emphasized the role of robust solver settings and boundary condition configuration in achieving stable convergence at high Mach numbers. By integrating Ansys SpaceClaim for modeling and Ansys Fluent for simulation, the project showcased a streamlined and efficient workflow capable of delivering accurate, actionable results for aerospace defense applications.
+    <h3>Project Takeaways</h3>
+    <p class="justified-paragraph">
+      This project highlighted the immense value of simulation-driven design in hypersonic flight regimes, where experimental data is limited and costly to obtain. The key takeaways included the importance of high-resolution meshing in regions of shock interaction, the effectiveness of SST k-omega turbulence modeling in capturing complex flow features, and the need for careful geometry simplification without sacrificing critical aerodynamic details. It also emphasized <strong>the role of robust solver settings and boundary condition configuration in achieving stable convergence at high Mach numbers</strong>. By integrating Ansys SpaceClaim for modeling and Ansys Fluent for simulation, the project showcased a streamlined and efficient workflow capable of delivering accurate, actionable results for aerospace defense applications.
     </p>
-  </div>
-
+  </section>
 </body>
 </html>
