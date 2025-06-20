@@ -166,6 +166,28 @@
         transform: translateY(0);
       }
     }
+
+    .next-page-link {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #000000;
+      text-decoration: none;
+      display: none;
+      z-index: 1000;
+    }
+
+    .next-page-link:hover {
+      text-decoration: underline;
+      color: #000000;
+    }
+
+    .next-page-link::after {
+      content: " ➜";
+      font-weight: bold;
+    }
   </style>
 
   <script defer>
@@ -225,11 +247,9 @@
       if (banner) {
         banner.addEventListener('click', () => {
           banner.classList.add('hide');
-
-          // Re-show the banner after 20 seconds
           setTimeout(() => {
             banner.classList.remove('hide');
-          }, 20000); // 20,000 milliseconds = 20 seconds
+          }, 20000);
         });
       }
 
@@ -244,13 +264,22 @@
       document.querySelectorAll('.justified-paragraph').forEach(el => {
         observer.observe(el);
       });
+
+      // Show the next page link only at bottom of page
+      const nextPageLink = document.querySelector('.next-page-link');
+      window.addEventListener('scroll', () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+          nextPageLink.style.display = 'block';
+        } else {
+          nextPageLink.style.display = 'none';
+        }
+      });
     });
   </script>
 
   <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
-  
 </head>
 <body>
   <section class="project-section">
@@ -293,7 +322,7 @@
     <p class="justified-paragraph">
       Meshing was a critical step, where an appropriate element size was selected to balance accuracy and computational efficiency. High-stress regions were refined to capture detailed deformation and stress wave propagation. The simulation was then run in LS-DYNA, with initial conditions defining gravitational acceleration and impact velocity based on the drop height. The solver computed time-dependent responses such as stress distribution, deformation, and energy absorption.
     </p>
-    
+
     <p class="justified-paragraph">
       Post-processing involved evaluating the von Mises stress, plastic deformation, and displacement fields to identify failure-prone areas. The results were used to assess whether the product could survive the drop without functional or cosmetic damage. If failures were detected, design iterations were proposed, such as adding ribs, using more ductile materials, or altering wall thicknesses. This simulation-based approach significantly reduced the need for physical prototypes and enabled faster, cost-effective design optimization while ensuring compliance with industry standards for drop performance.
     </p>
@@ -303,5 +332,7 @@
       The project demonstrated the effectiveness of simulation-driven design in predicting real-world failure modes and minimizing development cycles. Key takeaways included the importance of accurate material modeling, the need for refined meshing in critical areas, and the value of early-stage virtual testing in guiding design improvements. Leveraging tools like Ansys SpaceClaim and LS-DYNA provided both speed and precision, ultimately improving product reliability while reducing time-to-market and physical testing costs.
     </p></br>
   </section>
+
+  <a href="project2.html" class="next-page-link">Next Project</a>
 </body>
 </html>
