@@ -102,7 +102,8 @@
 
     .video-item video {
       width: 100%;
-      height: auto;
+      height: 360px;
+      object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
@@ -309,32 +310,31 @@
 
     <div class="video-grid">
       <div class="video-item">
-        <video controls>
+        <video controls autoplay muted loop>
           <source src="assets/uavsim1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
       <div class="video-item">
-        <video controls>
+        <video controls autoplay muted loop>
           <source src="assets/uavsim2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
       <div class="video-item">
-        <video controls>
+        <video controls autoplay muted loop>
           <source src="assets/uavsim3.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
       <div class="video-item">
-        <video controls>
+        <video controls autoplay muted loop>
           <source src="assets/uavtkec.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
     </div>
 
-    <!-- Image Grid Section -->
     <div class="image-grid">
       <div class="image-item">
         <a href="#img1">
@@ -356,7 +356,6 @@
       </div>
     </div>
 
-    <!-- Lightbox Modals -->
     <div id="img1" class="lightbox">
       <a href="#" class="lightbox-close">&times;</a>
       <img src="assets/images/uav1.jpg" alt="CFD Mesh Overview Enlarged" />
