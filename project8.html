@@ -1,4 +1,3 @@
-<!-- START OF FILE -->
 <!DOCTYPE html>  
 <html lang="en">
 <head>
@@ -146,31 +145,27 @@
     }
 
     .image-grid {
-  grid-template-columns: 1fr;
-}
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin: 50px auto;
+      max-width: 1000px;
+      padding: 0 5%;
+    }
 
-@media (min-width: 768px) {
-  .image-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .image-grid {
-    grid-template-columns: repeat(3, 1fr); /* restore 3-wide on big screens */
-  }
-}
-
+    @media (min-width: 768px) {
+      .image-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
     .image-item {
       text-align: center;
     }
 
     .image-item img {
-      width: 70%;
-      height: 20vw;
-      max-height: 840px;
-      object-fit: contain;
+      width: 100%;
+      height: auto;
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
       cursor: pointer;
@@ -305,33 +300,37 @@
 
 <body>
   <section class="project-section">
-    <h2 class="project-title">Project Description: Aerodynamic analysis of a surveillance UAV</h2>
+    <h2 class="project-title">Project Description: Aerodynamic analysis of a surveillance uav</h2>
 
-    <div class="disclaimer-container">
+    <br><div class="disclaimer-container">
       <div id="disclaimer-banner">
         Due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation.
       </div>
-    </div>
+    </div></br>
 
     <div class="video-grid">
       <div class="video-item">
         <video controls autoplay muted loop>
           <source src="assets/uavsim1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
       </div>
       <div class="video-item">
         <video controls autoplay muted loop>
           <source src="assets/uavsim2_no_sound.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
       </div>
       <div class="video-item">
         <video controls autoplay muted loop>
           <source src="assets/uavsim3.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
       </div>
       <div class="video-item">
         <video controls autoplay muted loop>
           <source src="assets/uavtkec.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
       </div>
     </div>
@@ -371,18 +370,17 @@
     </div>
 
     <p class="justified-paragraph">
-      The project titled "Aerodynamic Analysis of a Surveillance UAV" entailed a comprehensive investigation into the aerodynamic characteristics of a fixed-wing unmanned aerial vehicle (UAV) designed for surveillance operations...
+      The project titled "Aerodynamic Analysis of a Surveillance UAV" entailed a comprehensive investigation into the aerodynamic characteristics of a fixed-wing unmanned aerial vehicle (UAV) designed for surveillance operations. The study began with the development of a detailed 3D geometry of the UAV using <strong>Ansys SpaceClaim</strong>, where emphasis was placed on modeling <strong>critical aerodynamic surfaces including the fuselage, wings, tail assembly, and control surfaces</strong> with accuracy and clean surface topology to ensure high-quality mesh generation. Following the CAD phase, the model was imported into Ansys Fluent Meshing, where a structured and refined mesh was created, particularly around regions of expected flow separation such as the leading edges, wing-fuselage junctions, and control surface hinges. <strong>A mesh independence study was conducted to ensure numerical accuracy</strong> without excessive computational cost.
     </p>
 
     <p class="justified-paragraph">
-      Boundary conditions were defined to simulate realistic flight conditions, including varying angles of attack...
+      Boundary conditions were defined to simulate realistic flight conditions, including varying angles of attack, flow velocities corresponding to cruise and loitering phases, and atmospheric pressure at operating altitudes. <strong>Turbulence was modeled using the k-ω SST model</strong> due to its robustness in predicting both <strong>near-wall flows and wake regions</strong>. The CFD simulations were carried out in Ansys Fluent, where results such as <strong>pressure contours, velocity vectors, lift and drag coefficients, and flow separation zones</strong> were analyzed. This provided insight into aerodynamic performance, stability margins, and areas for design improvement. Post-processing revealed how <strong>small geometric changes influenced overall aerodynamic efficiency, leading to design recommendations such as slight winglet adjustments and streamlined fairings to reduce drag</strong>.
     </p>
 
     <h3>Project Takeaways</h3>
     <p class="justified-paragraph">
-      Key takeaways from the project included the importance of clean CAD modeling for mesh quality...
+      Key takeaways from the project included the importance of clean CAD modeling for mesh quality, the need for iterative simulation to validate results, and the utility of CFD in pre-prototyping performance prediction. The project not only enhanced understanding of UAV aerodynamics but also demonstrated the critical role of simulation tools in modern aerospace design.
     </p>
   </section>
 </body>
 </html>
-<!-- END OF FILE -->
