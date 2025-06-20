@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -253,6 +253,15 @@
       document.querySelectorAll('.justified-paragraph').forEach(el => {
         observer.observe(el);
       });
+
+      const nextPageLink = document.querySelector('.next-page-link');
+      const prevPageLink = document.querySelector('.prev-page-link');
+
+      window.addEventListener('scroll', () => {
+        const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+        nextPageLink.style.display = atBottom ? 'block' : 'none';
+        prevPageLink.style.display = atBottom ? 'block' : 'none';
+      });
     });
   </script>
 
@@ -319,7 +328,7 @@
       This project highlighted the immense value of simulation-driven design in hypersonic flight regimes, where experimental data is limited and costly to obtain. The key takeaways included the importance of high-resolution meshing in regions of shock interaction, the effectiveness of SST k-omega turbulence modeling in capturing complex flow features, and the need for careful geometry simplification without sacrificing critical aerodynamic details. It also emphasized <strong>the role of robust solver settings and boundary condition configuration in achieving stable convergence at high Mach numbers</strong>. By integrating Ansys SpaceClaim for modeling and Ansys Fluent for simulation, the project showcased a streamlined and efficient workflow capable of delivering accurate, actionable results for aerospace defense applications.
     </p></br>
   </section>
-  
+
   <!-- Navigation Links -->
   <a href="project1.html" class="nav-link prev-page-link">Previous Project</a>
   <a href="project3.html" class="nav-link next-page-link">Next Project</a>
