@@ -128,6 +128,41 @@
       transform: translateY(-30px);
       pointer-events: none;
     }
+
+    .nav-link {
+      position: fixed;
+      bottom: 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #000000;
+      text-decoration: none;
+      display: none;
+      z-index: 1000;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+      color: #000000;
+    }
+
+    .next-page-link {
+      right: 20px;
+    }
+
+    .next-page-link::after {
+      content: " →";
+      font-weight: bold;
+    }
+
+    .prev-page-link {
+      left: 20px;
+    }
+
+    .prev-page-link::before {
+      content: "← ";
+      font-weight: bold;
+    }
   </style>
 
   <script defer>
@@ -204,6 +239,17 @@
       document.querySelectorAll('.justified-paragraph').forEach(el => {
         observer.observe(el);
       });
+
+      const nextPageLink = document.querySelector('.next-page-link');
+      const prevPageLink = document.querySelector('.prev-page-link');
+
+      window.addEventListener('scroll', () => {
+        const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+        if (nextPageLink && prevPageLink) {
+          nextPageLink.style.display = atBottom ? 'block' : 'none';
+          prevPageLink.style.display = atBottom ? 'block' : 'none';
+        }
+      });
     });
   </script>
 
@@ -223,7 +269,7 @@
     </div></br>
 
     <div class="single-video-container">
-      <video controls>
+      <video controls autoplay muted loop playsinline>
         <source src="assets/shockwave_animation.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
@@ -246,9 +292,13 @@
     </p>
 
     <h3>Project Takeaways</h3>
-    <p class="justified-paragraph">
+    <br><p class="justified-paragraph">
       Key takeaways from the project included a <strong>reinforced understanding of transient flow behavior, shockwave dynamics, and the influence of tunnel geometry on wave reflection and attenuation</strong>. It also highlighted the importance of careful meshing and solver settings when simulating high-speed compressible flow. Additionally, the project demonstrated the effectiveness of 2D simplifications for capturing core flow physics, while also acknowledging the need for future 3D modeling to include lateral flow effects and train-tunnel aerodynamic interactions in full complexity.
-    </p>
+    </p></br>
   </section>
+
+  <!-- Navigation Links -->
+  <a href="project2.html" class="nav-link prev-page-link">Previous Project</a>
+  <a href="project4.html" class="nav-link next-page-link">Next Project</a>
 </body>
 </html>
