@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -215,6 +215,41 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+    .nav-link {
+      position: fixed;
+      bottom: 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #000000;
+      text-decoration: none;
+      display: none;
+      z-index: 1000;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+      color: #000000;
+    }
+
+    .next-page-link {
+      right: 20px;
+    }
+
+    .next-page-link::after {
+      content: " →";
+      font-weight: bold;
+    }
+
+    .prev-page-link {
+      left: 20px;
+    }
+
+    .prev-page-link::before {
+      content: "← ";
+      font-weight: bold;
+    }
   </style>
 
   <script defer>
@@ -291,6 +326,17 @@
       document.querySelectorAll('.justified-paragraph').forEach(el => {
         observer.observe(el);
       });
+
+      const nextPageLink = document.querySelector('.next-page-link');
+      const prevPageLink = document.querySelector('.prev-page-link');
+
+      window.addEventListener('scroll', () => {
+        const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+        if (nextPageLink && prevPageLink) {
+          nextPageLink.style.display = atBottom ? 'block' : 'none';
+          prevPageLink.style.display = atBottom ? 'block' : 'none';
+        }
+      });
     });
   </script>
 
@@ -301,7 +347,7 @@
 
 <body>
   <section class="project-section">
-    <h2 class="project-title">Project Description: Aerodynamic analysis of a surveillance uav</h2>
+    <h2 class="project-title">Project Description: Aerodynamic analysis of a surveillance UAV</h2>
 
     <br><div class="disclaimer-container">
       <div id="disclaimer-banner">
@@ -313,25 +359,21 @@
       <div class="video-item">
         <video controls autoplay muted loop playsinline>
           <source src="assets/uavsim1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       </div>
       <div class="video-item">
         <video controls autoplay muted loop playsinline>
-          <source src="assets/uavsim2_no_sound.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
+          <source src="assets/uavsimsl.mp4" type="video/mp4" />
         </video>
       </div>
       <div class="video-item">
         <video controls autoplay muted loop playsinline>
           <source src="assets/uavsim3.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       </div>
       <div class="video-item">
         <video controls autoplay muted loop playsinline>
           <source src="assets/uavtkec.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       </div>
     </div>
@@ -383,5 +425,9 @@
       Key takeaways from the project included the importance of clean CAD modeling for mesh quality, the need for iterative simulation to validate results, and the utility of CFD in pre-prototyping performance prediction. The project not only enhanced understanding of UAV aerodynamics but also demonstrated the critical role of simulation tools in modern aerospace design.
     </p></br>
   </section>
+
+  <!-- Navigation links -->
+  <a href="project7.html" class="nav-link prev-page-link">Previous Project</a>
+  <a href="project9.html" class="nav-link next-page-link">Next Project</a>
 </body>
 </html>
