@@ -128,6 +128,41 @@
       transform: translateY(-30px);
       pointer-events: none;
     }
+
+    .nav-link {
+      position: fixed;
+      bottom: 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #000000;
+      text-decoration: none;
+      display: none;
+      z-index: 1000;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+      color: #000000;
+    }
+
+    .next-page-link {
+      right: 20px;
+    }
+
+    .next-page-link::after {
+      content: " →";
+      font-weight: bold;
+    }
+
+    .prev-page-link {
+      left: 20px;
+    }
+
+    .prev-page-link::before {
+      content: "← ";
+      font-weight: bold;
+    }
   </style>
 
   <script defer>
@@ -204,6 +239,17 @@
       document.querySelectorAll('.justified-paragraph').forEach(el => {
         observer.observe(el);
       });
+
+      const nextPageLink = document.querySelector('.next-page-link');
+      const prevPageLink = document.querySelector('.prev-page-link');
+
+      window.addEventListener('scroll', () => {
+        const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+        if (nextPageLink && prevPageLink) {
+          nextPageLink.style.display = atBottom ? 'block' : 'none';
+          prevPageLink.style.display = atBottom ? 'block' : 'none';
+        }
+      });
     });
   </script>
 
@@ -223,7 +269,7 @@
     </div></br>
 
     <div class="single-video-container">
-      <video controls>
+      <video controls autoplay muted loop playsinline>
         <source src="assets/waveguidesim.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
@@ -234,13 +280,17 @@
     </p>
 
     <p class="justified-paragraph">
-      The 3D geometry was built in <strong>Ansys HFSS using PEC (perfect electric conductor) assumptions for the waveguide walls</strong> and <strong>air as the dielectric medium inside</strong>. The waveguide was designed to operate in the TE₁₀ mode at a specific microwave frequency, with wave excitation applied at the input port. The two slits were modeled as rectangular apertures with sub-wavelength spacing to ensure phase coherence, and their positions were symmetrical to promote a balanced interference pattern. Fine adaptive meshing was applied around the slits to accurately resolve near-field effects and diffraction patterns. Frequency-domain simulations yielded results such as electric field distributions and S-parameters. However, <strong>due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation</strong>, with some critical regions intentionally omitted. Despite these limitations, the results clearly demonstrated the presence of interference fringes and complex field behavior emerging from the slit configuration.
+      The 3D geometry was built in <strong>Ansys HFSS using PEC (perfect electric conductor) assumptions for the waveguide walls</strong> and <strong>air as the dielectric medium inside</strong>. The waveguide was designed <strong>to operate in the TE₁₀ mode at a specific microwave frequency</strong>, with wave excitation applied at the input port. The two slits were modeled as rectangular apertures with sub-wavelength spacing to ensure phase coherence, and their positions were symmetrical to promote a balanced interference pattern. Fine adaptive meshing was applied around the slits to accurately resolve near-field effects and diffraction patterns. Frequency-domain simulations yielded results such as electric field distributions and S-parameters. However, <strong>due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation</strong>, with some critical regions intentionally omitted. Despite these limitations, the results clearly demonstrated the presence of interference fringes and complex field behavior emerging from the slit configuration.
     </p>
 
     <h3>Project Takeaways</h3>
-    <p class="justified-paragraph">
+    <br><p class="justified-paragraph">
       Key takeaways from the project included an enhanced understanding of wave manipulation in bounded media, the effect of aperture geometry on electromagnetic field patterns, and the practical value of simulating only relevant portions of larger systems when full-scale modeling is not feasible or permissible.
-    </p>
+    </p></br>
   </section>
+
+  <!-- Navigation links -->
+  <a href="project6.html" class="nav-link prev-page-link">Previous Project</a>
+  <a href="project8.html" class="nav-link next-page-link">Next Project</a>
 </body>
 </html>
