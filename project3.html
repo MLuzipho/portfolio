@@ -182,6 +182,41 @@
       transform: translateY(-30px);
       pointer-events: none;
     }
+
+    .nav-link {
+      position: fixed;
+      bottom: 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #000000;
+      text-decoration: none;
+      display: block;
+      z-index: 1000;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+      color: #000000;
+    }
+
+    .next-page-link {
+      right: 20px;
+    }
+
+    .next-page-link::after {
+      content: " →";
+      font-weight: bold;
+    }
+
+    .prev-page-link {
+      left: 20px;
+    }
+
+    .prev-page-link::before {
+      content: "← ";
+      font-weight: bold;
+    }
   </style>
 
   <script defer>
@@ -312,9 +347,13 @@
     </p>
 
     <h3>Project Takeaways</h3>
-    <p class="justified-paragraph">
+    <br><p class="justified-paragraph">
       This project emphasized the importance of a multidisciplinary simulation approach to achieve a well-rounded and functional electromagnetic system. By combining CAD modeling, electromagnetic simulation in <strong>Ansys Maxwell</strong>, and thermal-fluid analysis in <strong>Ansys Fluent</strong>, the project ensured comprehensive system validation. Key takeaways include the necessity of early design accuracy for mesh quality, the impact of material selection on both electromagnetic efficiency and thermal safety, and the benefits of simulation-driven design in optimizing system performance prior to prototyping. These insights will guide future work in designing high-performance, thermally reliable, and electromagnetically efficient toroidal systems for demanding engineering applications.
-    </p>
+    </p></br>
   </section>
+
+  <!-- Navigation Links -->
+  <a href="project1.html" class="nav-link prev-page-link">Previous Project</a>
+  <a href="project3.html" class="nav-link next-page-link">Next Project</a>
 </body>
 </html>
