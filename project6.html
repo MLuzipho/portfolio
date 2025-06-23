@@ -174,7 +174,6 @@
       }
     }
 
-    /* Navigation Links */
     .nav-link {
       position: fixed;
       bottom: 20px;
@@ -209,7 +208,6 @@
       content: "← ";
       font-weight: bold;
     }
-
   </style>
 
   <script defer>
@@ -286,8 +284,8 @@
       document.querySelectorAll('.justified-paragraph').forEach(el => {
         observer.observe(el);
       });
-    });
-    
+
+      // ✅ Navigation links scroll logic (corrected placement)
       const nextPageLink = document.querySelector('.next-page-link');
       const prevPageLink = document.querySelector('.prev-page-link');
 
@@ -297,14 +295,15 @@
           nextPageLink.style.display = atBottom ? 'block' : 'none';
           prevPageLink.style.display = atBottom ? 'block' : 'none';
         }
-      });      
+      });
+    });
   </script>
 
   <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
-
 </head>
+
 <body>
   <section class="project-section">
     <h2 class="project-title">Project Description: Parametric Thermal Analysis on Two Heatsinks</h2>
@@ -318,7 +317,7 @@
     <div class="video-gallery">
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls>
+          <video controls autoplay muted loop playsinline>
             <source src="assets/heatsinkvid1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -328,7 +327,7 @@
 
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls>
+          <video controls autoplay muted loop playsinline>
             <source src="assets/heatsinkvid2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -350,12 +349,12 @@
     </p>
 
     <h3>Project Takeaways</h3>
-    <p class="justified-paragraph">
-      The project demonstrated the importance of geometry optimization in passive heat sinks and showed how simulation tools can drive design choices early in thermal product development. Field data from temperature sensors mounted in experimental setups were used to partially validate the simulation trends. Takeaways from the project included a <strong>deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility</strong>. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system.
-    </p>
+    <br><p class="justified-paragraph">
+          The project demonstrated the importance of geometry optimization in passive heat sinks and showed how simulation tools can drive design choices early in thermal product development. Field data from temperature sensors mounted in experimental setups were used to partially validate the simulation trends. Takeaways from the project included a <strong>deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility</strong>. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system. 
+        </p></br>
   </section>
 
-  <!-- Navigation links -->
+  <!-- ✅ Navigation links -->
   <a href="project5.html" class="nav-link prev-page-link">Previous Project</a>
   <a href="project7.html" class="nav-link next-page-link">Next Project</a>
 </body>
