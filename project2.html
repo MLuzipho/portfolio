@@ -29,43 +29,19 @@
       z-index: -1;
     }
 
-    #particle-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -2;
-      pointer-events: none;
-    }
-
     @keyframes backgroundShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    h1, h2, h3 {
+    h2, h3 {
       text-align: center;
       color: #2c3e50;
     }
 
     .project-section {
       padding: 5%;
-    }
-
-    @media (min-width: 768px) {
-      .project-section {
-        padding-left: 7.5%;
-        padding-right: 7.5%;
-      }
-    }
-
-    @media (min-width: 1200px) {
-      .project-section {
-        padding-left: 10%;
-        padding-right: 10%;
-      }
     }
 
     p {
@@ -102,14 +78,8 @@
 
     .video-item video {
       width: 100%;
-      height: auto;
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .video-item video:hover {
-      transform: scale(1.02);
     }
 
     .disclaimer-container {
@@ -157,7 +127,6 @@
 
     .nav-link:hover {
       text-decoration: underline;
-      color: #000000;
     }
 
     .next-page-link {
@@ -181,67 +150,6 @@
 
   <script defer>
     document.addEventListener("DOMContentLoaded", () => {
-      const canvas = document.createElement("canvas");
-      canvas.id = "particle-canvas";
-      document.body.appendChild(canvas);
-
-      const ctx = canvas.getContext("2d");
-      let width = canvas.width = window.innerWidth;
-      let height = canvas.height = window.innerHeight;
-
-      let mouse = { x: width / 2, y: height / 2 };
-
-      window.addEventListener("resize", () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      });
-
-      window.addEventListener("mousemove", e => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      });
-
-      const particles = Array.from({ length: 150 }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 1.5 + 0.5,
-        dx: (Math.random() - 0.5) * 1.2,
-        dy: (Math.random() - 0.5) * 1.2
-      }));
-
-      function animate() {
-        ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = "rgba(200, 200, 255, 0.15)";
-        particles.forEach(p => {
-          const angle = Math.atan2(mouse.y - p.y, mouse.x - p.x);
-          p.dx += Math.cos(angle) * 0.0015;
-          p.dy += Math.sin(angle) * 0.0015;
-
-          p.x += p.dx;
-          p.y += p.dy;
-
-          if (p.x < 0 || p.x > width) p.dx *= -1;
-          if (p.y < 0 || p.y > height) p.dy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fill();
-        });
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-
-      const banner = document.getElementById('disclaimer-banner');
-      if (banner) {
-        banner.addEventListener('click', () => {
-          banner.classList.add('hide');
-          setTimeout(() => {
-            banner.classList.remove('hide');
-          }, 20000);
-        });
-      }
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -264,47 +172,23 @@
       });
     });
   </script>
-
-  <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
 </head>
 
 <body>
   <section class="project-section">
-    <h2 class="project-title">Project Description: CFD (Aerodynamic) Analysis of a Hypersonic Missile</h2>
+    <h2>Project Description: CFD (Aerodynamic) Analysis of a Hypersonic Missile</h2>
 
-    <br><div class="disclaimer-container">
+    <div class="disclaimer-container">
       <div id="disclaimer-banner">
         Due to proprietary confidentiality rules, only selected parts of the field plots and data were retained for presentation.
       </div>
-    </div></br>
+    </div>
 
     <div class="video-grid">
-      <div class="video-item">
-        <video controls>
-          <source src="assets/missile1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="video-item">
-        <video controls>
-          <source src="assets/missile2.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="video-item">
-        <video controls>
-          <source src="assets/missile3.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="video-item">
-        <video controls>
-          <source src="assets/missile4.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      <div class="video-item"><video controls><source src="assets/missile1.mp4" type="video/mp4"></video></div>
+      <div class="video-item"><video controls><source src="assets/missile2.mp4" type="video/mp4"></video></div>
+      <div class="video-item"><video controls><source src="assets/missile3.mp4" type="video/mp4"></video></div>
+      <div class="video-item"><video controls><source src="assets/missile4.mp4" type="video/mp4"></video></div>
     </div>
 
     <p class="justified-paragraph">
@@ -324,12 +208,12 @@
     </p>
 
     <h3>Project Takeaways</h3>
-    <br><p class="justified-paragraph">
+    <p class="justified-paragraph">
       This project highlighted the immense value of simulation-driven design in hypersonic flight regimes, where experimental data is limited and costly to obtain. The key takeaways included the importance of high-resolution meshing in regions of shock interaction, the effectiveness of SST k-omega turbulence modeling in capturing complex flow features, and the need for careful geometry simplification without sacrificing critical aerodynamic details. It also emphasized <strong>the role of robust solver settings and boundary condition configuration in achieving stable convergence at high Mach numbers</strong>. By integrating Ansys SpaceClaim for modeling and Ansys Fluent for simulation, the project showcased a streamlined and efficient workflow capable of delivering accurate, actionable results for aerospace defense applications.
-    </p></br>
+    </p>
   </section>
 
-  <!-- Navigation Links -->
+  <!-- Navigation Buttons -->
   <a href="project1.html" class="nav-link prev-page-link">Previous Project</a>
   <a href="project3.html" class="nav-link next-page-link">Next Project</a>
 </body>
