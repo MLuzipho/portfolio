@@ -173,6 +173,59 @@
         transform: translateY(0);
       }
     }
+
+    /* --- Pagination styles --- */
+    .pagination-links {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 40px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px 25px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      user-select: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 9999;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .pagination-links.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .pagination-links a {
+      color: #2c3e50;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s ease;
+    }
+
+    .pagination-links a:hover {
+      color: #555;
+    }
+
+    .pagination-links .prev::before {
+      content: "←";
+      font-size: 1.4rem;
+      display: inline-block;
+    }
+
+    .pagination-links .next::after {
+      content: "→";
+      font-size: 1.4rem;
+      display: inline-block;
+    }
   </style>
 
   <script defer>
@@ -249,6 +302,30 @@
       document.querySelectorAll('.justified-paragraph').forEach(el => {
         observer.observe(el);
       });
+
+      // Pagination links show only when scrolled to bottom
+      const paginationLinks = document.createElement('div');
+      paginationLinks.className = 'pagination-links';
+      paginationLinks.innerHTML = `
+        <a href="project5.html" class="prev" aria-label="Previous Project">Previous</a>
+        <a href="project7.html" class="next" aria-label="Next Project">Next</a>
+      `;
+      document.body.appendChild(paginationLinks);
+
+      function checkScrollBottom() {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        // Show links only if scrolled near bottom (within 30px)
+        if (scrollPosition >= documentHeight - 30) {
+          paginationLinks.classList.add('show');
+        } else {
+          paginationLinks.classList.remove('show');
+        }
+      }
+
+      window.addEventListener('scroll', checkScrollBottom);
+      // Initial check on load
+      checkScrollBottom();
     });
   </script>
 
@@ -270,7 +347,7 @@
     <div class="video-gallery">
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls>
+          <video controls autoplay muted loop playsinline>
             <source src="assets/heatsinkvid1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -280,7 +357,7 @@
 
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls>
+          <video controls autoplay muted loop playsinline>
             <source src="assets/heatsinkvid2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -302,9 +379,9 @@
     </p>
 
     <h3>Project Takeaways</h3>
-    <p class="justified-paragraph">
+    <br><p class="justified-paragraph">
       The project demonstrated the importance of geometry optimization in passive heat sinks and showed how simulation tools can drive design choices early in thermal product development. Field data from temperature sensors mounted in experimental setups were used to partially validate the simulation trends. Takeaways from the project included a <strong>deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility</strong>. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system.
-    </p>
+    </p></br>
   </section>
 </body>
 </html>
