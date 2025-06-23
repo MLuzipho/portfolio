@@ -311,16 +311,16 @@
       <!-- 10 videos total -->
       <script>
         const captions = [
-          "Fin Configuration Thermal Analysis Results",
-          "Pin Configuration Thermal Analysis Results",
-          "Thermal Gradient Distribution",
-          "Temperature Field Contours",
-          "Heat Sink Base Temperature Variation",
-          "Pin Array Flow Interaction",
-          "Fin Array Streamline Visualization",
-          "Convection Pattern Comparison",
-          "Transient Thermal Behavior",
-          "Material Comparison Insights"
+          "Mode 1",
+          "Mode 2",
+          "Mode 3",
+          "Mode 4",
+          "Mode 5",
+          "Mode 6",
+          "Mode 7",
+          "Mode 8",
+          "Mode 9",
+          "Mode 10"
         ];
         captions.forEach((caption, i) => {
           document.write(`
@@ -339,24 +339,24 @@
     </div>
 
     <p class="justified-paragraph">
-      The project titled "Parametric Thermal Analysis on Two Heat Sinks": <strong>One with a Fin Configuration and the Other with a Pin Configuration</strong> focused on comparing the thermal performance of two different passive cooling architectures by conducting a detailed parametric study using Finite Element Analysis (FEA) in ANSYS Mechanical. The analysis began with the construction of two simplified 3D geometries in ANSYS SpaceClaim—one heat sink featuring traditional straight fins aligned in parallel, and the other employing an array of square pins arranged in a staggered grid pattern. Both models were designed with <strong>identical base dimensions and overall height</strong> to ensure that any performance differences would stem purely from geometry-driven thermal characteristics rather than gross dimensional discrepancies.
+      The project titled "Modal Analysis of a Satellite Bus Structure" involved a comprehensive study of the dynamic behavior of a satellite’s primary support structure, known as the satellite bus, through Finite Element Analysis (FEA). The process began with the development of a detailed 3D CAD model in Ansys SpaceClaim, where the geometry of the satellite bus—including structural panels, mounting brackets, internal frames, and load-bearing interfaces—was created to reflect a realistic design representative of mid-sized satellite platforms. Simplifications were applied to non-critical features such as fillets and fasteners to reduce computational complexity without compromising structural fidelity.
     </p>
 
     <p class="justified-paragraph">
-      The models were intentionally designed with medium fidelity to balance computational efficiency with geometric realism. The finned heat sink represents a classic design typically used in applications with <strong>unidirectional airflow</strong>, while the pin-fin configuration allows for more <strong>isotropic heat dissipation</strong>, making it suitable for multidirectional flow or natural convection conditions. After geometry setup, a range of parameters—<strong>including material selection (aluminum for high thermal conductivity), ambient temperature, convective heat transfer coefficients, and heat flux boundary conditions</strong>—were defined to simulate realistic operating environments. Thermal loads were applied uniformly to the base of each heat sink to mimic the effect of heat-generating components like processors or power modules.
+      Once the geometry was finalized, the model was imported into Ansys Mechanical for preprocessing and simulation. A material model was assigned assuming aerospace-grade aluminum alloys for the main structure, owing to their high stiffness-to-weight ratio and widespread use in satellite construction. Boundary conditions were applied to simulate fixed constraints at launch vehicle mounting points, and mass representations were included to account for subsystems like payloads, batteries, and avionics, which influence the system’s inertia distribution. The structure was discretized using a mesh of second-order tetrahedral elements, refined particularly at regions of high stress concentration and interface transitions to ensure numerical accuracy.
     </p>
 
     <p class="justified-paragraph">
-      Meshing was carefully tailored to resolve fine temperature gradients around the fins and pins, <strong>particularly in regions near the heat source and along the extended surfaces</strong>. A steady-state thermal analysis was then performed in ANSYS Mechanical, with temperature distributions, maximum surface temperatures, and heat dissipation efficiency compared between the two configurations. The parametric aspect of the study involved systematically varying the number, height, and spacing of the fins and pins to determine optimal geometries under different cooling conditions. Results showed that while the fin configuration offered better performance under forced convection due to its increased surface area in a streamlined direction, the pin configuration excelled in natural convection scenarios, offering lower peak temperatures due to enhanced airflow mixing and thermal boundary layer disruption.
+      Modal analysis was then performed to extract the natural frequencies and corresponding mode shapes, which are critical for evaluating the structure’s response to dynamic loads such as launch vibrations, acoustic excitation, and in-orbit disturbances. The first six modes were examined in detail, as these typically govern the rigid body and fundamental bending/twisting behavior. The results were assessed against industry design guidelines to ensure that the fundamental frequencies did not fall within the excitation frequency range of the launch vehicle, thereby avoiding resonance. The study provided valuable insights for optimizing the satellite structure’s mass and stiffness distribution, improving vibrational robustness, and guiding future structural enhancements for space-readiness.
     </p>
 
     <h3>Project Takeaways</h3>
     <br><p class="justified-paragraph">
-      The project demonstrated the importance of geometry optimization in passive heat sinks and showed how simulation tools can drive design choices early in thermal product development. Field data from temperature sensors mounted in experimental setups were used to partially validate the simulation trends. Takeaways from the project included a <strong>deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility</strong>. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system. 
+      The project highlighted the critical role of modal analysis in the early stages of satellite structural design, ensuring vibration compatibility with launch environments. It emphasized the importance of accurate mass distribution modeling and careful boundary condition definition when simulating real-world dynamic responses. Key takeaways included a deeper understanding of how geometric complexity and subsystem placement influence mode shapes, the effectiveness of mesh refinement in capturing structural behavior, and how simulation tools like Ansys Mechanical can preemptively identify design risks before costly prototyping or testing. The experience reinforced the necessity of integrating CAD and FEA workflows for efficient, reliable satellite design in the aerospace industry. 
     </p></br>
   </section>
 
-  <a href="project5.html" class="nav-link prev-page-link">Previous Project</a>
-  <a href="project7.html" class="nav-link next-page-link">Next Project</a>
+  <a href="project8.html" class="nav-link prev-page-link">Previous Project</a>
+  <a href="index.html" class="nav-link next-page-link">Home Page</a>
 </body>
 </html>
