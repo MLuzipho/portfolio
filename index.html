@@ -79,6 +79,23 @@
 </style>
 
 <style>
+  .work-img {
+  display: block;      /* ensure the picture acts like a block */
+  width: 100%;         /* fill the container width */
+  height: 100%;        /* fill container height if container has height */
+  overflow: hidden;    /* crop overflow */
+}
+
+.work-img img {
+  display: block;      /* remove inline spacing */
+  width: 100%;         /* fill the picture container horizontally */
+  height: 100%;        /* fill the picture container vertically */
+  object-fit: cover;   /* scale image to cover container, cropping if needed */
+  object-position: center center; /* center the image */
+}
+</style>
+
+<style>
   .skills {
     text-align: center;
     padding: 2rem;
