@@ -426,7 +426,7 @@ main {
   min-block-size: 100vh;
   position: fixed;
   width: 100%;
-  background: linear-gradient(to right, #e9cb48, #cccccc); /* yellow to gray */
+  background: linear-gradient(to right, #e9dc26, #a8a6a6); /* yellow to gray */
   transition: 450ms var(--easing);
   z-index: 3;
 }
