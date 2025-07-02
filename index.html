@@ -253,6 +253,53 @@
 </style>
 
 
+<style>
+  /* Base styling */
+  .skills {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .skills-imgs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .skills-img-wrapper {
+    background-color: #fff; /* Default for light mode */
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .skills-img {
+    max-width: 80px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* Dark mode handling */
+  @media (prefers-color-scheme: dark) {
+    .skills-img-wrapper {
+      background-color: #222; /* Dark background to preserve image clarity */
+    }
+  }
+
+  /* Responsive image container sizing (optional) */
+  @media screen and (max-width: 600px) {
+    .skills-img {
+      max-width: 60px;
+    }
+  }
+</style>
+
+
     <!-- Read and update content attributes accordingly  -->
 
     <meta
@@ -984,22 +1031,42 @@
       <!-- Update skills-img src, alt  and title attributes I have added some other logos in assets/images/skill for your convenience feel free to pick one if required  -->
 
       <section class="skills">
-         <div class="container">
-         <h2 class="h2" id="skills">Software Tool Expertise</h2>
-            <div class="skills-imgs">
-              <img src="assets/images/skills/starccm1.png" alt="StarCCM+" class="skills-img" loading="lazy" title="StarCCM">
-              <img src="assets/images/skills/ansys1.png" alt="Ansys" class="skills-img" loading="lazy" title="Ansys">
-              <img src="assets/images/skills/altair1.png" alt="Altair" class="skills-img" loading="lazy" title="Altair">
-              <img src="assets/images/skills/matlab.png" alt="Matlab" class="skills-img" loading="lazy" title="Matlab">
-              <img src="assets/images/skills/solidworks1.png" alt="Solidworks" class="skills-img" loading="lazy" title="Solidworks">
-              <img src="assets/images/skills/catia1.png" alt="Catia" class="skills-img" loading="lazy" title="Catia">
-              <img src="assets/images/skills/python1.png" alt="Python" class="skills-img" loading="lazy" title="Python">
-              <img src="assets/images/skills/openfoam1.png" alt="OpenFOAM" class="skills-img" loading="lazy" title="OpenFOAM">
-              <img src="assets/images/skills/html.webp" alt="HTML" class="skills-img" loading="lazy" title="HTML">
-              <img src="assets/images/skills/cpp1.png" alt="C++" class="skills-img" loading="lazy" title="C++">
-            </div>
-         </div>
-      </section>
+  <div class="container">
+    <h2 class="h2" id="skills">Software Tool Expertise</h2>
+    <div class="skills-imgs">
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/starccm1.png" alt="StarCCM+" class="skills-img" loading="lazy" title="StarCCM">
+      </div>
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/ansys1.png" alt="Ansys" class="skills-img" loading="lazy" title="Ansys">
+      </div>
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/altair1.png" alt="Altair" class="skills-img" loading="lazy" title="Altair">
+      </div>
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/matlab.png" alt="Matlab" class="skills-img" loading="lazy" title="Matlab">
+      </div>
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/solidworks1.png" alt="Solidworks" class="skills-img" loading="lazy" title="Solidworks">
+      </div>
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/catia1.png" alt="Catia" class="skills-img" loading="lazy" title="Catia">
+      </div>
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/python1.png" alt="Python" class="skills-img" loading="lazy" title="Python">
+      </div>
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/openfoam1.png" alt="OpenFOAM" class="skills-img" loading="lazy" title="OpenFOAM">
+      </div>
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/html.webp" alt="HTML" class="skills-img" loading="lazy" title="HTML">
+      </div>
+      <div class="skills-img-wrapper">
+        <img src="assets/images/skills/cpp1.png" alt="C++" class="skills-img" loading="lazy" title="C++">
+      </div>
+    </div>
+  </div>
+</section>
 
       <!-- Replace testimonials, author name, author job, img src and, alt attributes -->
 
