@@ -328,23 +328,23 @@ body.light .btn-cta:focus {
 }
 
 body.dark .link::before {
-  background-color: #d3d3d357;
+  background: transparent;
 }
 
 body.dark .link::after {
-  background-color: white;
+  background: transparent;
 }
 
 body.light .link::before {
-  background-color: lightgray;
+  background: transparent;
 }
 
 body.light .link::after {
-  background-color: black;
+  background: transparent;
 }
 
 .link::after {
-  background-color: white;
+  background: transparent;
   transform-origin: left;
   transform: scaleX(0);
 }
