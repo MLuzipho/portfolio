@@ -389,6 +389,18 @@ input[type="email"] {
   color: white !important;
 }
 
+textarea {
+  color: white;
+  background-color: transparent; /* optional: makes background see-through */
+  border: 1px solid white;       /* optional: adds visible border */
+  padding: 0.75rem;              /* optional: for better spacing */
+}
+
+textarea::placeholder {
+  color: white;
+  opacity: 0.6; /* slightly dimmer than input text */
+}
+
 </style>
 
 
@@ -1291,7 +1303,7 @@ input[type="email"] {
               </div>
               <div class="form-field">
                 <label for="message">How can I help you?</label>
-                <textarea name="message" id="message" required></textarea>
+                <textarea name="message" id="message" required placeholder="Enter your message here"></textarea>
               </div>
               <button type="submit" class="btn btn-cta" style="color: white;">Send</button>
             </form>
