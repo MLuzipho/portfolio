@@ -354,11 +354,17 @@
   color: white;
 }
 
+.footer-container {
+  text-align: center;
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 .footer-text {
   color: white;
-  text-align: center;
   font-size: 1rem;
-  padding: 1rem;
+  line-height: 1.5;
 }
 
 .footer-text a {
@@ -367,8 +373,8 @@
 }
 
 /* Optional: Make it a bit more readable on dark backgrounds */
-.footer-text {
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+.footer-text a:hover {
+  color: #ffffff; /* optional: glow or hover effect */
 }
 
 </style>
@@ -1306,9 +1312,11 @@
               </li>
             </ol>
           </nav>
+          <div class="footer-container">
           <p class="footer-text">
             &copy; <span>2024</span> - Website designed & developed by <a target="_blank" rel="noopener" href="https://github.com/MLuzipho">Malungelo Luzipho</a>
           </p>
+          </div>
         
         </div>
       </div>
