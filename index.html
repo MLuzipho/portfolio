@@ -307,6 +307,10 @@
   pointer-events: none;
 }
 
+body, .header, .container {
+  background: transparent !important;
+}
+
 /* Dark overlay for better contrast */
 .video-overlay {
   position: absolute;
@@ -467,7 +471,7 @@ textarea::placeholder {
   <body>
 
     <div class="video-container">
-    <video autoplay muted loop playsinline preload="auto" id="bg-video">
+    <video muted loop playsinline preload="auto" id="bg-video">
       <source src="assets/aero_engine.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -1349,5 +1353,40 @@ textarea::placeholder {
         </div>
       </div>
     </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById("bg-video");
+
+      if (!video) return;
+
+      // Try to autoplay
+      const tryPlay = () => {
+        video.muted = true;
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise
+            .then(() => console.log("Autoplay started"))
+            .catch((err) => {
+              console.log("Autoplay blocked, waiting for user gesture", err);
+              waitForUserGesture();
+            });
+        }
+      };
+
+      const waitForUserGesture = () => {
+        const triggerPlay = () => {
+          video.play().catch(err => console.log("Play failed:", err));
+          document.body.removeEventListener("click", triggerPlay);
+          document.body.removeEventListener("touchstart", triggerPlay);
+        };
+        document.body.addEventListener("click", triggerPlay, { once: true });
+        document.body.addEventListener("touchstart", triggerPlay, { once: true });
+      };
+
+      tryPlay();
+    });
+  </script>
+
   </body>
 </html>
