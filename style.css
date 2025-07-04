@@ -48,8 +48,8 @@
 }
 
 body.dark {
-  --bg-color-primary: #0c0a0a;
-  --bg-color-secondary: #161211;
+  --bg-color-primary: transparent;
+  --bg-color-secondary: transparent;
   --important: #fff;
   --sub: #c3c3c3;
   --body: #989898;
@@ -60,8 +60,8 @@ body.dark {
 }
 
 body.light {
-  --bg-color-primary: #fbfbfb;
-  --bg-color-secondary: #ffffff;
+  --bg-color-primary: transparent;
+  --bg-color-secondary: transparent;
   --important: #000;
   --sub: #111;
   --body: #585b63;
@@ -100,7 +100,7 @@ html {
 body {
   font-size: var(--text-medium);
   color: var(--body);
-  background-color: var(--bg-color-primary);
+  background: transparent;
   line-height: 1.4;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
