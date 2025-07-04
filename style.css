@@ -479,7 +479,7 @@ main {
 
 body.dark .header 
 body.light .header {
-  background-image: none;
+  background: transparent;
 }
 
 .header-textbox {
