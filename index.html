@@ -475,18 +475,9 @@ textarea::placeholder {
   </div>
 
     <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const video = document.getElementById("bg-video");
-    if (video) {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Autoplay failed. Possibly blocked by browser:", error);
-        });
-      }
-    }
-  });
-</script>
+      const theme = localStorage.getItem("theme") || "light";
+      document.body.classList.add(theme);
+    </script>
 
     <header class="header">
 
