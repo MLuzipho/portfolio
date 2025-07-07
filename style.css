@@ -408,7 +408,6 @@ main {
   border-radius: var(--gutter-large);
   text-decoration: none;
   background-color: var(--bg-color-secondary);
-  color: var(--important);
   cursor: pointer;
   color: white !important; /* ✅ Force text color to white */
 }
