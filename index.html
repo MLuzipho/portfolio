@@ -330,6 +330,8 @@ body, .header, .container {
   }
 }
 
+/* Synatx to make the text white (Can change text colour here.) */
+
 .h1 {
   color: white;
 }
@@ -363,6 +365,8 @@ body, .header, .container {
   padding: 20px;
   max-width: 100%;
   margin: 0 auto;
+  z-index: 1; /* Ensure it's above background video */
+  position: relative;
 }
 
 .footer-text {
@@ -1169,7 +1173,7 @@ textarea::placeholder {
 </section>
 
 
-      <!-- Replace testimonials, author name, author job, img src and, alt attributes -->
+      <!-- Services I offer. -->
 
       <section>
         <h2 class="h2">My Services</h2>
@@ -1273,7 +1277,7 @@ textarea::placeholder {
           <h2 class="h2" id="contact">Send Message</h2>
           <div class="contact-content">
             <div class="contact-textbox">
-              <!-- Please comment this component if you're not available for hire -->
+              <!-- Comment this component if I'm not consulting at the moment. -->
               <a class="hire-alert">
                 <span class="indicator"></span>
                 Let's talk about your project
@@ -1286,7 +1290,7 @@ textarea::placeholder {
               <p class="justified-paragraph8">  
                 I'm also an open-source website and mobile application developer, and in my spare time, I enjoy freelance coding.
               </p>
-              <!-- Replace src with your signatures and name -->
+              <!-- Replaced src with my signatures and name -->
               <img
                 src="assets/images/signature.png"
                 alt="Malungelo Luzipho"
