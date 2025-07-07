@@ -410,6 +410,7 @@ main {
   background-color: var(--bg-color-secondary);
   color: var(--important);
   cursor: pointer;
+  color: white; /* ✅ Force text color to white */
 }
 
 .menu-btn,
