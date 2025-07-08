@@ -1395,6 +1395,27 @@ textarea::placeholder {
     </footer>
 
     <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".hide");
+
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.9;
+
+      elements.forEach(el => {
+        const boxTop = el.getBoundingClientRect().top;
+
+        if (boxTop < triggerBottom) {
+          el.classList.add("show");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll(); // trigger on load
+  });
+</script>
+
+    <script>
     document.addEventListener("DOMContentLoaded", () => {
       const video = document.getElementById("bg-video");
 
