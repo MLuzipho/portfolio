@@ -423,21 +423,27 @@ textarea::placeholder {
 </style>
 
 <style>
-  /* Basic styling for logos */
-.logo {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
+  /* Default: logos hidden (opacity 0 and shifted) */
+  .logo {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
 
-/* Specific animations for different classes */
-.to-top {
-  transform: translateY(20px);
-}
+  /* When not hidden: visible and in place */
+  .logo.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-.to-bottom {
-  transform: translateY(-20px);
-}
+  /* Specific animations for direction */
+  .to-top {
+    transform: translateY(20px);
+  }
+
+  .to-bottom {
+    transform: translateY(-20px);
+  }
 </style>
 
 <!-- Google tag (gtag.js) (For Google Analytics) -->
@@ -1432,8 +1438,9 @@ textarea::placeholder {
     const logos = document.querySelectorAll('.logo');
     logos.forEach((logo, index) => {
       setTimeout(() => {
-        logo.classList.remove('hide');
-      }, index * 300); // Stagger the animations by 300ms
+        // Add 'visible' class to trigger fade-in and slide-up/down animation
+        logo.classList.add('visible');
+      }, index * 300);
     });
   });
 </script>
