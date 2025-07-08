@@ -423,25 +423,25 @@ textarea::placeholder {
 </style>
 
 <style>
-  /* Default: logos hidden (opacity 0 and shifted) */
+  /* Default visible state: fully opaque and in position */
   .logo {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
-  /* When not hidden: visible and in place */
-  .logo.visible {
-    opacity: 1;
-    transform: translateY(0);
+  /* Hidden state: transparent and shifted */
+  .logo.hide {
+    opacity: 0;
+    pointer-events: none; /* optional to avoid interaction */
   }
 
-  /* Specific animations for direction */
-  .to-top {
+  /* Directional offsets when hidden */
+  .to-top.hide {
     transform: translateY(20px);
   }
 
-  .to-bottom {
+  .to-bottom.hide {
     transform: translateY(-20px);
   }
 </style>
@@ -1435,11 +1435,10 @@ textarea::placeholder {
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const logos = document.querySelectorAll('.logo');
+    const logos = document.querySelectorAll('.logo.hide');
     logos.forEach((logo, index) => {
       setTimeout(() => {
-        // Add 'visible' class to trigger fade-in and slide-up/down animation
-        logo.classList.add('visible');
+        logo.classList.remove('hide');
       }, index * 300);
     });
   });
