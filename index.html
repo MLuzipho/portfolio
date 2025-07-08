@@ -423,23 +423,21 @@ textarea::placeholder {
 </style>
 
 <style>
-  .logo {
-    opacity: 1;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateY(0);
-  }
+  /* Basic styling for logos */
+.logo {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
-  .hide {
-    opacity: 0;
-  }
+/* Specific animations for different classes */
+.to-top {
+  transform: translateY(20px);
+}
 
-  .to-top.hide {
-    transform: translateY(20px);
-  }
-
-  .to-bottom.hide {
-    transform: translateY(-20px);
-  }
+.to-bottom {
+  transform: translateY(-20px);
+}
 </style>
 
 <!-- Google tag (gtag.js) (For Google Analytics) -->
@@ -1430,12 +1428,12 @@ textarea::placeholder {
   </script>
 
   <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const logos = document.querySelectorAll('.logo.hide');
-    logos.forEach((logo, i) => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const logos = document.querySelectorAll('.logo');
+    logos.forEach((logo, index) => {
       setTimeout(() => {
         logo.classList.remove('hide');
-      }, i * 300);
+      }, index * 300); // Stagger the animations by 300ms
     });
   });
 </script>
