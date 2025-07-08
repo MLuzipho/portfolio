@@ -420,17 +420,24 @@ textarea::placeholder {
   color: white !important;
 }
 
-
-.logo {
-  filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
+/* Hide by default */
+.hide {
+  opacity: 0;
+  transform: translateY(30px); /* Default downward animation */
+  transition: all 0.8s ease-out;
 }
 
-/* Optional: on hover, slightly reduce brightness for a glowing white effect */
-.logo:hover {
-  filter: brightness(1.2) invert(1);
+/* Directional entry classes */
+.to-top {
+  transform: translateY(30px);
 }
-
+.to-bottom {
+  transform: translateY(-30px);
+}
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 </style>
 
