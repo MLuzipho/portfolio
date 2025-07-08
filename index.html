@@ -423,41 +423,27 @@ textarea::placeholder {
 </style>
 
 <style>
-  .logos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 600px;
-  margin: 0 auto;
-  /* let height grow automatically */
-  /* remove min-height */
-}
-
-@media (max-width: 480px) {
-  .logos {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 320px;
+  /* Default: logos hidden (opacity 0 and shifted) */
+  .logo {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
-}
 
-.logo {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  pointer-events: none;
-  width: 100%;  /* fill grid cell width */
-  height: auto; /* keep aspect ratio */
-  max-width: none; /* remove max-width for smooth scaling */
-  justify-self: center;
-  display: block;
-}
+  /* When not hidden: visible and in place */
+  .logo.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-.logo.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
+  /* Specific animations for direction */
+  .to-top {
+    transform: translateY(20px);
+  }
+
+  .to-bottom {
+    transform: translateY(-20px);
+  }
 </style>
 
 <!-- Google tag (gtag.js) (For Google Analytics) -->
@@ -603,15 +589,72 @@ textarea::placeholder {
           <h2 class="h2">Worked with</h2>
           <div class="logos">
             <!-- Replace alt with client/company name and src attributes of images with path to relative img of client logo -->
-              <img loading="lazy" src="assets/white-logos/csir1-white.png" alt="Csir" class="logo" />
-              <img loading="lazy" src="assets/white-logos/denel1-white.png" alt="Denel" class="logo" />
-              <img loading="lazy" src="assets/white-logos/kutleng1-white.png" alt="Kutleng" class="logo" />
-              <img loading="lazy" src="assets/white-logos/gew1-white.png" alt="Gew" class="logo" />
-              <img loading="lazy" src="assets/white-logos/upm1-white.png" alt="UPM" class="logo" />
-              <img loading="lazy" src="assets/white-logos/armscor1-white.png" alt="Armscor" class="logo" />
-              <img loading="lazy" src="assets/white-logos/ansys1-white.png" alt="Ansys" class="logo" />
-              <img loading="lazy" src="assets/white-logos/nuaa1-white.png" alt="Nuaa" class="logo" />
-              <img loading="lazy" src="assets/white-logos/reutech1-white.png" alt="Reutech" class="logo" />
+            <div class="logo-group">
+              <img
+                loading="lazy"
+                src="assets/white-logos/csir1-white.png"
+                alt="Csir"
+                class="logo hide to-top"
+              />
+
+              <img
+                loading="lazy"
+                src="assets/white-logos/denel1-white.png"
+                alt="Denel"
+                class="logo"
+              />
+
+              <img
+                loading="lazy"
+                src="assets/white-logos/kutleng1-white.png"
+                alt="Kutleng"
+                class="logo hide to-bottom"
+              />
+              </div>
+            <div class="logo-group">
+              <img
+                loading="lazy"
+                src="assets/white-logos/gew1-white.png"
+                alt="gew"
+                class="logo hide to-top"
+              />
+
+              <img
+                loading="lazy"
+                src="assets/white-logos/upm1-white.png"
+                alt="UPM"
+                class="logo"
+              />
+
+              <img
+                loading="lazy"
+                src="assets/white-logos/armscor1-white.png"
+                alt="UPM"
+                class="logo hide to-bottom"
+              />
+            </div>
+            <div class="logo-group">
+              <img
+                loading="lazy"
+                src="assets/white-logos/ansys1-white.png"
+                alt="Ansys"
+                class="logo hide to-top"
+              />
+
+              <img
+                loading="lazy"
+                src="assets/white-logos/nuaa1-white.png"
+                alt="Nuaa"
+                class="logo"
+              />
+
+              <img
+                loading="lazy"
+                src="assets/white-logos/reutech1-white.png"
+                alt="Reutech"
+                class="logo hide to-bottom"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -1391,33 +1434,16 @@ textarea::placeholder {
   </script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const logos = document.querySelectorAll('.logo');
-      const groupSize = 3;
-      let currentGroup = 0;
-
-      function showGroup(groupIndex) {
-        logos.forEach((logo, i) => {
-          const logoGroup = Math.floor(i / groupSize);
-          if (logoGroup === groupIndex) {
-            logo.classList.add('visible');
-          } else {
-            logo.classList.remove('visible');
-          }
-        });
-      }
-
-      showGroup(currentGroup);
-
-      setInterval(() => {
-        currentGroup++;
-        if (currentGroup >= Math.ceil(logos.length / groupSize)) {
-          currentGroup = 0;
-        }
-        showGroup(currentGroup);
-      }, 3000);
+  document.addEventListener('DOMContentLoaded', () => {
+    const logos = document.querySelectorAll('.logo');
+    logos.forEach((logo, index) => {
+      setTimeout(() => {
+        // Add 'visible' class to trigger fade-in and slide-up/down animation
+        logo.classList.add('visible');
+      }, index * 300);
     });
-  </script>
+  });
+</script>
 
   </body>
 </html>
