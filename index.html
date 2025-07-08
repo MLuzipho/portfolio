@@ -420,25 +420,6 @@ textarea::placeholder {
   color: white !important;
 }
 
-/* Hide by default */
-.hide {
-  opacity: 0;
-  transform: translateY(30px); /* Default downward animation */
-  transition: all 0.8s ease-out;
-}
-
-/* Directional entry classes */
-.to-top {
-  transform: translateY(30px);
-}
-.to-bottom {
-  transform: translateY(-30px);
-}
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 </style>
 
 <!-- Google tag (gtag.js) (For Google Analytics) -->
@@ -1393,27 +1374,6 @@ textarea::placeholder {
         </div>
       </div>
     </footer>
-
-    <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll(".hide");
-
-    const revealOnScroll = () => {
-      const triggerBottom = window.innerHeight * 0.9;
-
-      elements.forEach(el => {
-        const boxTop = el.getBoundingClientRect().top;
-
-        if (boxTop < triggerBottom) {
-          el.classList.add("show");
-        }
-      });
-    };
-
-    window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll(); // trigger on load
-  });
-</script>
 
     <script>
     document.addEventListener("DOMContentLoaded", () => {
