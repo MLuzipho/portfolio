@@ -423,83 +423,89 @@ textarea::placeholder {
 </style>
 
 <style>
-      /* Fix black banner and set layout */
-      .client {
-        background-color: transparent;
-        padding: 3rem 1rem;
-        text-align: center;
-      }
+  .client {
+    width: 100%;
+    padding: 3rem 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* ensures above video */
+  }
 
-      .logos {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        justify-items: center;
-        align-items: center;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 2rem 0;
-      }
+  .client-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
 
-      .logo {
-        width: 100px;
-        max-width: 100%;
-        opacity: 0;
-        animation: floatIn 4s ease-in-out infinite;
-      }
+  .logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
 
-      .to-top {
-        animation-name: floatInTop;
-      }
+  .logo {
+    width: 100px;
+    height: auto;
+    opacity: 0;
+    animation: floatIn 4s ease-in-out infinite;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
 
-      .to-bottom {
-        animation-name: floatInBottom;
-      }
+  .to-top {
+    animation-name: floatInTop;
+  }
 
-      @keyframes floatIn {
-        0%, 100% {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        50% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+  .to-bottom {
+    animation-name: floatInBottom;
+  }
 
-      @keyframes floatInTop {
-        0%, 100% {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        50% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+  @keyframes floatIn {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-      @keyframes floatInBottom {
-        0%, 100% {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        50% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+  @keyframes floatInTop {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-      /* Optional staggered delays for effect */
-      .logos img:nth-child(1) { animation-delay: 0s; }
-      .logos img:nth-child(2) { animation-delay: 0.3s; }
-      .logos img:nth-child(3) { animation-delay: 0.6s; }
-      .logos img:nth-child(4) { animation-delay: 0.9s; }
-      .logos img:nth-child(5) { animation-delay: 1.2s; }
-      .logos img:nth-child(6) { animation-delay: 1.5s; }
-      .logos img:nth-child(7) { animation-delay: 1.8s; }
-      .logos img:nth-child(8) { animation-delay: 2.1s; }
-      .logos img:nth-child(9) { animation-delay: 2.4s; }
-    </style>
+  @keyframes floatInBottom {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Optional: stagger delay for breathing effect */
+  .logos img:nth-child(1) { animation-delay: 0s; }
+  .logos img:nth-child(2) { animation-delay: 0.2s; }
+  .logos img:nth-child(3) { animation-delay: 0.4s; }
+  .logos img:nth-child(4) { animation-delay: 0.6s; }
+  .logos img:nth-child(5) { animation-delay: 0.8s; }
+  .logos img:nth-child(6) { animation-delay: 1s; }
+  .logos img:nth-child(7) { animation-delay: 1.2s; }
+  .logos img:nth-child(8) { animation-delay: 1.4s; }
+  .logos img:nth-child(9) { animation-delay: 1.6s; }
+</style>
 
 <!-- Google tag (gtag.js) (For Google Analytics) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -640,10 +646,9 @@ textarea::placeholder {
 
     <main>
       <section class="client">
-        <div class="container">
+        <div class="client-container">
           <h2 class="h2">Worked with</h2>
           <div class="logos">
-            <!-- Replace alt with client/company name and src attributes of images with path to relative img of client logo -->
             <img src="assets/white-logos/csir1-white.png" alt="Csir" class="logo to-top" />
             <img src="assets/white-logos/denel1-white.png" alt="Denel" class="logo" />
             <img src="assets/white-logos/kutleng1-white.png" alt="Kutleng" class="logo to-bottom" />
