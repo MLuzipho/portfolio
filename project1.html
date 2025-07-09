@@ -83,34 +83,34 @@
     .video-gallery {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: center; /* Center the videos */
       gap: 40px;
-      padding: 0 5%;
+      padding-left: 5%;
+      padding-right: 5%;
       margin: 60px auto;
-      width: 100%;
-      box-sizing: border-box;
+      max-width: 900px; /* optional: controls how wide the video column can grow */
+      margin: 60px auto;
     }
 
     .video-item {
-  width: 100%;
-  max-width: 100%; /* Ensures full width of parent */
-  background-color: #dddddd;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
+      display: inline-block; /* Shrinks to fit content */
+      background-color: #dddddd;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
 
-.video-wrapper {
-  width: 100%;
-  height: auto;
-}
+    .video-wrapper {
+      position: relative;
+      height: auto;
+      overflow: visible;
+    }
 
-.video-wrapper video {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
+    .video-wrapper video {
+      width: auto;
+      height: auto;
+      display: block;
+    }
 
     .disclaimer-container {
       display: flex;
