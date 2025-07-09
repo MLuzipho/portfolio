@@ -103,19 +103,6 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
-    .video-wrapper {
-      display: inline-block;   /* Wraps to the video's natural size */
-      padding: 0;
-      margin: 0;
-      line-height: 0;          /* Removes unwanted whitespace */
-    }
-
-    .video-wrapper video {
-      width: auto;
-      height: auto;
-      max-width: 100%;         /* Responsive (optional) */
-      display: block;
-    }
 
     .video-caption {
       text-align: center;
@@ -293,22 +280,18 @@
 
     <div class="video-gallery">
       <div class="video-item">
-        <div class="video-wrapper">
           <video autoplay muted loop playsinline>
             <source src="assets/droptest1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-        </div>
         <div class="video-caption">Drop Test Results: No Cover</div>
       </div>
 
       <div class="video-item">
-        <div class="video-wrapper">
           <video autoplay muted loop playsinline>
             <source src="assets/droptest2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-        </div>
         <div class="video-caption">Drop Test Results: With Cover</div>
       </div>
     </div>
