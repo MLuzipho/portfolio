@@ -423,80 +423,27 @@ textarea::placeholder {
 </style>
 
 <style>
-  .client {
-    padding: 2rem 1rem;
-    text-align: center;
-    background-color: #000;
-  }
-
-  .logos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    justify-items: center;
-    padding: 2rem;
-  }
-
+  /* Default: logos hidden (opacity 0 and shifted) */
   .logo {
-    width: 100px;
-    max-width: 100%;
-    animation: floatIn 3s ease-in-out infinite;
     opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
-  /* Optional: vary animation direction */
+  /* When not hidden: visible and in place */
+  .logo.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Specific animations for direction */
   .to-top {
-    animation-name: floatInTop;
+    transform: translateY(20px);
   }
 
   .to-bottom {
-    animation-name: floatInBottom;
+    transform: translateY(-20px);
   }
-
-  /* Keyframes */
-  @keyframes floatIn {
-    0%, 100% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes floatInTop {
-    0%, 100% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes floatInBottom {
-    0%, 100% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Optional: stagger effect using nth-child delays */
-  .logos img:nth-child(1) { animation-delay: 0s; }
-  .logos img:nth-child(2) { animation-delay: 0.3s; }
-  .logos img:nth-child(3) { animation-delay: 0.6s; }
-  .logos img:nth-child(4) { animation-delay: 0.9s; }
-  .logos img:nth-child(5) { animation-delay: 1.2s; }
-  .logos img:nth-child(6) { animation-delay: 1.5s; }
-  .logos img:nth-child(7) { animation-delay: 1.8s; }
-  .logos img:nth-child(8) { animation-delay: 2.1s; }
-  .logos img:nth-child(9) { animation-delay: 2.4s; }
 </style>
 
 <!-- Google tag (gtag.js) (For Google Analytics) -->
