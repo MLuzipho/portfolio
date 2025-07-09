@@ -104,20 +104,17 @@
     }
 
     .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
+      display: inline-block;   /* Wraps to the video's natural size */
+      padding: 0;
+      margin: 0;
+      line-height: 0;          /* Removes unwanted whitespace */
     }
 
     .video-wrapper video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      object-fit: cover;      /* Fills the entire container */
-      object-position: center center; /* Center the video inside the wrapper */
+      width: auto;
+      height: auto;
+      max-width: 100%;         /* Responsive (optional) */
+      display: block;
     }
 
     .video-caption {
