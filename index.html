@@ -423,27 +423,80 @@ textarea::placeholder {
 </style>
 
 <style>
-  /* Default: logos hidden (opacity 0 and shifted) */
+  .client {
+    padding: 2rem 1rem;
+    text-align: center;
+    background-color: #000;
+  }
+
+  .logos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-items: center;
+    padding: 2rem;
+  }
+
   .logo {
+    width: 100px;
+    max-width: 100%;
+    animation: floatIn 3s ease-in-out infinite;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
-  /* When not hidden: visible and in place */
-  .logo.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Specific animations for direction */
+  /* Optional: vary animation direction */
   .to-top {
-    transform: translateY(20px);
+    animation-name: floatInTop;
   }
 
   .to-bottom {
-    transform: translateY(-20px);
+    animation-name: floatInBottom;
   }
+
+  /* Keyframes */
+  @keyframes floatIn {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes floatInTop {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes floatInBottom {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Optional: stagger effect using nth-child delays */
+  .logos img:nth-child(1) { animation-delay: 0s; }
+  .logos img:nth-child(2) { animation-delay: 0.3s; }
+  .logos img:nth-child(3) { animation-delay: 0.6s; }
+  .logos img:nth-child(4) { animation-delay: 0.9s; }
+  .logos img:nth-child(5) { animation-delay: 1.2s; }
+  .logos img:nth-child(6) { animation-delay: 1.5s; }
+  .logos img:nth-child(7) { animation-delay: 1.8s; }
+  .logos img:nth-child(8) { animation-delay: 2.1s; }
+  .logos img:nth-child(9) { animation-delay: 2.4s; }
 </style>
 
 <!-- Google tag (gtag.js) (For Google Analytics) -->
@@ -589,72 +642,17 @@ textarea::placeholder {
           <h2 class="h2">Worked with</h2>
           <div class="logos">
             <!-- Replace alt with client/company name and src attributes of images with path to relative img of client logo -->
-            <div class="logo-group">
-              <img
-                loading="lazy"
-                src="assets/white-logos/csir1-white.png"
-                alt="Csir"
-                class="logo hide to-top"
-              />
+            <img src="assets/white-logos/csir1-white.png" alt="Csir" class="logo to-top" />
+            <img src="assets/white-logos/denel1-white.png" alt="Denel" class="logo" />
+            <img src="assets/white-logos/kutleng1-white.png" alt="Kutleng" class="logo to-bottom" />
 
-              <img
-                loading="lazy"
-                src="assets/white-logos/denel1-white.png"
-                alt="Denel"
-                class="logo"
-              />
+            <img src="assets/white-logos/gew1-white.png" alt="GEW" class="logo to-top" />
+            <img src="assets/white-logos/upm1-white.png" alt="UPM" class="logo" />
+            <img src="assets/white-logos/armscor1-white.png" alt="Armscor" class="logo to-bottom" />
 
-              <img
-                loading="lazy"
-                src="assets/white-logos/kutleng1-white.png"
-                alt="Kutleng"
-                class="logo hide to-bottom"
-              />
-              </div>
-            <div class="logo-group">
-              <img
-                loading="lazy"
-                src="assets/white-logos/gew1-white.png"
-                alt="gew"
-                class="logo hide to-top"
-              />
-
-              <img
-                loading="lazy"
-                src="assets/white-logos/upm1-white.png"
-                alt="UPM"
-                class="logo"
-              />
-
-              <img
-                loading="lazy"
-                src="assets/white-logos/armscor1-white.png"
-                alt="UPM"
-                class="logo hide to-bottom"
-              />
-            </div>
-            <div class="logo-group">
-              <img
-                loading="lazy"
-                src="assets/white-logos/ansys1-white.png"
-                alt="Ansys"
-                class="logo hide to-top"
-              />
-
-              <img
-                loading="lazy"
-                src="assets/white-logos/nuaa1-white.png"
-                alt="Nuaa"
-                class="logo"
-              />
-
-              <img
-                loading="lazy"
-                src="assets/white-logos/reutech1-white.png"
-                alt="Reutech"
-                class="logo hide to-bottom"
-              />
-            </div>
+            <img src="assets/white-logos/ansys1-white.png" alt="Ansys" class="logo to-top" />
+            <img src="assets/white-logos/nuaa1-white.png" alt="NUAA" class="logo" />
+            <img src="assets/white-logos/reutech1-white.png" alt="Reutech" class="logo to-bottom" />
           </div>
         </div>
       </section>
