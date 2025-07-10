@@ -1,0 +1,363 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      color: #222;
+      line-height: 1.6;
+      position: relative;
+      z-index: 0;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(-45deg, #f3f4f6, #e0f7fa, #fffde7, #fce4ec);
+      background-size: 400% 400%;
+      animation: backgroundShift 20s ease infinite;
+      backdrop-filter: blur(4px);
+      z-index: -2;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .project-section {
+      padding: 5%;
+    }
+
+    @media (min-width: 768px) {
+      .project-section {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .project-section {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 2em;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .justified-paragraph {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease-out;
+    }
+
+    .justified-paragraph.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 20px 5%;
+      justify-items: center;
+    }
+
+    .image-item {
+      text-align: center;
+      width: 80%;
+    }
+
+    .image-item img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .image-caption {
+      font-size: 0.9rem;
+      padding-top: 8px;
+      color: #555;
+      text-align: center;
+    }
+
+    .video-pair-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 0 5%;
+      margin-top: 50px;
+    }
+
+    .video-wrapper {
+      flex: 1 1 45%;
+      max-width: 600px;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .video-wrapper {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .lightbox img {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80vh;
+    }
+
+    .lightbox:target {
+      display: block;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      color: #fff;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .nav-link {
+      position: fixed;
+      bottom: 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #000000;
+      text-decoration: none;
+      display: none;
+      z-index: 1000;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+      color: #000000;
+    }
+
+    .next-page-link {
+      right: 20px;
+    }
+
+    .next-page-link::after {
+      content: " →";
+      font-weight: bold;
+    }
+
+    .prev-page-link {
+      left: 20px;
+    }
+
+    .prev-page-link::before {
+      content: "← ";
+      font-weight: bold;
+    }
+  </style>
+
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const canvas = document.createElement("canvas");
+      canvas.id = "particle-canvas";
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext("2d");
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      let mouse = { x: width / 2, y: height / 2 };
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      window.addEventListener("mousemove", e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      const particles = Array.from({ length: 150 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 1.2,
+        dy: (Math.random() - 0.5) * 1.2
+      }));
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = "rgba(200, 200, 255, 0.15)";
+        particles.forEach(p => {
+          const angle = Math.atan2(mouse.y - p.y, mouse.x - p.x);
+          p.dx += Math.cos(angle) * 0.0015;
+          p.dy += Math.sin(angle) * 0.0015;
+
+          p.x += p.dx;
+          p.y += p.dy;
+
+          if (p.x < 0 || p.x > width) p.dx *= -1;
+          if (p.y < 0 || p.y > height) p.dy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.justified-paragraph').forEach(el => {
+        observer.observe(el);
+      });
+
+      const nextPageLink = document.querySelector('.next-page-link');
+      const prevPageLink = document.querySelector('.prev-page-link');
+
+      window.addEventListener('scroll', () => {
+        const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+        if (nextPageLink && prevPageLink) {
+          nextPageLink.style.display = atBottom ? 'block' : 'none';
+          prevPageLink.style.display = atBottom ? 'block' : 'none';
+        }
+      });
+    });
+  </script>
+
+  <link rel="preload" href="assets/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <section class="project-section">
+    <h2 class="project-title">Project Description: FSI Wind Loading Analysis of Two 5G Radio Boxes</h2>
+
+    <div class="image-gallery">
+      <div class="image-item">
+        <a href="#img1"><img src="assets/images/FR1.png" alt="Image 1"></a>
+        <div class="image-caption">Force Reaction 1</div>
+      </div>
+      <div class="image-item">
+        <a href="#img2"><img src="assets/images/FR2.png" alt="Image 2"></a>
+        <div class="image-caption">Force Reaction 2</div>
+      </div>
+      <div class="image-item">
+        <a href="#img3"><img src="assets/images/imported_pressure.png" alt="Image 3"></a>
+        <div class="image-caption">Imported Pressure from CFD Results</div>
+      </div>
+      <div class="image-item">
+        <a href="#img4"><img src="assets/images/work/windloading.png" alt="Image 4"></a>
+        <div class="image-caption">CFD Simulation Results (Streamlines)</div>
+      </div>
+    </div>
+
+    <div id="img1" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/FR1.png" alt="Enlarged"></div>
+    <div id="img2" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/FR2.png" alt="Enlarged"></div>
+    <div id="img3" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/imported_pressure.png" alt="Enlarged"></div>
+    <div id="img4" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/work/windloading.png" alt="Enlarged"></div>
+
+    <div class="video-pair-container">
+      <div class="video-wrapper">
+        <video autoplay muted loop playsinline>
+          <source src="assets/windloadingcfd.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-wrapper">
+        <video autoplay muted loop playsinline>
+          <source src="assets/secondvideo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <p class="justified-paragraph">
+      The project titled "FSI Simulations for a Wind Loading Analysis of Two 5G Radio Boxes (One Directly Behind the Other, With the Same Dimensions)" involved the coupling of Computational Fluid Dynamics (CFD) and Finite Element Analysis (FEA) to investigate the aerodynamic forces and resulting structural deformations experienced by two identically sized 5G radio boxes positioned in tandem under wind exposure. The study aimed to understand how the upstream box affects the flow field and loading experienced by the downstream box — a realistic scenario frequently encountered in urban environments where such equipment is mounted in close proximity on poles, rooftops, or facades. The simulation workflow began with the construction of simplified 3D geometries in ANSYS SpaceClaim. Instead of using high-fidelity models with fine details or rounded corners typically found in commercial enclosures, the models were intentionally kept medium- to low-fidelity, featuring square corners and flat surfaces. This simplification allowed for reduced computational cost while still capturing the essential aerodynamic behavior of bluff-body interactions.
+    </p>
+
+    <p class="justified-paragraph">
+      A large computational domain was defined to mimic open-air wind conditions, with careful attention to inlet length, outlet buffer zones, and lateral spacing to prevent boundary-induced flow distortion. Mesh generation was conducted using ANSYS Meshing, <strong>incorporating inflation layers on the box surfaces to resolve near-wall effects and local refinements in regions between and behind the boxes to capture wake dynamics and turbulent eddies</strong>. The CFD simulation in ANSYS Fluent used <strong>the steady-state RANS equations with the k-ω SST turbulence model, selected for its effectiveness in modeling separated flows and shear layers</strong>. Velocity inlet and pressure outlet conditions were imposed, and no-slip walls were applied to the box surfaces. The aerodynamic pressure fields were then exported and mapped onto the surfaces of each box within ANSYS Mechanical for structural response analysis.
+    </p>
+
+    <p class="justified-paragraph">
+      The FEA portion involved assigning material properties for a generic metal casing, such as aluminum, and applying fixed supports at mounting points to simulate real-world constraints. Initially, simulations were run for a single box to establish baseline pressure distributions and stress profiles. A second simulation was then run with the downstream box placed directly behind the first <strong>to observe shielding effects</strong>. For the Fluid-Structure Interaction (FSI) coupling, a one-way approach was used — aerodynamic pressures were transferred from Fluent to Mechanical without iterative feedback, a practical choice for this level of model complexity. The results showed a significant drop in wind loading on the second box due to flow deflection and wake interference caused by the first box. Contour plots revealed fluctuating pressure zones in the gap between the two units, indicating vortex formation and periodic shedding, which can contribute to long-term fatigue loading.
+    </p>
+
+    <h3>Project Takeaways</h3>
+    <p class="justified-paragraph">
+      Key takeaways from the project included <strong>a solid understanding of wake interaction in tandem body configurations, the usefulness of one-way FSI in early-stage design assessments, and the trade-offs between model fidelity and computational efficiency</strong>. The study also emphasized that even simplified models can yield meaningful insights into structural robustness and aerodynamic behavior in clustered equipment installations.
+    </p>
+  </section>
+
+  <a href="project4.html" class="nav-link prev-page-link">Previous Project</a>
+  <a href="project6.html" class="nav-link next-page-link">Next Project</a>
+</body>
+</html>
