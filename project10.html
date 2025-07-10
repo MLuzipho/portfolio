@@ -298,66 +298,85 @@
 
 <body>
   <section class="project-section">
-    <h2 class="project-title">Project Description: FSI Wind Loading Analysis of Two 5G Radio Boxes</h2>
+    <h2 class="project-title">Project Description: Aerodynamic Analysis of a F1 Car Rear Wing</h2>
 
     <div class="image-gallery">
       <div class="image-item">
-        <a href="#img1"><img src="assets/images/FR1.png" alt="Image 1"></a>
-        <div class="image-caption">Force Reaction 1</div>
+        <a href="#img1"><img src="assets/images/rw_static_pressure_1.png" alt="Image 1"></a>
+        <div class="image-caption">Static Pressure (1)</div>
       </div>
       <div class="image-item">
-        <a href="#img2"><img src="assets/images/FR2.png" alt="Image 2"></a>
-        <div class="image-caption">Force Reaction 2</div>
+        <a href="#img2"><img src="assets/images/rw_static_pressure_2.png" alt="Image 2"></a>
+        <div class="image-caption">Static Pressure (2)</div>
       </div>
       <div class="image-item">
-        <a href="#img3"><img src="assets/images/imported_pressure.png" alt="Image 3"></a>
-        <div class="image-caption">Imported Pressure from CFD Results</div>
+        <a href="#img3"><img src="assets/images/downforce_plot.png" alt="Image 3"></a>
+        <div class="image-caption">Downforce (-ve Lift) Plot</div>
       </div>
       <div class="image-item">
-        <a href="#img4"><img src="assets/images/work/windloading.png" alt="Image 4"></a>
-        <div class="image-caption">CFD Simulation Results (Streamlines)</div>
+        <a href="#img4"><img src="assets/images/drag_plot.png" alt="Image 4"></a>
+        <div class="image-caption">Drag (Cd) Coefficient/Force Plot</div>
       </div>
     </div>
 
-    <div id="img1" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/FR1.png" alt="Enlarged"></div>
-    <div id="img2" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/FR2.png" alt="Enlarged"></div>
-    <div id="img3" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/imported_pressure.png" alt="Enlarged"></div>
-    <div id="img4" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/work/windloading.png" alt="Enlarged"></div>
+    <div id="img1" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/rw_static_pressure_1.png" alt="Enlarged"></div>
+    <div id="img2" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/rw_static_pressure_2.png" alt="Enlarged"></div>
+    <div id="img3" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/downforce_plot.png" alt="Enlarged"></div>
+    <div id="img4" class="lightbox"><a href="#" class="close-lightbox">&times;</a><img src="assets/images/drag_plot.png" alt="Enlarged"></div>
 
     <div class="video-pair-container">
       <div class="video-wrapper">
         <video autoplay muted loop playsinline>
-          <source src="assets/windloadingcfd.mp4" type="video/mp4" />
+          <source src="assets/rear_wing_vortices (1).mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
       <div class="video-wrapper">
         <video autoplay muted loop playsinline>
-          <source src="assets/secondvideo.mp4" type="video/mp4" />
+          <source src="assets/rear_wing_vortices (2).mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
     </div>
 
     <p class="justified-paragraph">
-      The project titled "FSI Simulations for a Wind Loading Analysis of Two 5G Radio Boxes (One Directly Behind the Other, With the Same Dimensions)" involved the coupling of Computational Fluid Dynamics (CFD) and Finite Element Analysis (FEA) to investigate the aerodynamic forces and resulting structural deformations experienced by two identically sized 5G radio boxes positioned in tandem under wind exposure. The study aimed to understand how the upstream box affects the flow field and loading experienced by the downstream box — a realistic scenario frequently encountered in urban environments where such equipment is mounted in close proximity on poles, rooftops, or facades. The simulation workflow began with the construction of simplified 3D geometries in ANSYS SpaceClaim. Instead of using high-fidelity models with fine details or rounded corners typically found in commercial enclosures, the models were intentionally kept medium- to low-fidelity, featuring square corners and flat surfaces. This simplification allowed for reduced computational cost while still capturing the essential aerodynamic behavior of bluff-body interactions.
+      The objective of this project was to evaluate the aerodynamic performance of a Formula 1-style rear wing using Computational Fluid Dynamics (CFD). The goal was to quantify downforce, drag, and flow behavior around the wing at typical racing speeds, and to gain insight into how geometry and angle of attack influence performance metrics critical to vehicle stability and lap-time optimization.
     </p>
 
     <p class="justified-paragraph">
-      A large computational domain was defined to mimic open-air wind conditions, with careful attention to inlet length, outlet buffer zones, and lateral spacing to prevent boundary-induced flow distortion. Mesh generation was conducted using ANSYS Meshing, <strong>incorporating inflation layers on the box surfaces to resolve near-wall effects and local refinements in regions between and behind the boxes to capture wake dynamics and turbulent eddies</strong>. The CFD simulation in ANSYS Fluent used <strong>the steady-state RANS equations with the k-ω SST turbulence model, selected for its effectiveness in modeling separated flows and shear layers</strong>. Velocity inlet and pressure outlet conditions were imposed, and no-slip walls were applied to the box surfaces. The aerodynamic pressure fields were then exported and mapped onto the surfaces of each box within ANSYS Mechanical for structural response analysis.
+      The geometry selected for analysis was a simplified, yet representative, F1 rear wing featuring a dual-element configuration with an adjustable mainplane and flap. The model was developed in CAD software and cleaned to eliminate non-manifold edges, small gaps, or irrelevant features that could negatively affect meshing. The rear wing was positioned at a representative ride height above the ground, approximating its location on a typical F1 chassis. The computational domain was designed to replicate a wind tunnel or track-like environment, with a rectangular enclosure extending several chord lengths upstream, downstream, and radially around the wing to minimize boundary effects. Boundary conditions were defined as follows:
+    </p>
+    <ul>
+      <li><strong>Inlet</strong>: Uniform velocity profile set at approx. 300 km/h.</li>
+      <li><strong>Outlet</strong>: Static pressure outlet at atmospheric pressure.</li>
+      <li><strong>Wing Surfaces</strong>: No-slip condition applied to all solid boundaries.</li>
+      <li><strong>Ground Plane</strong>: Treated as a moving wall (inlet velocity) to replicate road-relative motion.</li>
+    </ul>
+
+    <p class="justified-paragraph">
+      Meshing was performed using a hybrid approach — structured hexahedral elements near critical surfaces (e.g., wing surfaces and boundary layers) and unstructured tetrahedral elements in the far-field. A boundary layer mesh was generated with a focus on resolving the near-wall region, targeting a dimensionless wall distance (y⁺) below 5 to allow for accurate turbulence modeling. The simulations were run in ANSYS Fluent using the steady-state Reynolds-Averaged Navier-Stokes (RANS) equations. The k-ω SST turbulence model was selected for its ability to accurately resolve adverse pressure gradients and flow separation, especially important in regions near the wing’s trailing edge and junctions between elements. Convergence criteria were based on the residuals for continuity and momentum equations (target below 1e-5), and monitoring of integrated forces (lift and drag) on the wing surfaces to ensure solution stability. Multiple angles of attack were simulated (ranging from 0° to 20°) to assess the lift and drag curve and to identify stall onset behavior.
     </p>
 
     <p class="justified-paragraph">
-      The FEA portion involved assigning material properties for a generic metal casing, such as aluminum, and applying fixed supports at mounting points to simulate real-world constraints. Initially, simulations were run for a single box to establish baseline pressure distributions and stress profiles. A second simulation was then run with the downstream box placed directly behind the first <strong>to observe shielding effects</strong>. For the Fluid-Structure Interaction (FSI) coupling, a one-way approach was used — aerodynamic pressures were transferred from Fluent to Mechanical without iterative feedback, a practical choice for this level of model complexity. The results showed a significant drop in wind loading on the second box due to flow deflection and wake interference caused by the first box. Contour plots revealed fluctuating pressure zones in the gap between the two units, indicating vortex formation and periodic shedding, which can contribute to long-term fatigue loading.
+      The following assumptions were made:
+    </p>
+    <ul>
+      <li>Compressibility effects were neglected since the Mach number remained below 0.3.</li>
+      <li>The flow was assumed to be isothermal with constant fluid properties (air at 25°C).</li>
+      <li>The model did not account for rain, thermal loading, or flexible deformation of wing elements.</li>
+    </ul>
+
+    <p class="justified-paragraph">
+      These assumptions allowed the simulation to focus on core aerodynamic behavior while keeping computational cost reasonable.
     </p>
 
     <h3>Project Takeaways</h3>
     <p class="justified-paragraph">
-      Key takeaways from the project included <strong>a solid understanding of wake interaction in tandem body configurations, the usefulness of one-way FSI in early-stage design assessments, and the trade-offs between model fidelity and computational efficiency</strong>. The study also emphasized that even simplified models can yield meaningful insights into structural robustness and aerodynamic behavior in clustered equipment installations.
+      The CFD results revealed clear trends in lift (downforce) and drag as functions of angle of attack. At moderate angles, the wing produced significant downforce with manageable drag, but beyond a critical angle, flow separation reduced effectiveness and increased drag rapidly. Streamline and pressure contour plots illustrated strong suction peaks on the upper surfaces and highlighted flow reattachment dynamics near the flap. Key takeaways from the project included the importance of boundary layer resolution in capturing pressure recovery zones, the sensitivity of flow separation to small geometric or angular changes, and the trade-off between downforce and drag — a fundamental challenge in motorsport aero development. This project provided valuable hands-on experience in the aerodynamic simulation of race car components, demonstrating how CFD can guide early-stage design decisions, reduce reliance on wind tunnel testing, and accelerate iteration cycles in high-performance vehicle development.
     </p>
   </section>
 
-  <a href="project4.html" class="nav-link prev-page-link">Previous Project</a>
-  <a href="project6.html" class="nav-link next-page-link">Next Project</a>
+  <a href="project9.html" class="nav-link prev-page-link">Previous Project</a>
+  <a href="index.html" class="nav-link next-page-link">Home Page</a>
 </body>
 </html>
