@@ -302,7 +302,7 @@
         });
       }, { threshold: 0.1 });
 
-      document.querySelectorAll('.justified-paragraph, ul').forEach(el => {
+      document.querySelectorAll('.justified-paragraph').forEach(el => {
         observer.observe(el);
       });
 
@@ -371,7 +371,7 @@
 
     <p class="justified-paragraph boundary-intro">The geometry selected for analysis was a simplified, yet representative, F1 rear wing featuring a dual-element configuration with an adjustable mainplane and flap. The model was developed in CAD software and cleaned to eliminate non-manifold edges, small gaps, or irrelevant features that could negatively affect meshing. The rear wing was positioned at a representative ride height above the ground, approximating its location on a typical F1 chassis. The computational domain was designed to replicate a wind tunnel or track-like environment, with a rectangular enclosure extending several chord lengths upstream, downstream, and radially around the wing to minimize boundary effects. Boundary conditions were defined as follows:</p>
 
-    <ul>
+    <ul class="justified-paragraph">
       <li><strong>Inlet</strong>: Uniform velocity profile set at approx. 300 km/h.</li>
       <li><strong>Outlet</strong>: Static pressure outlet at atmospheric pressure.</li>
       <li><strong>Wing Surfaces</strong>: No-slip condition applied to all solid boundaries.</li>
@@ -383,7 +383,7 @@
     </p>
 
     <p class="justified-paragraph boundary-intro2">The following assumptions were made:</p>
-    <ul>
+    <ul class="justified-paragraph">
       <li>Compressibility effects were neglected since the Mach number remained below 0.3.</li>
       <li>The flow was assumed to be isothermal with constant fluid properties (air at 25°C).</li>
       <li>The model did not account for rain, thermal loading, or flexible deformation of wing elements.</li>
