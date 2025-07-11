@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    @font-face {
+      font-family: 'Mona Sans';
+      src: url('assets/fonts/Mona-Sans.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     body {
       margin: 0;
       color: #222;
@@ -12,6 +20,8 @@
       position: relative;
       z-index: 0;
       overflow-x: hidden;
+      font-family: 'Mona Sans', sans-serif;
+      font-size: 16px;
     }
 
     body::before {
@@ -72,6 +82,15 @@
       margin-bottom: 2em;
       font-size: 1rem;
       color: #333;
+    }
+
+    ul {
+      font-family: inherit;
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 2em;
+      padding-left: 1.5em;
     }
 
     .justified-paragraph {
@@ -177,6 +196,15 @@
       text-decoration: none;
     }
 
+    p.boundary-intro, p.boundary-intro2 {
+      margin-bottom: 0; 
+    }
+
+    .boundary-intro + ul,
+    .boundary-intro2 + ul {
+      margin-top: 0;
+    }
+
     .nav-link {
       position: fixed;
       bottom: 20px;
@@ -210,18 +238,6 @@
     .prev-page-link::before {
       content: "← ";
       font-weight: bold;
-    }
-
-    @font-face {
-      font-family: 'Mona Sans';
-      src: url('assets/fonts/Mona-Sans.woff2') format('woff2');
-      font-weight: 200 900;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    ul li {
-      font-family: 'Mona Sans', sans-serif;
     }
   </style>
 
@@ -351,41 +367,32 @@
       </div>
     </div>
 
-    <p class="justified-paragraph">
-      The objective of this project was to evaluate the aerodynamic performance of a Formula 1-style rear wing using Computational Fluid Dynamics (CFD). The goal was to quantify downforce, drag, and flow behavior around the wing at typical racing speeds, and to gain insight into how geometry and angle of attack influence performance metrics critical to vehicle stability and lap-time optimization.
-    </p>
+    <p class="justified-paragraph">The objective of this project was to evaluate the aerodynamic performance of a Formula 1-style rear wing using Computational Fluid Dynamics (CFD). The goal was to quantify downforce, drag, and flow behavior around the wing at typical racing speeds, and to gain insight into how geometry and angle of attack influence performance metrics critical to vehicle stability and lap-time optimization.</p>
 
-    <p class="justified-paragraph">
-      The geometry selected for analysis was a simplified, yet representative, F1 rear wing featuring a dual-element configuration with an adjustable mainplane and flap. The model was developed in CAD software and cleaned to eliminate non-manifold edges, small gaps, or irrelevant features that could negatively affect meshing. The rear wing was positioned at a representative ride height above the ground, approximating its location on a typical F1 chassis. The computational domain was designed to replicate a wind tunnel or track-like environment, with a rectangular enclosure extending several chord lengths upstream, downstream, and radially around the wing to minimize boundary effects. Boundary conditions were defined as follows:
-    </p>
+    <p class="justified-paragraph boundary-intro">The geometry selected for analysis was a simplified, yet representative, F1 rear wing featuring a dual-element configuration with an adjustable mainplane and flap. The model was developed in CAD software and cleaned to eliminate non-manifold edges, small gaps, or irrelevant features that could negatively affect meshing. The rear wing was positioned at a representative ride height above the ground, approximating its location on a typical F1 chassis. The computational domain was designed to replicate a wind tunnel or track-like environment, with a rectangular enclosure extending several chord lengths upstream, downstream, and radially around the wing to minimize boundary effects. Boundary conditions were defined as follows:</p>
+
     <ul>
       <li><strong>Inlet</strong>: Uniform velocity profile set at approx. 300 km/h.</li>
       <li><strong>Outlet</strong>: Static pressure outlet at atmospheric pressure.</li>
       <li><strong>Wing Surfaces</strong>: No-slip condition applied to all solid boundaries.</li>
-      <li><strong>Ground Plane</strong>: Treated as a moving wall (inlet velocity) to replicate road-relative motion.</li>
+      <li><strong>Ground Plane</strong>: Treated as a moving wall (inlet velocity)...</li>
     </ul>
 
     <p class="justified-paragraph">
       Meshing was performed using a hybrid approach — structured hexahedral elements near critical surfaces (e.g., wing surfaces and boundary layers) and unstructured tetrahedral elements in the far-field. A boundary layer mesh was generated with a focus on resolving the near-wall region, targeting a dimensionless wall distance (y⁺) below 5 to allow for accurate turbulence modeling. The simulations were run in ANSYS Fluent using the steady-state Reynolds-Averaged Navier-Stokes (RANS) equations. The k-ω SST turbulence model was selected for its ability to accurately resolve adverse pressure gradients and flow separation, especially important in regions near the wing’s trailing edge and junctions between elements. Convergence criteria were based on the residuals for continuity and momentum equations (target below 1e-5), and monitoring of integrated forces (lift and drag) on the wing surfaces to ensure solution stability. Multiple angles of attack were simulated (ranging from 0° to 20°) to assess the lift and drag curve and to identify stall onset behavior.
     </p>
 
-    <p class="justified-paragraph">
-      The following assumptions were made:
-    </p>
+    <p class="justified-paragraph boundary-intro2">The following assumptions were made:</p>
     <ul>
       <li>Compressibility effects were neglected since the Mach number remained below 0.3.</li>
       <li>The flow was assumed to be isothermal with constant fluid properties (air at 25°C).</li>
       <li>The model did not account for rain, thermal loading, or flexible deformation of wing elements.</li>
     </ul>
 
-    <p class="justified-paragraph">
-      These assumptions allowed the simulation to focus on core aerodynamic behavior while keeping computational cost reasonable.
-    </p>
+    <p class="justified-paragraph">These assumptions allowed the simulation to focus on core aerodynamic behavior while keeping computational cost reasonable.</p>
 
     <h3>Project Takeaways</h3>
-    <p class="justified-paragraph">
-      The CFD results revealed clear trends in lift (downforce) and drag as functions of angle of attack. At moderate angles, the wing produced significant downforce with manageable drag, but beyond a critical angle, flow separation reduced effectiveness and increased drag rapidly. Streamline and pressure contour plots illustrated strong suction peaks on the upper surfaces and highlighted flow reattachment dynamics near the flap. Key takeaways from the project included the importance of boundary layer resolution in capturing pressure recovery zones, the sensitivity of flow separation to small geometric or angular changes, and the trade-off between downforce and drag — a fundamental challenge in motorsport aero development. This project provided valuable hands-on experience in the aerodynamic simulation of race car components, demonstrating how CFD can guide early-stage design decisions, reduce reliance on wind tunnel testing, and accelerate iteration cycles in high-performance vehicle development.
-    </p>
+    <p class="justified-paragraph">The CFD results revealed clear trends in lift (downforce) and drag as functions of angle of attack. At moderate angles, the wing produced significant downforce with manageable drag, but beyond a critical angle, flow separation reduced effectiveness and increased drag rapidly. Streamline and pressure contour plots illustrated strong suction peaks on the upper surfaces and highlighted flow reattachment dynamics near the flap. Key takeaways from the project included the importance of boundary layer resolution in capturing pressure recovery zones, the sensitivity of flow separation to small geometric or angular changes, and the trade-off between downforce and drag — a fundamental challenge in motorsport aero development. This project provided valuable hands-on experience in the aerodynamic simulation of race car components, demonstrating how CFD can guide early-stage design decisions, reduce reliance on wind tunnel testing, and accelerate iteration cycles in high-performance vehicle development.</p>
   </section>
 
   <a href="project9.html" class="nav-link prev-page-link">Previous Project</a>
