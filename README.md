@@ -1,6 +1,6 @@
 # Portfolio Website — [Malungelo Luzipho]
 
-Welcome to my online portfolio! This site showcases my work in Computational Engineering, where I combine fluid dynamics, structural mechanics, and electromagnetics to solve real-world problems.
+Welcome to my online portfolio! This site showcases my work in Computational Engineering, where I combine fluid mechanics, structural mechanics, engineering design, and electromagnetics to solve real-world problems.
 
 ---
 
@@ -10,7 +10,7 @@ Welcome to my online portfolio! This site showcases my work in Computational Eng
 - **Highlights**:
   - A dynamic, mobile-first layout to ensure an engaging experience on all devices.
   - Image lightbox gallery for detailed viewing of simulation results.
-  - Embedded videos illustrating CFD/FEA workflows and results.
+  - Embedded videos illustrating CFD/FEA/EMI workflows and results.
   - Smooth scroll-based animations with Intersection Observer.
   - A visually appealing animated particle background built with Canvas.
 
