@@ -1,4 +1,4 @@
-# Portfolio Website — [Your Name]
+# Portfolio Website — [Malungelo Luzipho]
 
 Welcome to my online portfolio! This site showcases my work in Computational Engineering, where I combine fluid dynamics, structural mechanics, and electromagnetics to solve real-world problems.
 
@@ -45,3 +45,17 @@ git clone https://github.com/mluzipho/portfolio.git
 cd portfolio
 
 # Open index.html in your preferred browser
+
+---
+
+### ✅ Tips to Tailor Further
+
+1. **Show off your strongest project(s)** — describe tools like ANSYS Fluent, SpaceClaim, OpenFOAM, COMSOL, or Python scripts you used.
+2. **Highlight key metrics** — how many simulations ran, speedups achieved, accuracy improvements, etc.
+3. **Explain your design decisions** — why choose lightbox gallery or canvas background.
+4. **Add quick live screenshots** — embed small preview images in your README.
+5. **Link to your GitHub Pages** so visitors can click through directly.
+
+Let me know if you'd like help writing polished project summaries or visual badges to include!
+::contentReference[oaicite:0]{index=0}
+
