@@ -1,80 +1,47 @@
-# Portfolio Template
+# Portfolio Website — [Your Name]
 
-An open-source, user-friendly, responsive, and accessible portfolio template for developers 🚀⚡
+Welcome to my online portfolio! This site showcases my work in Computational Engineering, where I combine fluid dynamics, structural mechanics, and electromagnetics to solve real-world problems.
 
-Give a star ⭐ if you find it useful. [Visit site &rarr;](https://opensource-portfolio.netlify.app/)
+---
 
-![Portfolio Template Gif](assets/images/portfolio-template.gif)
+## ⚙️ About the Site
 
-## Useful resources
+- **Built with**: HTML5, CSS3 (including responsive media queries), vanilla JavaScript.
+- **Highlights**:
+  - A dynamic, mobile-first layout to ensure an engaging experience on all devices.
+  - Image lightbox gallery for detailed viewing of simulation results.
+  - Embedded videos illustrating CFD/FEA workflows and results.
+  - Smooth scroll-based animations with Intersection Observer.
+  - A visually appealing animated particle background built with Canvas.
 
-Make sure to subscribe to our [youtube channel](https://www.youtube.com/@nisarhassan12) channel where we cover creating template like this from scratch using HTML, CSS and JavaScript also don't forget to star 🌟 the [css-tips-tricks](https://github.com/devsyedmohsin/css-tips-tricks) that has already reached 180+ stars.
+---
 
-## Table of Contents
+## 📁 Site Structure
 
-1. [Features](#key-features)
-1. [Customization](#customizing-the-template)
-1. [Deploying the Site](#deploying-the-site)
+- `/index.html`: Home page with introduction and featured projects.
+- `/assets/`: Contains fonts, images, videos, and raw simulation data.
+- `/style.css`: Defines the page layout, animations, galleries, and responsive behavior.
+- `/script.js`: Implements canvas animation, scroll-triggered reveals, lightbox behavior, and mobile video handling.
 
-## Features
+---
 
-- Fully Mobile responsive.
-- Supports light/dark theme.
-- Built with a11y in mind.
-- Modern design.
-- Multiple sections.
-- Sleek animations.
-- Fast loads.
-- SEO-optimized.
+## 🧪 Technical Details
 
-<img src="assets/images/lighthouse.png" alt="lighthouse report with 100% scores">
+- **Canvas Animation**: Custom particle system driven by `requestAnimationFrame` to add interactive visual interest.
+- **Responsive Design**: Layout adapts through flexible containers and media queries.
+- **Lightbox Gallery**: Click image thumbnails to open modal-style enlarged views.
+- **Video Embeds**: Autoplaying, muted, and inline playback for a smooth mobile experience.
+- **Scroll Animations**: Paragraphs and lists animate into view using the IntersectionObserver API.
 
-## Customizing the Template
+---
 
-Please follow these three steps to make an awe-inspiring portfolio of your own.
+## 👾 Usage & Deployment
 
-- [Cloning the repository](#cloning-the-repository)
-- [Editing the Template](#editing-the-template)
-- [Deploying the Site](#deploying-the-site)
-
-### Cloning the Repository.
-
-If you have [Git](https://git-scm.com/) installed on your computer, you can clone or download the portfolio template by running the following command in your terminal.
+To view/update the site:
 
 ```bash
-git clone https://github.com/devsyedmohsin/portfolio-template
-```
+# Clone the repo
+git clone https://github.com/mluzipho/portfolio.git
+cd portfolio
 
-Alternatively, click on this [link](https://github.com/devsyedmohsin/portfolio-template/archive/refs/heads/main.zip) to download it.
-
-### Editing the Template
-
-After you get the template please open it in the code editor of your choice.
-You will find a file named `index.html` Open it and follow the guidance inscribed within the comments to customize the template.
-
-**For example:**
-
-```html
-<!-- Update with your name -->
-<title>Malungelo Luzipho's Portfolio</title>
-```
-
-```html
-<div class="header-textbox">
-  <!-- Replace with your name & job title -->
-  <h1 class="h1">Hi, I'm Malungelo Luzipho, an Aeronautical Engineer with extensive expertise in numerical simulations.</h1>
-
-  <!-- Add a small introductory paragraph about yourself -->
-  <p class="header-text">An Aeronautical Engineer specializing in CFD, FEA, EMI/EMC, and RF Planning & Design.</p>
-</div>
-```
-
-**Note:** While editing the template, ensure you have updated all `href`, img `src`, and `alt` attributes of links and images.
-
-### Deploying the Site
-
-Watch [this youtube video](https://www.youtube.com/watch?v=oEyXLYW3RjY) to learn how to deploy your version of the portfolio template to the web.
-
-[![Deploy your version of the Portfolio template using Netlify](assets/images/thumbnail.png)](https://www.youtube.com/watch?v=oEyXLYW3RjY "Deploy your version of the Portfolio template using Netlify")
-
-### Contributions are warmly welcomed ❤️.
+# Open index.html in your preferred browser
