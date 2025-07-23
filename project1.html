@@ -126,36 +126,6 @@
       color: #555;
     }
 
-    .disclaimer-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-    
-    #disclaimer-banner {
-      max-width: 900px;
-      width: 80%;
-      background: linear-gradient(90deg, #FFFFFF);
-      border: none;
-      padding: 2px 2px;
-      font-size: 1rem;
-      color: #000000;
-      text-align: center;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      cursor: pointer;
-      transition: opacity 1.5s ease, transform 2s ease, background-color 1s ease;
-    }
-
-    #disclaimer-banner:hover {
-      background-color: #808080;
-    }
-
-    #disclaimer-banner.hide {
-      opacity: 0;
-      transform: translateY(-30px);
-      pointer-events: none;
-    }
 
     @keyframes fadeIn {
       from {
@@ -244,16 +214,6 @@
 
       animate();
 
-      const banner = document.getElementById('disclaimer-banner');
-      if (banner) {
-        banner.addEventListener('click', () => {
-          banner.classList.add('hide');
-          setTimeout(() => {
-            banner.classList.remove('hide');
-          }, 20000);
-        });
-      }
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -285,12 +245,6 @@
 <body>
   <section class="project-section">
     <h2 class="project-title"><u>Project Description: Electronic Device Drop Test Simulation</u></h2>
-
-    <br><div class="disclaimer-container">
-        <div id="disclaimer-banner">
-           Due to proprietary confidentiality rules, <strong>only selected parts of the field plots and data were retained for presentation.</strong>
-        </div>   
-    </div></br>
 
     <div class="video-gallery">
       <div class="video-item">
