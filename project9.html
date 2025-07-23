@@ -91,30 +91,15 @@
       gap: 30px;
       padding: 0 5%;
       margin: 60px auto;
-      justify-content: space-between;
+      justify-content: center;
     }
 
     .video-item {
-      flex: 1 1 45%;
+      display: inline-block;
       background-color: #dddddd;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-    }
-
-    .video-wrapper video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
     }
 
     .video-caption {
@@ -277,12 +262,10 @@
         captions.forEach((caption, i) => {
           document.write(`
             <div class="video-item">
-              <div class="video-wrapper">
-                <video autoplay muted loop playsinline>
-                  <source src="assets/sb_mode${i+1}.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+              <video autoplay muted loop playsinline style="border-radius: 12px;">
+                <source src="assets/sb_mode${i+1}.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
               <div class="video-caption">${caption}</div>
             </div>
           `);
