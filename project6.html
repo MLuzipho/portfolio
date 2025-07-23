@@ -131,37 +131,6 @@
       color: #555;
     }
 
-    .disclaimer-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
-    #disclaimer-banner {
-      background: linear-gradient(90deg, #FFFFFF);
-      max-width: 900px;
-      width: 75%;
-      border: none;
-      padding: 2px 2px;
-      font-size: 1rem;
-      color: #000000;
-      text-align: center;
-      border-radius: 5px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      cursor: pointer;
-      transition: opacity 1.5s ease, transform 2s ease, background-color 1s ease;
-    }
-
-    #disclaimer-banner:hover {
-      background-color: #808080;
-    }
-
-    #disclaimer-banner.hide {
-      opacity: 0;
-      transform: translateY(-30px);
-      pointer-events: none;
-    }
-
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -262,16 +231,6 @@
 
       animate();
 
-      const banner = document.getElementById('disclaimer-banner');
-      if (banner) {
-        banner.addEventListener('click', () => {
-          banner.classList.add('hide');
-          setTimeout(() => {
-            banner.classList.remove('hide');
-          }, 20000);
-        });
-      }
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -306,12 +265,6 @@
 <body>
   <section class="project-section">
     <h2 class="project-title"><u>Project Description: Parametric Thermal Analysis on Two Heatsinks</u></h2>
-
-    <br><div class="disclaimer-wrapper">
-      <div id="disclaimer-banner">
-        Due to proprietary confidentiality rules, <strong>only selected parts of the field plots and data were retained for presentation.</strong>
-      </div>
-    </div></br>
 
     <div class="video-gallery">
       <div class="video-item">
@@ -349,7 +302,7 @@
 
     <h3><u>Project Takeaways</u></h3>
     <br><p class="justified-paragraph">
-          The project demonstrated the importance of geometry optimization in passive heat sinks and showed how simulation tools can drive design choices early in thermal product development. Field data from temperature sensors mounted in experimental setups were used to partially validate the simulation trends. Takeaways from the project included a <strong>deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility</strong>. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system. 
+          The project demonstrated the importance of geometry optimization in passive heat sinks and showed how simulation tools can drive design choices early in thermal product development. Field data from temperature sensors mounted in experimental setups were used to partially validate the simulation trends. Takeaways from the project included a <strong>deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility</strong>. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system. Due to proprietary confidentiality rules, <strong>only selected parts of the field plots and data were retained for presentation.</strong> 
         </p></br>
   </section>
 
