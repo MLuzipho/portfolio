@@ -86,27 +86,18 @@
     }
 
     .video-gallery {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
       padding: 0 5%;
       margin: 60px auto;
-      justify-content: center;
     }
 
-    .video-item {
-      display: inline-block;
-      background-color: #dddddd;
+    .video-item video {
+      width: 100%;
+      height: auto;
       border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    .video-caption {
-      text-align: center;
-      font-size: 0.95rem;
-      background-color: #f2f2f2;
-      color: #555;
+      display: block;
     }
 
     @keyframes fadeIn {
@@ -245,31 +236,56 @@
 
     <div class="video-gallery">
       <!-- 10 videos total -->
-      <script>
-        const captions = [
-          "Mode 1",
-          "Mode 2",
-          "Mode 3",
-          "Mode 4",
-          "Mode 5",
-          "Mode 6",
-          "Mode 7",
-          "Mode 8",
-          "Mode 9",
-          "Mode 10"
-        ];
-        captions.forEach((caption, i) => {
-          document.write(`
-            <div class="video-item">
-              <video autoplay muted loop playsinline style="border-radius: 12px;">
-                <source src="assets/sb_mode${i+1}.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div class="video-caption">${caption}</div>
-            </div>
-          `);
-        });
-      </script>
+      <div class="video-item">
+    <video autoplay muted loop playsinline>
+      <source src="assets/sb_mode1.mp4" type="video/mp4" />
+    </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="assets/sb_mode2.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="assets/sb_mode3.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="assets/sb_mode4.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="assets/sb_mode5.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="assets/sb_mode6.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="assets/sb_mode7.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="assets/sb_mode8.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="assets/sb_mode9.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-item">
+      <video autoplay muted loop playsinline>
+        <source src="assets/sb_mode10.mp4" type="video/mp4" />
+      </video>
+    </div>
     </div>
 
     <p class="justified-paragraph">
