@@ -227,21 +227,25 @@
       </video>
     </div>
 
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>Project Overview and Objective</u></h3>
+    <br><p class="justified-paragraph">
       The project titled "2D CFD Simulation of a Shockwave That Is Formed When a High-Speed Train Exits a Tunnel" involved an in-depth aerodynamic investigation of transient compressible flow phenomena associated with tunnel exit conditions for high-speed rail systems. The study aimed to simulate and understand the formation and propagation of shockwaves as a train traveling at high velocity emerges from a tunnel into open air — a scenario known to cause sudden pressure gradients and noise-related challenges such as micro-pressure waves or “tunnel boom.” The simulation process began with the <strong>creation of a simplified 2D axisymmetric geometry representing the tunnel and the train’s nose profile</strong>.
-    </p>
+    </p></br>
 
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>Geometry Simplification and Meshing Strategy</u></h3>
+    <br><p class="justified-paragraph">
       This reduction to two dimensions was chosen to minimize computational cost while retaining sufficient physical accuracy to capture dominant wave phenomena. The geometry was designed to include key features such as tunnel length, portal opening, and clearance to simulate realistic boundary-layer development and pressure wave reflection patterns. The next stage involved meticulous meshing using Ansys Meshing, ensuring refinement near the train's leading edge, tunnel portal, and anticipated shock front regions to accurately resolve steep gradients in pressure and velocity. Appropriate <strong>mesh quality checks were performed to maintain low skewness and high orthogonality</strong> for simulation stability.
-    </p>
+    </p></br>
     
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>Simulation Setup and Solver Configuration</u></h3>
+    <br><p class="justified-paragraph">
       Following geometry and mesh generation, the simulation setup was implemented in <strong>ANSYS Fluent</strong>. Given the compressible and transient nature of the problem, <strong>the density-based solver was selected with a transient formulation</strong>. The <strong>ideal gas law</strong> was applied to model air properties, and <strong>second-order discretization schemes were used for spatial accuracy</strong>. Boundary conditions included a <strong>moving wall to simulate the train’s motion and pressure outlets to allow shock propagation beyond the tunnel</strong>. A time-step sensitivity analysis was performed to ensure temporal resolution was adequate to capture the fast-evolving shock structures.
-    </p>
+    </p></br>
     
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>Results and Flow Behavior Analysis</u></h3>
+    <br><p class="justified-paragraph">
       The flow was initialized and run over multiple time steps, and the development of pressure waves was monitored using pressure probes placed along the tunnel length and in the external domain. The results captured <strong>the sharp pressure jump at the moment the train exited the tunnel</strong>, followed by the expansion waves and reflected shocks. Velocity vector plots and Mach number contours revealed the formation of a bow shock and wave diffraction at the tunnel exit, validating <strong>the known aerodynamic behavior observed in physical experiments</strong>.
-    </p>
+    </p></br>
 
     <h3><u>Project Takeaways</u></h3>
     <br><p class="justified-paragraph">
