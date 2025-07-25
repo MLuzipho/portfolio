@@ -318,17 +318,20 @@
       </video>
     </div>
 
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>Objective and Geometry Simplification</u></h3>
+    <br><p class="justified-paragraph">
       The project titled "FSI Simulations for a Wind Loading Analysis of Two 5G Radio Boxes (One Directly Behind the Other, With the Same Dimensions)" involved the coupling of Computational Fluid Dynamics (CFD) and Finite Element Analysis (FEA) to investigate the aerodynamic forces and resulting structural deformations experienced by two identically sized 5G radio boxes positioned in tandem under wind exposure. The study aimed to understand how the upstream box affects the flow field and loading experienced by the downstream box — a realistic scenario frequently encountered in urban environments where such equipment is mounted in close proximity on poles, rooftops, or facades. The simulation workflow began with the construction of simplified 3D geometries in ANSYS SpaceClaim. Instead of using high-fidelity models with fine details or rounded corners typically found in commercial enclosures, the models were intentionally kept medium- to low-fidelity, featuring square corners and flat surfaces. This simplification allowed for reduced computational cost while still capturing the essential aerodynamic behavior of bluff-body interactions.
-    </p>
+    </p></br>
 
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>CFD Setup and Aerodynamic Loading</u></h3>
+    <br><p class="justified-paragraph">
       A large computational domain was defined to mimic open-air wind conditions, with careful attention to inlet length, outlet buffer zones, and lateral spacing to prevent boundary-induced flow distortion. Mesh generation was conducted using ANSYS Meshing, <strong>incorporating inflation layers on the box surfaces to resolve near-wall effects and local refinements in regions between and behind the boxes to capture wake dynamics and turbulent eddies</strong>. The CFD simulation in ANSYS Fluent used <strong>the steady-state RANS equations with the k-ω SST turbulence model, selected for its effectiveness in modeling separated flows and shear layers</strong>. Velocity inlet and pressure outlet conditions were imposed, and no-slip walls were applied to the box surfaces. The aerodynamic pressure fields were then exported and mapped onto the surfaces of each box within ANSYS Mechanical for structural response analysis.
-    </p>
+    </p></br>
 
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>Structural Analysis and Key Findings</u></h3>
+    <br><p class="justified-paragraph">
       The FEA portion involved assigning material properties for a generic metal casing, such as aluminum, and applying fixed supports at mounting points to simulate real-world constraints. Initially, simulations were run for a single box to establish baseline pressure distributions and stress profiles. A second simulation was then run with the downstream box placed directly behind the first <strong>to observe shielding effects</strong>. For the Fluid-Structure Interaction (FSI) coupling, a one-way approach was used — aerodynamic pressures were transferred from Fluent to Mechanical without iterative feedback, a practical choice for this level of model complexity. The results showed a significant drop in wind loading on the second box due to flow deflection and wake interference caused by the first box. Contour plots revealed fluctuating pressure zones in the gap between the two units, indicating vortex formation and periodic shedding, which can contribute to long-term fatigue loading.
-    </p>
+    </p></br>
 
     <h3><u>Project Takeaways</u></h3>
     <br><p class="justified-paragraph">
