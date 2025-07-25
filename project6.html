@@ -86,50 +86,33 @@
     }
 
     .video-gallery {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 30px;
       padding: 0 5%;
-      margin: 60px auto;
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 767px) {
       .video-gallery {
-        flex-direction: row;
-        justify-content: space-between;
+        grid-template-columns: 1fr 1fr;
+        padding: 0 3%;
       }
     }
 
     .video-item {
-      flex: 1;
-      background-color: #000;
+      position: relative;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-    }
-
-    .video-wrapper video {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .video-item video {
       width: 100%;
-      height: 100%;
+      height: auto;
+      display: block;
       border-radius: 12px;
     }
 
-    .video-caption {
-      text-align: center;
-      font-size: 0.95rem;
-      padding: 10px;
-      background-color: #f2f2f2;
-      color: #555;
-    }
 
     @keyframes fadeIn {
       from {
@@ -268,42 +251,39 @@
 
     <div class="video-gallery">
       <div class="video-item">
-        <div class="video-wrapper">
-          <video autoplay muted loop playsinline>
-            <source src="assets/heatsinkvid1.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div class="video-caption">Fin Configuration Thermal Analysis Results</div>
+        <video autoplay muted loop playsinline>
+          <source src="assets/heatsinkvid1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <div class="video-item">
-        <div class="video-wrapper">
-          <video autoplay muted loop playsinline>
-            <source src="assets/heatsinkvid2.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div class="video-caption">Pin Configuration Thermal Analysis Results</div>
+        <video autoplay muted loop playsinline>
+          <source src="assets/heatsinkvid2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
 
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>Objective and Geometric Setup</u></h3>
+    <br><p class="justified-paragraph">
       The project titled "Parametric Thermal Analysis on Two Heat Sinks": <strong>One with a Fin Configuration and the Other with a Pin Configuration</strong> focused on comparing the thermal performance of two different passive cooling architectures by conducting a detailed parametric study using Finite Element Analysis (FEA) in ANSYS Mechanical. The analysis began with the construction of two simplified 3D geometries in ANSYS SpaceClaim—one heat sink featuring traditional straight fins aligned in parallel, and the other employing an array of square pins arranged in a staggered grid pattern. Both models were designed with <strong>identical base dimensions and overall height</strong> to ensure that any performance differences would stem purely from geometry-driven thermal characteristics rather than gross dimensional discrepancies.
-    </p>
+    </p></br>
 
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>Assumptions, Boundary Conditions, and Simulation Setup</u></h3>
+    <br><p class="justified-paragraph">
       The models were intentionally designed with medium fidelity to balance computational efficiency with geometric realism. The finned heat sink represents a classic design typically used in applications with <strong>unidirectional airflow</strong>, while the pin-fin configuration allows for more <strong>isotropic heat dissipation</strong>, making it suitable for multidirectional flow or natural convection conditions. After geometry setup, a range of parameters—<strong>including material selection (aluminum for high thermal conductivity), ambient temperature, convective heat transfer coefficients, and heat flux boundary conditions</strong>—were defined to simulate realistic operating environments. Thermal loads were applied uniformly to the base of each heat sink to mimic the effect of heat-generating components like processors or power modules.
-    </p>
+    </p></br>
 
-    <p class="justified-paragraph">
+    <h3 class="justified-paragraph"><u>Results, Parametric Variations, and Observations</u></h3>
+    <br><p class="justified-paragraph">
       Meshing was carefully tailored to resolve fine temperature gradients around the fins and pins, <strong>particularly in regions near the heat source and along the extended surfaces</strong>. A steady-state thermal analysis was then performed in ANSYS Mechanical, with temperature distributions, maximum surface temperatures, and heat dissipation efficiency compared between the two configurations. The parametric aspect of the study involved systematically varying the number, height, and spacing of the fins and pins to determine optimal geometries under different cooling conditions. Results showed that while the fin configuration offered better performance under forced convection due to its increased surface area in a streamlined direction, the pin configuration excelled in natural convection scenarios, offering lower peak temperatures due to enhanced airflow mixing and thermal boundary layer disruption.
-    </p>
+    </p></br>
 
     <h3><u>Project Takeaways</u></h3>
     <br><p class="justified-paragraph">
-          The project demonstrated the importance of geometry optimization in passive heat sinks and showed how simulation tools can drive design choices early in thermal product development. Field data from temperature sensors mounted in experimental setups were used to partially validate the simulation trends. Takeaways from the project included a <strong>deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility</strong>. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system. Due to proprietary confidentiality rules, <strong>only selected parts of the field plots and data were retained for presentation.</strong> 
-        </p></br>
+      The project demonstrated the importance of geometry optimization in passive heat sinks and showed how simulation tools can drive design choices early in thermal product development. Field data from temperature sensors mounted in experimental setups were used to partially validate the simulation trends. Takeaways from the project included a <strong>deeper understanding of how geometry influences passive heat dissipation, the value of FEA for early-stage thermal validation, and the trade-offs between performance, manufacturing complexity, and airflow compatibility</strong>. The study emphasized that optimal heat sink design must be tailored not only to thermal output but also to the specific convection environment and mechanical constraints of the system. Due to proprietary confidentiality rules, <strong>only selected parts of the field plots and data were retained for presentation.</strong> 
+    </p></br>
   </section>
 
   <!-- ✅ Navigation links -->
