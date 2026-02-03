@@ -1,231 +1,1494 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <style>
+  /* Ensure all justified-paragraph classes are centered and evenly padded */
+  .justified-paragraph,
+  [class^="justified-paragraph"] {
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3%;
+    padding-right: 3%;
+    line-height: 1.6;
+    max-width: 720px;
+    color: white;
+  }
 
-  <meta
-    name="description"
-    content="CFD and FEA consulting portfolio focused on simulation-driven design, validation, and multiphysics analysis across aerospace, automotive, electronics, and energy systems."
-  />
+  /* Adjust header text container for custom padding and better centering */
+  .header-textbox {
+    text-align: center;
+    margin: 0 auto;
+    padding-left: 3%;
+    padding-right: 3%;
+    max-width: 720px;
+  }
 
-  <title>Malungelo Luzipho – CFD & FEA Consulting Portfolio</title>
+  @media (min-width: 768px) {
+    .justified-paragraph,
+    [class^="justified-paragraph"],
+    .header-textbox {
+      padding-left: 4%;
+      padding-right: 4%;
+      max-width: 800px;
+    }
+  }
 
-  <link rel="shortcut icon" href="assets/images/android-chrome-512x512.png" type="image/png" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-</head>
+  @media (min-width: 1200px) {
+    .justified-paragraph,
+    [class^="justified-paragraph"],
+    .header-textbox {
+      padding-left: 5%;
+      padding-right: 5%;
+      max-width: 900px;
+    }
+  }
+</style>
 
-<body>
+<style>
+  .skills-imgs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+    padding: 1rem;
+  }
 
-<!-- ================= BACKGROUND VIDEO ================= -->
-<div class="video-container">
-  <video muted loop playsinline preload="auto" id="bg-video">
-    <source src="assets/aero_engine.mp4" type="video/mp4" />
-  </video>
-  <div class="video-overlay"></div>
+  .skills-img {
+    width: 80px;
+    height: auto;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.6s forwards ease-in;
+  }
+
+  .fade-in {
+    animation-name: fadeIn;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+
+<style>
+  .work-img {
+  display: block;      /* ensure the picture acts like a block */
+  width: 100%;         /* fill the container width */
+  height: 100%;        /* fill container height if container has height */
+  overflow: hidden;    /* crop overflow */
+}
+
+.work-img img {
+  display: block;      /* remove inline spacing */
+  width: 100%;         /* fill the picture container horizontally */
+  height: 100%;        /* fill the picture container vertically */
+  object-fit: cover;   /* scale image to cover container, cropping if needed */
+  object-position: center center; /* center the image */
+}
+</style>
+
+
+<style>
+  .skills {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .skills-imgs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .skills-img {
+    width: 80px;
+    height: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  .skills-img:nth-child(-n+5) {
+    animation-name: fadeInTop;
+  }
+
+  .skills-img:nth-child(n+6) {
+    animation-name: fadeInBottom;
+  }
+
+  @keyframes fadeInTop {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes fadeInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+
+  .skills-img {
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+</style>
+
+
+<style>
+  :root {
+    --side-padding: 1vw;   /* Smaller --side-padding = wider paragraph area. Larger --side padding = more margin, narrower text */
+    --header-font-size: 2.8rem;   /* Control for header font size */
+    --paragraph-font-size: 1.4rem; /* Control for paragraph font size */
+  }
+
+  .intro-section {
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: var(--side-padding);
+    padding-right: var(--side-padding);
+    display: flex;
+    justify-content: center;
+  }
+
+  .intro-section .header-textbox {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-section .h1 {
+    font-size: var(--header-font-size);
+    margin-bottom: 1rem;
+  }
+
+  .intro-section .h1 span {
+    display: block;
+    text-align: center;
+  }
+
+  .intro-section .justified-paragraph {
+    text-align: justify;
+    margin: 1.5rem auto;
+    font-size: var(--paragraph-font-size);
+    line-height: 1.6;
+  }
+
+  .intro-section .header-btns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .intro-section .btn {
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+
+  .intro-section .btn-cta {
+    background-color: #000000;
+    color: white;
+  }
+
+  .intro-section .btn-cta:hover {
+    background-color: #4b4b4b;
+  }
+
+  .intro-section .btn-secondary {
+    background-color: #ffffff;
+    color: #333;
+  }
+
+  .intro-section .btn-secondary:hover {
+    background-color: #f1f1f1;
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --side-padding: 5vw;
+      --header-font-size: 2rem;
+      --paragraph-font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :root {
+      --side-padding: 3vw;
+      --header-font-size: 1.7rem;
+      --paragraph-font-size: 0.95rem;
+    }
+  }
+</style>
+
+
+<style>
+  /* Base styling */
+  .skills {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .skills-imgs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+
+  .skills-img {
+    max-width: 80px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+
+  /* Responsive image container sizing (optional) */
+  @media screen and (max-width: 600px) {
+    .skills-img {
+      max-width: 60px;
+    }
+  }
+
+  .video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+body, .header, .container {
+  background: transparent !important;
+}
+
+/* Dark overlay for better contrast */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* adjust alpha for darkness */
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  #bg-video {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+
+/* Synatx to make the text white (Can change text colour here.) */
+
+.h1 {
+  color: white;
+}
+
+.testimonial-author-name {
+  color: white;
+}
+
+.h2 {
+  color: white;
+}
+
+.h3 {
+  color: white;
+}
+
+.h4 {
+  color: white !important;
+}
+
+.link {
+  color: white !important;
+}
+
+.work-technologies {
+  color: white;
+}
+
+.footer-container {
+  text-align: center;
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  z-index: 1; /* Ensure it's above background video */
+  position: relative;
+}
+
+.footer-text {
+  color: white;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.footer-text a {
+  color: white !important;
+  text-decoration: underline; /* optional, keeps link visible */
+}
+
+/* Optional: Make it a bit more readable on dark backgrounds */
+.footer-text a:hover {
+  color: #ffffff; /* optional: glow or hover effect */
+}
+
+.footer-link img {
+  filter: brightness(0) invert(1); /* makes dark icons white, i.e., LinkedIn & GitHub */
+  width: 32px;
+  height: 32px;
+  transition: filter 0.3s ease;
+}
+
+label {
+  color: white !important;
+}
+
+input[type="text"] {
+  color: white !important;
+}
+
+input[type="email"] {
+  color: white !important;
+}
+
+textarea {
+  color: white !important;
+  background-color: transparent; /* optional: makes background see-through */
+  border: 1px solid white;       /* optional: adds visible border */
+  padding: 0.75rem;              /* optional: for better spacing */
+}
+
+textarea::placeholder {
+  color: white;
+  opacity: 0.3; /* slightly dimmer than input text */
+}
+
+.hire-alert {
+  color: white !important;
+}
+</style>
+
+
+<!-- CSS For enabling the logo animation and structure for the "Worked With" section. --> 
+<style>
+      /* Fix black banner and set layout */
+      .client {
+        background-color: transparent;
+        padding: 3rem 1rem;
+        text-align: center;
+      }
+
+      .logos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        justify-items: center;
+        align-items: center;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 0;
+      }
+
+      .logo {
+        width: 100px;
+        max-width: 100%;
+        opacity: 0;
+        animation: floatIn 4s ease-in-out infinite;
+      }
+
+      .to-top {
+        animation-name: floatInTop;
+      }
+
+      .to-bottom {
+        animation-name: floatInBottom;
+      }
+
+      @keyframes floatIn {
+        0%, 100% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes floatInTop {
+        0%, 100% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes floatInBottom {
+        0%, 100% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Optional staggered delays for effect */
+      .logos img:nth-child(1) { animation-delay: 0s; }
+      .logos img:nth-child(2) { animation-delay: 0.3s; }
+      .logos img:nth-child(3) { animation-delay: 0.6s; }
+      .logos img:nth-child(4) { animation-delay: 0.9s; }
+      .logos img:nth-child(5) { animation-delay: 1.2s; }
+      .logos img:nth-child(6) { animation-delay: 1.5s; }
+      .logos img:nth-child(7) { animation-delay: 1.8s; }
+      .logos img:nth-child(8) { animation-delay: 2.1s; }
+      .logos img:nth-child(9) { animation-delay: 2.4s; }
+    </style>
+
+
+<!-- Google tag (gtag.js) (For Google Analytics) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XRBQKEQSJG');
+</script>
+
+
+    <!-- Read and update content attributes accordingly  -->
+
+    <meta
+      name="description"
+      content="Welcome to my engineering portfolio website. I'm an Aeronautical Engineer with expertise in CAE. Explore my projects, work capabilities, and contact me for any inquiries, collaborations, or training."
+    />
+
+    <!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Malungelo Luzipho's Portfolio">
+<meta itemprop="description" content="Welcome to my engineering portfolio website. I'm an Aeronautical Engineer with expertise in CAE. Explore my projects, work capabilities, and contact me for any inquiries, collaborations, or training.">
+
+<!-- Reference screenshot of updated site's header in place of content -->
+<meta itemprop="image" content="assets/images/urlsharingcard.png">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://mluzipho.github.io/portfolio/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Malungelo Luzipho's Portfolio">
+<meta property="og:description" content="Welcome to my engineering portfolio website. I'm an Aeronautical Engineer with vast expertise in CAE. Explore my projects, work capabilities, and contact me for any inquiries, collaborations, or training.">
+
+<!-- Reference screenshot of updated site's header in content -->
+<meta property="og:image" content="assets/images/urlsharingcard.png">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Malungelo Luzipho's Portfolio">
+<meta name="twitter:description" content="Welcome to my engineering portfolio website. I'm an Aeronautical Engineer with vast expertise in CAE. Explore my projects, work capabilities, and contact me for any inquiries, collaborations, or training.">
+
+<!-- Reference screenshot of updated site's header in content -->
+<meta name="twitter:image" content="assets/images/urlsharingcard.png">
+
+
+<!-- Update favicon href attribute with image of yourself -->
+    <link
+      rel="shortcut icon"
+      href="assets/images/android-chrome-512x512.png"
+      type="image/png"
+    />
+
+    <!-- Preloading fonts for better performance -->
+
+    <link
+      rel="preload"
+      href="assets/fonts/Mona-Sans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="style.css"  />
+    <script src="script.js" defer></script>
+
+    <!-- My name here -->
+    <title>Malungelo Luzipho's Engineering Portfolio</title>
+  </head>
+
+  <body>
+
+    <div class="video-container">
+    <video muted loop playsinline preload="auto" id="bg-video">
+      <source src="assets/aero_engine.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+    <script>
+      const theme = localStorage.getItem("theme") || "light";
+      document.body.classList.add(theme);
+    </script>
+
+    <header class="header">
+
+      <div class="menu-btn-container">
+        <div class="container">
+          <button type="button"  class="menu-btn">Menu</button>
+        </div>
+      </div>
+
+      <nav class="nav hidden">
+        <ol class="nav-items">
+          <li class="nav-item"><a href="#">Home</a></li>
+          <li class="nav-item"><a href="#work">My Work</a></li>
+          <li class="nav-item"><a href="#blog">Engineering Services</a></li>
+          <li class="nav-item"><a href="#skills">My Skills</a></li>
+          <li class="nav-item">
+            <a href="#contact" data-focused="last-focused">Contact</a>
+          </li>
+        </ol>
+      </nav>
+
+      <div class="intro-section"> 
+  <div class="header-textbox">
+    <!-- Heading -->
+    <h1 class="h1">
+      <span>Malungelo Luzipho</span>
+      <br><span><u>Engineering Project & Design Portfolio</u></span></br>
+    </h1>
+
+    <!-- Paragraph -->
+    <p class="justified-paragraph">
+      I'm an Aeronautical Engineer with extensive expertise in numerical simulations, 
+      specializing in Computational Fluid Dynamics (CFD), Finite Element Analysis (FEA), 
+      and Electromagnetic Interference & Compatibility (EMI/EMC). My background combines deep technical 
+      knowledge with practical experience in modeling, analysing, and optimizing complex physical 
+      systems, as well as system automation, thus enabling me to deliver high-precision engineering 
+      solutions across aerospace, automotive, electronics, and related industries.
+    </p>
+
+    <p class="justified-paragraph">
+      I received my Bachelor's (BEng.) in Aeronautical Engineering in June 2021 from the Nanjing 
+      University of Aeronautics & Astronautics (NUAA), China, and I'm on the verge of completing my 
+      Master's (MSc.) in Numerical Simulations in Engineering from the Technical University 
+      of Madrid, Spain. This website provides an overview of some of the engineering projects that I have 
+      led and executed in my career.
+    </p>
+
+    <!-- Centered Buttons -->
+    <div class="header-btns">
+      <a href="#contact" class="btn btn-cta">Work with me</a>
+      <a href="#work" class="btn btn-secondary">View my work</a>
+    </div>
+  </div>
 </div>
+    </header>
 
-<header class="header">
+    <main>
+      <section class="client">
+        <div class="container">
+          <h2 class="h2">Worked With</h2>
+          <div class="logos">
+            <img src="assets/white-logos/csir1-white.png" alt="Csir" class="logo to-top" />
+            <img src="assets/white-logos/denel1-white.png" alt="Denel" class="logo" />
+            <img src="assets/white-logos/kutleng1-white.png" alt="Kutleng" class="logo to-bottom" />
+            <img src="assets/white-logos/gew1-white.png" alt="GEW" class="logo to-top" />
+            <img src="assets/white-logos/upm1-white.png" alt="UPM" class="logo" />
+            <img src="assets/white-logos/armscor1-white.png" alt="Armscor" class="logo to-bottom" />
+            <img src="assets/white-logos/ansys1-white.png" alt="Ansys" class="logo to-top" />
+            <img src="assets/white-logos/nuaa1-white.png" alt="NUAA" class="logo" />
+            <img src="assets/white-logos/reutech1-white.png" alt="Reutech" class="logo to-bottom" />
+          </div>
+        </div>
+      </section>
 
-  <div class="intro-section">
-    <div class="header-textbox">
+      <section class="work">
+        <div class="container">
+          <h2 class="h2" id="work">Selected Work</h2>
+          <div class="work-boxes">
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>Drop-test Simulation</u></h3>
+                <!-- Add small description of your project  -->
+                <p class="work-text">
+                <p class="justified-paragraph3">  
+                  A virtual analysis used to evaluate the behaviour of an 
+                  electronic device when dropped from a set of specific heights 
+                  using Finite Element Analysis (FEA). Essential for reducing prototyping costs. Tools used:
+                </p>
+                <!-- Add technologies you used to build the project -->
+                <ol class="work-technologies">
+                  <li><u>Ansys SpaceClaim</u></li>
+                  <li><u>Ansys Discovery</u></li>
+                  <li><u>Ansys Mechanical (LS-DYNA)</u></li>
+                </ol>
 
-      <h1 class="h1">
-        <span>Malungelo Luzipho</span><br />
-        <span><u>Engineering Simulation & Design Portfolio</u></span>
-      </h1>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project1.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
 
-      <p class="justified-paragraph">
-        I help engineering teams reduce technical risk and validate complex systems using high-fidelity numerical
-        simulation. My work focuses on Computational Fluid Dynamics (CFD), Finite Element Analysis (FEA), and
-        Electromagnetic Interference & Compatibility (EMI/EMC), supporting design, verification, and optimisation
-        of complex physical systems across aerospace, automotive, electronics, and related industries.
-      </p>
+                  <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Icon"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
 
-      <p class="justified-paragraph">
-        I hold a Bachelor’s degree (BEng.) in Aeronautical Engineering from Nanjing University of Aeronautics &
-        Astronautics (NUAA), China, and I am completing a Master’s degree (MSc.) in Numerical Simulations in Engineering
-        at the Technical University of Madrid (UPM), Spain. This website presents selected projects demonstrating
-        simulation-driven design, validation, and engineering decision support.
-      </p>
+         <!-- Update img src and alt attribute  -->
 
-      <div class="header-btns">
-        <a href="#contact" class="btn btn-cta">Work with me</a>
-        <a href="#work" class="btn btn-secondary">View my work</a>
-      </div>
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/device.png"
+                  alt="agency elevation"
+                />
+              </picture>
+            </div>
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>CFD Analysis of a Hypersonic Missile</u></h3>
+                <!-- Add small description of your project  -->
 
-    </div>
-  </div>
-</header>
+                <p class="work-text">
+                <p class="justified-paragraph4">  
+                Numerical simulation of high-speed airflow (Mach 5 and above) 
+                around a missile to study the aerodynamic behavior, shock wave 
+                formation, heat transfer, and pressure distribution. Tools used:
+                </p>
+                <ol class="work-technologies">
+                  <li><u>Ansys SpaceClaim</u></li>
+                  <li><u>Ansys FLUENT</u></li>
+                  <li><u>OpenFOAM</u></li>
+                </ol>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project2.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
 
-<main>
+                     <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Icon"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+         <!-- Update img src and alt attribute  -->
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/missile.png"
+                  alt="portfolio template"
+                />
+              </picture>
+            </div>
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>Toroid Inductor Magnetic Field Simulation</u></h3>
+                <!-- Add small description of your project  -->
+                <p class="work-text">
+                <p class="justified-paragraph5">  
+                  EM simulation of a toroid's magnetic field (magnetostatic) in which the 
+                  steady-state magnetic behavior of a tranformer device when subjected to 
+                  a constant current was analysed. The simulation calculated the magnetic 
+                  flux density, field intensity, and distribution within and around the 
+                  toroid core. It helps assess core material performance, magnetic 
+                  confinement, and efficiency. Tools used:
+                </p>
+                <ol class="work-technologies">
+                  <li><u>Ansys Maxwell</u></li>
+                  <li><u>MS Excel</u></li>
+                  <li><u>Ansys SpaceClaim</u></li>
+                </ol>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project3.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
 
-<!-- ================= WORKED WITH ================= -->
-<section class="client">
+                   <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Icon"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+         <!-- Update img src and alt attribute  -->
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/toroid.png"
+                  alt="contribute dev"
+                />
+              </picture>
+            </div>
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>2D CFD Simulation of a Shockwave</u></h3>
+                <!-- Add small description of your project  -->
+                <p class="work-text">
+                <p class="justified-paragraph6">  
+                  This CFD simulation of a shock wave propagation from the exit of a tunnel 
+                  modelled the high-speed flow behavior as a pressure wave exits a confined 
+                  space into open air. The simulation captures shock formation, expansion 
+                  fans, and interaction with ambient air, providing insights into pressure 
+                  distribution, wave speed, and potential structural impacts. It's useful for 
+                  analyzing blast effects, exhaust dynamics, or emergency ventilation 
+                  scenarios. Tools used:
+                </p>
+                <ol class="work-technologies">
+                  <li><u>Ansys FLUENT</u></li>
+                  <li><u>Ansys SpaceClaim</u></li>
+                </ol>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project4.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
+
+                   <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Icon"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+         <!-- Update img src and alt attribute  -->
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/shockwave.png"
+                  alt="contribute dev"
+                />
+              </picture>
+            </div>
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>FSI Simulations For A Wind Loading Analysis</u></h3>
+                <!-- Add small description of your project  -->
+                <p class="work-text">
+                <p class="justified-paragraph12">  
+                  This project focused on wind loading analysis of 5G radio boxes using a combined 
+                  approach of Computational Fluid Dynamics (CFD) and Finite Element Analysis (FEA). 
+                  CFD simulations were employed to model airflow and determine pressure distributions 
+                  around the radio boxes under various wind conditions. The resulting wind loads were 
+                  then applied in FEA to evaluate the structural response, including stresses, 
+                  deformations, and potential failure points. This integrated analysis ensured reliable 
+                  performance and structural integrity of the 5G equipment under realistic 
+                  environmental conditions. Tools used:
+                </p>
+                <ol class="work-technologies">
+                  <li><u>Ansys FLUENT</u></li>
+                  <li><u>Ansys Mechanical</u></li>
+                  <li><u>Ansys SpaceClaim</u></li>
+                </ol>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project5.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
+
+                   <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Icon"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+         <!-- Update img src and alt attribute  -->
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/windloading.png"
+                  alt="contribute dev"
+                />
+              </picture>
+            </div>
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>Parametric Thermal Analysis on Heatsink</u></h3>
+                <!-- Add small description of your project  -->
+                <p class="work-text">
+                <p class="justified-paragraph13">  
+                  This project involved a thermal performance parametric analysis of 2 heatsinks using Finite 
+                  Element Analysis (FEA). The study evaluated the heatsink’s ability to dissipate heat under 
+                  various operating conditions, focusing on temperature distribution, airflow behavior, 
+                  and thermal resistance. Simulations were conducted to optimize fin geometry and material 
+                  selection, ensuring efficient heat dissipation and maintaining component temperatures 
+                  within safe operating limits. The results guided design improvements for enhanced thermal 
+                  management in chosen electronic systems. Tools used:
+                </p>
+                <ol class="work-technologies">
+                  <li><u>Ansys Mechanical</u></li>
+                  <li><u>Ansys SpaceClaim</u></li>
+                </ol>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project6.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
+
+                   <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    href=""
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Link"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+         <!-- Update img src and alt attribute  -->
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/heatsink.png"
+                  alt="contribute dev"
+                />
+              </picture>
+            </div>
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>2-Slit Waveguide Simulation</u></h3>
+                <!-- Add small description of your project  -->
+                <p class="work-text">
+                <p class="justified-paragraph13">  
+                  The two-slit waveguide simulation using Ansys HFSS aimed to analyze the electromagnetic 
+                  wave propagation and interference patterns resulting from a dual-aperture configuration 
+                  in a rectangular waveguide. A TE10 mode was excited at the waveguide’s input port, and 
+                  the geometry featured two narrow slits positioned symmetrically along the broad wall to 
+                  mimic a classic double-slit setup. HFSS was used to solve the full-wave Maxwell equations, 
+                  capturing the resulting field distribution beyond the slits. The simulation revealed 
+                  characteristic interference fringes, demonstrating constructive and destructive interference 
+                  zones, validating wave behavior in confined structures. This setup is useful for exploring 
+                  wave diffraction phenomena in high-frequency RF or microwave systems. Tools used:
+                </p>
+                <ol class="work-technologies">
+                  <li><u>Ansys HFSS</u></li>
+                </ol>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project7.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
+
+                   <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    href=""
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Link"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+         <!-- Update img src and alt attribute  -->
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/waveguidesimulation.png"
+                  alt="contribute dev"
+                />
+              </picture>
+            </div>
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>Aerodynamic Analysis of a Surveillance UAV</u></h3>
+                <!-- Add small description of your project  -->
+                <p class="work-text">
+                <p class="justified-paragraph13">  
+                  This project involved the aerodynamic assessment of a surveillance unmanned aerial vehicle (UAV) to 
+                  optimize its performance, stability, and efficiency during flight. Using computational fluid dynamics 
+                  (CFD) and relevant aerodynamic theory, the analysis evaluates key parameters such as lift, drag, 
+                  pressure distribution, and flow behavior around the UAV's airframe and control surfaces. The study 
+                  aimed to identify design improvements that enhance endurance, maneuverability, and operational 
+                  effectiveness, making the UAV more suitable for long-duration surveillance missions. Tools used:
+                </p>
+                <ol class="work-technologies">
+                  <li><u>Ansys Fluent</u></li>
+                  <li><u>Ansys SpaceClaim</u></li>
+                </ol>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project8.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
+
+                   <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    href=""
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Link"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+         <!-- Update img src and alt attribute  -->
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/uavaerodynamics.png"
+                  alt="contribute dev"
+                />
+              </picture>
+            </div>
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>Modal Analysis of a Satellite Bus Structure</u></h3>
+                <!-- Add small description of your project  -->
+                <p class="work-text">
+                <p class="justified-paragraph13">  
+                  This project focused on performing a modal analysis of a satellite bus structure to evaluate its dynamic 
+                  behavior under launch and in-orbit conditions. Using Finite Element Analysis (FEA), the structure was 
+                  modeled to determine its natural frequencies and corresponding mode shapes. The analysis helped identify 
+                  potential resonance issues and guided design modifications to ensure structural integrity and performance 
+                  during launch vibrations and operational maneuvers. The results provided critical input for both structural 
+                  optimization and vibration isolation strategies in the satellite’s overall design lifecycle. Tools used:
+                </p>
+                <ol class="work-technologies">
+                  <li><u>Ansys Mechanical</u></li>
+                  <li><u>Ansys SpaceClaim</u></li>
+                </ol>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project9.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
+
+                   <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    href=""
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Link"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+         <!-- Update img src and alt attribute  -->
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/satellite_bus.png"
+                  alt="contribute dev"
+                />
+              </picture>
+            </div>
+            <div class="work-box">
+              <div class="work-textbox">
+                <!-- Add your project title here -->
+                <h3 class="h3"><u>Aerodynamic Analysis of a F1 Car Rear Wing</u></h3>
+                <!-- Add small description of your project  -->
+                <p class="work-text">
+                <p class="justified-paragraph13">  
+                  This project involved simulating airflow around a Formula 1 rear wing to evaluate its aerodynamic performance. 
+                  Using CFD tools, the study focused on analyzing downforce generation, drag characteristics, and flow separation 
+                  behavior under various operating conditions. The rear wing geometry was assessed in terms of pressure distribution, 
+                  wake structure, and efficiency metrics such as lift-to-drag ratio. The goal was to gain insights into how design 
+                  features influence aerodynamic stability and overall vehicle performance at high speeds. Tools used:
+                </p>
+                <ol class="work-technologies">
+                  <li><u>Ansys Fluent</u></li>
+                  <li><u>Ansys Mechanical</u></li>
+                  <li><u>Ansys SpaceClaim</u></li>
+                </ol>
+                <div class="work-links">
+                  <!-- Add url of project in href attribute -->
+                  <a href="project10.html" target="_blank" rel="noopener" class="link"
+                    >Read about this project</a
+                  >
+
+                   <!-- Add link to project source code in href attribute if applicable otherwise feel free to delete or comment the markup -->
+                  <a
+                    href=""
+                    target="_blank"
+                    rel="noopener"
+                    title="Project Link"
+                  >
+                    <img
+                      src="assets/images/gearicon.png"
+                      alt="Gear Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+         <!-- Update img src and alt attribute  -->
+              <picture class="work-img">
+                <img
+                  loading="lazy"
+                  src="assets/images/work/F1_rear_wing_1.png"
+                  alt="contribute dev"
+                />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <br><section id="selected-work" style="text-align: center; padding: 2rem;">
+        <h2 style="font-size: 32px; color: white;"><u>Academic Research Work</u></h2>
+        <br>
+          <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <a 
+              href="MLuzipho_NUAA_Undergraduate_Thesis.pdf" 
+              target="_blank"
+              class="link" 
+              rel="noopener"
+           >
+              Undergraduate Thesis: Investigation On Aircraft Aerodynamics in Gusty Inflow Conditions.
+            </a>
+          </div>
+      </section></br>
+
+      <!-- xxxxxx -->
+
+      <section class="article">
+        <div class="container">
+          <h2 class="h2" id="blog">Consulting Services</h2>
+          <div class="article-boxes">
+            <article class="article-box featured-article">
+              <div class="article-textbox">
+                <div>
+                  <h3 class="h3">
+                    I support your product development process by applying state of the art, 
+                    industry standard numerical simulation methods.
+                  </h3>
+                  <p class="article-text">
+                  <p class="justified-paragraph2">  
+                    For my projects, I use commercial CAE codes such as ANSYS, StarCCM+, OpenFOAM, among others. I offer my expertise to solve fluid flow, heat transfer, structural mechanics,
+                    electromagnetics, fluid-structure interaction (FSI), and radiative transfer.
+                  </p>
+                </div>
+              </div>
+              <picture class="article-illustration">
+                <img
+                  src="assets/images/cfdfea1.png"
+                  alt="cae"
+                  loading="lazy"
+                />
+              </picture>
+            </article>
+            <article class="article-box">
+              <div class="article-textbox">
+                <div>
+                  <h3 class="h4"><u>Why Me</u></h3>
+                  <p class="article-text">
+                  <p class="justified-paragraph9">  
+                    I apply a systems engineering approach to aeronautical design, integrating FEA and CFD into streamlined, simulation-driven workflows. With expertise in structural analysis, aerodynamic design and optimisation, electronics cooling, and low-level programming, I deliver tightly integrated, high-performance solutions across mechanical, electronic, and software domains. I'm well versed with the following engineering standards; DO-178, ISO 9001, SAE AS9100, and NAFEMS Standards.
+                  </p>
+                </div>
+                <div class="article-info">
+                  <a href="Malungelo_Luzipho_Resume.pdf" class="link" target="_blank" rel="noopener"
+                    >CV</a
+                  >
+                </div>
+              </div>
+            </article>
+            <article class="article-box">
+              <div class="article-textbox">
+                <div>
+                  <h3 class="h4"><u>Research Focus</u></h3>
+                  <p class="article-text">
+                  <p class="justified-paragraph10">  
+                    My research interests lie in the area of applying high-fidelity multiphysics simulations to solve complex engineering problems in aerospace, automotive, electronics, and energy systems. I'm interested in delving deeper into CFD and FEA for modeling turbulent flow, conjugate heat transfer, thermo-mechanical stress, fatigue, and fluid-structure interactions, as well as electromagnetic simulations for high-frequency electronics and EMI/EMC analysis. My approach would emphasize validated simulation workflows, i.e., mesh refinement, sensitivity studies, and experimental correlation, to ensure predictive accuracy and system-level performance. 
+                  </p>
+                </div>
+              </div>
+            </article>
+            <article class="article-box">
+              <div class="article-textbox">
+                <div>
+                  <h3 class="h4"><u>Training</u></h3>
+                  <div class="article-text" style="text-align: justify; color: white;">
+                    I provide comprehensive training in the use of industry-standard simulation and modeling tools, including Ansys SpaceClaim for CAD and geometry preparation, Ansys Fluent for computational fluid dynamics (CFD) and heat transfer simulations, Ansys Maxwell for low-frequency electromagnetic field analysis, Ansys HFSS for high-frequency electromagnetic simulations and antenna design, and Ansys Mechanical for structural, thermal, and modal analysis. In addition, I offer instruction in OpenFOAM, an open-source CFD toolbox widely used for custom fluid dynamics applications. My training sessions cover both fundamental concepts and advanced simulation workflows, emphasizing real-world application, best practices in model setup and meshing, solver settings, post-processing, and interpretation of results. Whether for academic research, industrial design validation, or certification readiness, my goal is to equip learners with the skills and confidence to apply these tools effectively and independently across a wide range of engineering problems. 
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Update skills-img src, alt  and title attributes I have added some other logos in assets/images/skill for your convenience feel free to pick one if required  -->
+
+      <section class="skills">
   <div class="container">
-    <h2 class="h2">Worked With</h2>
-    <div class="logos">
-      <img src="assets/white-logos/csir1-white.png" alt="CSIR" class="logo to-top" />
-      <img src="assets/white-logos/denel1-white.png" alt="Denel" class="logo" />
-      <img src="assets/white-logos/kutleng1-white.png" alt="Kutleng" class="logo to-bottom" />
-      <img src="assets/white-logos/gew1-white.png" alt="GEW" class="logo to-top" />
-      <img src="assets/white-logos/upm1-white.png" alt="UPM" class="logo" />
-      <img src="assets/white-logos/armscor1-white.png" alt="Armscor" class="logo to-bottom" />
-      <img src="assets/white-logos/ansys1-white.png" alt="ANSYS" class="logo to-top" />
-      <img src="assets/white-logos/nuaa1-white.png" alt="NUAA" class="logo" />
-      <img src="assets/white-logos/reutech1-white.png" alt="Reutech" class="logo to-bottom" />
+    <h2 class="h2" id="skills">Software Tool Expertise</h2>
+    <div class="skills-imgs">
+      <img src="assets/white-logos/starccm1-white.png" alt="StarCCM+" class="skills-img" loading="lazy" title="StarCCM">
+      <img src="assets/white-logos/ansys1-white.png" alt="Ansys" class="skills-img" loading="lazy" title="Ansys">
+      <img src="assets/white-logos/altair1-white.png" alt="Altair" class="skills-img" loading="lazy" title="Altair">
+      <img src="assets/white-logos/matlab-white.png" alt="Matlab" class="skills-img" loading="lazy" title="Matlab">
+      <img src="assets/white-logos/solidworks1-white.png" alt="Solidworks" class="skills-img" loading="lazy" title="Solidworks">
+      <img src="assets/white-logos/catia1-white.png" alt="Catia" class="skills-img" loading="lazy" title="Catia">
+      <img src="assets/white-logos/python1-white.png" alt="Python" class="skills-img" loading="lazy" title="Python">
+      <img src="assets/white-logos/openfoam1-white.png" alt="OpenFOAM" class="skills-img" loading="lazy" title="OpenFOAM">
+      <img src="assets/white-logos/c-white.png" alt="HTML" class="skills-img" loading="lazy" title="HTML">
+      <img src="assets/white-logos/cpp-white.png" alt="C++" class="skills-img" loading="lazy" title="C++">
+      <img src="assets/white-logos/git-white.png" alt="GitHub" class="skills-img" loading="lazy" title="GitHub">
     </div>
   </div>
 </section>
 
-<!-- ================= SELECTED WORK ================= -->
-<section class="work">
-  <div class="container">
-    <h2 class="h2" id="work">Selected Work</h2>
 
-    <!-- PROJECT 1 -->
-    <div class="work-box">
-      <div class="work-textbox">
-        <h3 class="h3"><u>Drop-Test Simulation</u></h3>
-        <p class="justified-paragraph">
-          A virtual drop-test simulation used to predict structural response and potential failure modes of an
-          electronic device subjected to controlled impact conditions. This analysis supports early-stage
-          design validation and significantly reduces reliance on physical prototyping.
-        </p>
-        <ol class="work-technologies">
-          <li><u>Ansys SpaceClaim</u></li>
-          <li><u>Ansys Discovery</u></li>
-          <li><u>Ansys Mechanical (LS-DYNA)</u></li>
-        </ol>
-        <a href="project1.html" class="link" target="_blank">Read about this project</a>
+      <!-- Services I offer. -->
+
+      <section>
+        <h2 class="h2">My Services</h2>
+        <div class="container">
+          <ol class="testimonials">
+            <li class="testimonial">
+              <figure class="testimonial-author">
+                <img
+                  src="assets/images/greentick.png"
+                  alt="Green Tick"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <h3 class="testimonial-author-name"><u>Flow Simulation (CFD)</u></h3>
+                </figcaption>
+              </figure> 
+              <blockquote class="testimonial-text" style="text-align: justify; color: white">
+                Use of commercial Navier-Stokes solvers such as Ansys-FLUENT, OpenFOAM, & StarCCM+ to simulate complex flows patterns including heat transfer, multiphase, moving geometries, and more.
+              </blockquote>
+            </li>
+            <li class="testimonial">
+              <figure class="testimonial-author">
+                <img
+                  src="assets/images/greentick.png"
+                  alt="Green Tick"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <h3 class="testimonial-author-name"><u>Structural Analysis (FEA)</u></h3>
+                </figcaption>
+              </figure>
+              <blockquote class="testimonial-text" style="text-align: justify; color: white">
+                Use of commercial FEA solvers such as Ansys Mechanical to solve statics and dynamics, vibrations, rotor dynamics, life cycle fatigue, fracture mechanics, thermal analysis, and more.
+              </blockquote>
+            </li>
+            <li class="testimonial">
+              <figure class="testimonial-author">
+                <img
+                  src="assets/images/greentick.png"
+                  alt="Green Tick"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <h3 class="testimonial-author-name"><u>Consulting</u></h3>
+                </figcaption>
+              </figure>
+              <blockquote class="testimonial-text" style="text-align: justify; color: white">
+                With expertise in Computer-Aided Engineering (CAE), I offer simulation-driven consulting services that help to bring complex engineering designs to life and optimize them. 
+            </li>
+            <li class="testimonial">
+              <figure class="testimonial-author">
+                <img
+                  src="assets/images/greentick.png"
+                  alt="Green Tick"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <h3 class="testimonial-author-name"><u>Engineering Design</u></h3>
+                </figcaption>
+              </figure>
+              <blockquote class="testimonial-text" style="text-align: justify; color: white">
+                Comprehensive engineering design services with a strong focus on Computer-Aided Design (CAD) for complex mechanical and aerospace systems, from detailed CAD model preparation to system-level simulation.
+              </blockquote>
+            </li>
+            <li class="testimonial">
+              <figure class="testimonial-author">
+                <img
+                  src="assets/images/greentick.png"
+                  alt="Green Tick"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <h3 class="testimonial-author-name"><u>Electromagnetic Simulation</u></h3>
+                </figcaption>
+              </figure>
+              <blockquote class="testimonial-text" style="text-align: justify; color: white">
+               High-fidelity electromagnetic simulations for analyzing and mitigating Electromagnetic Interference (EMI) and ensuring electromagnetic compatibility (EMC), i.e., modeling wave propagation and antenna performance. 
+              </blockquote>
+            </li>
+            <li class="testimonial">
+              <figure class="testimonial-author">
+                <img
+                  src="assets/images/greentick.png"
+                  alt="Green Tick"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <h3 class="testimonial-author-name"><u>Multiphysics Simulation</u></h3>
+                </figcaption>
+              </figure>
+              <blockquote class="testimonial-text" style="text-align: justify; color: white">
+                Conduction of accurate analysis of coupled behaviors such as fluid-structure interaction, electro-thermal effects, and thermal-mechanical stress across aerospace, electronics, automotive, and related industries.
+              </blockquote>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="contact">
+        <div class="container">
+          <h2 class="h2" id="contact">Send Message</h2>
+          <div class="contact-content">
+            <div class="contact-textbox">
+              <!-- Comment this component if I'm not consulting at the moment. -->
+              <a class="hire-alert">
+                <span class="indicator"></span>
+                Let's talk about your project
+              </a>
+              <p class="contact-text">
+              <p class="justified-paragraph7">  
+                As an Aeronautical Engineer specializing in CAE, with expertise in CFD, FEA, and multiphysics simulations, I help solve complex engineering challenges through high-precision modeling and simulation-driven design.
+              </p>
+              <p class="contact-text">
+              <p class="justified-paragraph8">  
+                I'm also an open-source website and mobile application developer, and in my spare time, I enjoy freelance coding.
+              </p>
+              <!-- Replaced src with my signatures and name -->
+              <img
+                src="assets/images/signature.png"
+                alt="Malungelo Luzipho"
+                class="signatures"
+                loading="lazy"
+              />
+            </div>
+            <form action="https://formspree.io/f/xeokljjo" method="POST" class="contact-form">
+              <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required />
+              </div>
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  inputmode="email"
+                />
+              </div>
+              <div class="form-field">
+                <label for="message">How can I help you?</label>
+                <textarea name="message" id="message" required placeholder="Enter your message here"></textarea>
+              </div>
+              <button type="submit" class="btn btn-cta" style="color: white;">Send</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <!-- Update href and src attributes -->
+          <nav>
+            <ol class="footer-links">
+              <li class="footer-link">
+                <a title="GitHub" href="https://github.com/MLuzipho" target="_blank" rel="noopener"
+                  ><img
+                    loading="lazy"
+                    src="assets/images/social-links/github.svg"
+                    alt="GitHub"
+                /></a>
+              </li>
+              <li class="footer-link">
+                <a title="Linkedin" href="https://www.linkedin.com/in/malungeloluzipho/" target="_blank" rel="noopener"
+                  ><img
+                    loading="lazy"
+                    src="assets/images/social-links/linkedin.svg"
+                    alt="Linkedin"
+                /></a>
+              </li>
+            </ol>
+          </nav>
+          <div class="footer-container">
+          <p class="footer-text">
+            &copy; <span>2025</span> - Website designed & developed by <a target="_blank" rel="noopener" href="https://github.com/MLuzipho">Malungelo Luzipho</a>
+          </p>
+          </div>
+        
+        </div>
       </div>
-      <picture class="work-img">
-        <img src="assets/images/work/device.png" alt="Drop test simulation" loading="lazy" />
-      </picture>
-    </div>
+    </footer>
 
-    <!-- PROJECT 2 -->
-    <div class="work-box">
-      <div class="work-textbox">
-        <h3 class="h3"><u>CFD Analysis of a Hypersonic Missile</u></h3>
-        <p class="justified-paragraph">
-          High-speed CFD simulations at Mach 5+ were performed to study shock formation, aerodynamic heating,
-          pressure distribution, and flow behaviour around a missile configuration. The analysis supports
-          aerodynamic performance assessment and thermal risk evaluation in extreme flight regimes.
-        </p>
-        <ol class="work-technologies">
-          <li><u>Ansys Fluent</u></li>
-          <li><u>OpenFOAM</u></li>
-          <li><u>Ansys SpaceClaim</u></li>
-        </ol>
-        <a href="project2.html" class="link" target="_blank">Read about this project</a>
-      </div>
-      <picture class="work-img">
-        <img src="assets/images/work/missile.png" alt="Hypersonic CFD simulation" loading="lazy" />
-      </picture>
-    </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById("bg-video");
 
-    <!-- PROJECT 3 -->
-    <div class="work-box">
-      <div class="work-textbox">
-        <h3 class="h3"><u>Toroid Inductor Magnetic Field Simulation</u></h3>
-        <p class="justified-paragraph">
-          Magnetostatic simulation of a toroidal inductor to evaluate magnetic flux density, field confinement,
-          and core performance under steady-state excitation. The study supports efficiency assessment and
-          electromagnetic design optimisation.
-        </p>
-        <ol class="work-technologies">
-          <li><u>Ansys Maxwell</u></li>
-          <li><u>Ansys SpaceClaim</u></li>
-          <li><u>MS Excel</u></li>
-        </ol>
-        <a href="project3.html" class="link" target="_blank">Read about this project</a>
-      </div>
-      <picture class="work-img">
-        <img src="assets/images/work/toroid.png" alt="Toroid EM simulation" loading="lazy" />
-      </picture>
-    </div>
+      if (!video) return;
 
-    <!-- PROJECT 4 -->
-    <div class="work-box">
-      <div class="work-textbox">
-        <h3 class="h3"><u>Shockwave CFD Simulation</u></h3>
-        <p class="justified-paragraph">
-          CFD simulation of shockwave propagation from a confined tunnel into open air, capturing shock formation,
-          expansion fans, and interaction with ambient flow. Useful for analysing blast effects and transient
-          pressure loading.
-        </p>
-        <ol class="work-technologies">
-          <li><u>Ansys Fluent</u></li>
-          <li><u>Ansys SpaceClaim</u></li>
-        </ol>
-        <a href="project4.html" class="link" target="_blank">Read about this project</a>
-      </div>
-      <picture class="work-img">
-        <img src="assets/images/work/shockwave.png" alt="Shockwave CFD" loading="lazy" />
-      </picture>
-    </div>
+      // Try to autoplay
+      const tryPlay = () => {
+        video.muted = true;
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise
+            .then(() => console.log("Autoplay started"))
+            .catch((err) => {
+              console.log("Autoplay blocked, waiting for user gesture", err);
+              waitForUserGesture();
+            });
+        }
+      };
 
-    <!-- PROJECT 5 -->
-    <div class="work-box">
-      <div class="work-textbox">
-        <h3 class="h3"><u>FSI Wind Loading Analysis (5G Equipment)</u></h3>
-        <p class="justified-paragraph">
-          Integrated CFD-FEA analysis to evaluate wind-induced loading on 5G radio equipment. Pressure distributions
-          from CFD were mapped into structural models to assess stresses, deformation, and structural integrity
-          under realistic environmental conditions.
-        </p>
-        <ol class="work-technologies">
-          <li><u>Ansys Fluent</u></li>
-          <li><u>Ansys Mechanical</u></li>
-          <li><u>Ansys SpaceClaim</u></li>
-        </ol>
-        <a href="project5.html" class="link" target="_blank">Read about this project</a>
-      </div>
-      <picture class="work-img">
-        <img src="assets/images/work/windloading.png" alt="FSI wind loading" loading="lazy" />
-      </picture>
-    </div>
+      const waitForUserGesture = () => {
+        const triggerPlay = () => {
+          video.play().catch(err => console.log("Play failed:", err));
+          document.body.removeEventListener("click", triggerPlay);
+          document.body.removeEventListener("touchstart", triggerPlay);
+        };
+        document.body.addEventListener("click", triggerPlay, { once: true });
+        document.body.addEventListener("touchstart", triggerPlay, { once: true });
+      };
 
-  </div>
-</section>
+      tryPlay();
+    });
+  </script>
 
-<!-- ================= CONSULTING SERVICES ================= -->
-<section class="article">
-  <div class="container">
-    <h2 class="h2" id="blog">Consulting Services</h2>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const logos = document.querySelectorAll('.logo');
+    logos.forEach((logo, index) => {
+      setTimeout(() => {
+        // Add 'visible' class to trigger fade-in and slide-up/down animation
+        logo.classList.add('visible');
+      }, index * 300);
+    });
+  });
+</script>
 
-    <p class="justified-paragraph">
-      I support product development and validation through simulation-driven engineering workflows. Engagements
-      are structured with clearly defined scope, assumptions, and deliverables to ensure technically defensible
-      results and confident engineering decision-making.
-    </p>
-  </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-<section class="contact">
-  <div class="container">
-    <h2 class="h2" id="contact">Let’s Discuss Your Project</h2>
-    <p class="justified-paragraph">
-      If you are working on a system that requires credible simulation, validation, or optimisation, I’d be glad
-      to discuss how numerical modelling can support your engineering objectives.
-    </p>
-  </div>
-</section>
-
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <p class="footer-text">
-      © 2025 – Malungelo Luzipho
-    </p>
-  </div>
-</footer>
-
-</body>
+  </body>
 </html>
